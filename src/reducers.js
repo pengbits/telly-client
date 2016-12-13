@@ -7,7 +7,7 @@ import {
 } from './actions';
 
 
-const search = (state = {}, action) => {
+const search = (state = '', action) => {
   switch (action.type){
     case SET_SEARCH:
       return action.search
@@ -28,7 +28,7 @@ const search = (state = {}, action) => {
   }
 }
 
-const shows = (state = {}, action) => {
+const shows = (state =[], action) => {
   switch (action.type){
     case SET_SHOWS:
       return action.shows

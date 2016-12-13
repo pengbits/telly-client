@@ -1,7 +1,7 @@
 export const SET_SHOWS = 'SET_SHOWS'
 export const SET_SEARCH = 'SET_SEARCH'
 export const REQUEST_SEARCH = 'REQUEST_SEARCH'
-export const RECIEVE_SEARCH = 'RECIEVE_SEARCH'
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 
 
 // load initial shows into list
@@ -45,8 +45,8 @@ export function requestSearch(search) {
 
 export function receiveSearch(search, json) {
   return {
-    type: RECIEVE_SEARCH,
+    type: RECEIVE_SEARCH,
     search,
-    series: json.data // json.data.map(show => show.data)
+    results: json.data // json.data.map(show => show.data)
   }
 }

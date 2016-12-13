@@ -1,19 +1,26 @@
 import {List, Map} from 'immutable';
 import {expect} from 'chai';
-import {add} from '../src/core';
+import {setShows} from '../src/core';
 
 describe('application logic', () => {
+  describe('home', () => {
 
-  describe('add', () => {
-
-    it('adds a show to the queue', () => {
-      const state = {
-        queue: List,of('Berlin Station')
-      }
-      const nextState = add(state, 'Dicte');
-      expect(nextState).to.equal({
-        queue: List.of('Berlin Station','Dicte')
-      })
+    it('set initial list of shows', () => {
+      const state = Map();
+      const shows = List.of('Berlin Station','Dicte','Chewing Gum');
+      const nextState = setShows(state, shows);
+      expect(nextState).to.equal(Map({
+        'shows': List.of('Berlin Station','Dicte','Chewing Gum')
+      }));
     });
+    
+    it('display a show\'s details', () => {
+      expect(true) 
+    });
+    
+    it('add a show', () => {
+      expect(true) 
+    });
+    
   });
 });

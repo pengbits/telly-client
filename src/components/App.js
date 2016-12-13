@@ -1,10 +1,10 @@
 import React from 'react'
-import ShowsList from './ShowsList'
 import ShowsListContainer from '../containers/ShowsListContainer'
+import SearchFormContainer from '../containers/SearchFormContainer'
+
 const App = () => (
   <div>
-    <h1>Hello There</h1>
-    <ShowsListContainer />
+    <SearchFormContainer />
   </div>
 )
 

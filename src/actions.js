@@ -1,10 +1,7 @@
-export const SET_SHOWS = 'SET_SHOWS'
-export const SET_SEARCH = 'SET_SEARCH'
-export const REQUEST_SEARCH = 'REQUEST_SEARCH'
-export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
-
+import fetch from 'isomorphic-fetch'
 
 // load initial shows into list
+export const SET_SHOWS = 'SET_SHOWS'
 export function setShows(shows) {
   return {
     type: SET_SHOWS,
@@ -12,7 +9,9 @@ export function setShows(shows) {
   }
 }
 
+
 // set the search term to use in searches of tvdb
+export const SET_SEARCH = 'SET_SEARCH'
 export function setSearchTerm(term){
   return {
     type: SET_SEARCH,
@@ -20,7 +19,9 @@ export function setSearchTerm(term){
   }
 }
 
+
 // prepare the search request 
+export const REQUEST_SEARCH = 'REQUEST_SEARCH'
 export function requestSearch(search) {
   return {
     type: REQUEST_SEARCH,
@@ -28,21 +29,9 @@ export function requestSearch(search) {
   }
 }
 
-// {
-//   "data": [
-//     {
-//       "aliases": [],
-//       "banner": "graphical/314995-g2.jpg",
-//       "firstAired": "2016-10-16",
-//       "id": 314995,
-//       "network": "EPIX",
-//       "overview": "Follows Daniel Meyer/Miller, who has just arrived at the CIA foreign station in Berlin, Germany. Meyer has a clandestine mission: to uncover the source of a leak who has supplied information to a now-famous whistleblower named Thomas Shaw. Guided by veteran Hector DeJean, Daniel learns to contend with the rough-and-tumble world of the field agent: agent-running, deception, the dangers and moral compromises.",
-//       "seriesName": "Berlin Station",
-//       "status": "Continuing"
-//     }
-//   ]
-// }
 
+// onready
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 export function receiveSearch(search, json) {
   return {
     type: RECEIVE_SEARCH,
@@ -50,3 +39,24 @@ export function receiveSearch(search, json) {
     results: json.data // json.data.map(show => show.data)
   }
 }
+
+// async action creator for the search
+export function performSearch(search){
+  
+  return function(dispatch){
+    
+    dispatch(requestSearch(search));
+    
+    // this won't actually work yet because we need to get a token and set in authorize header..
+    return fetch(`https://api.thetvdb.com/search/series?name=${search}`)
+      then(response => response.json())
+      then(json => {
+        
+          dispatch(receiveSearch)
+        
+        
+      })
+  }
+}
+
+

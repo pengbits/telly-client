@@ -9,17 +9,21 @@ import {
 
 function search(state = {}, action){
   switch (action.type){
+    
     case SET_SEARCH:
       return action.search
+      
     case REQUEST_SEARCH:
       return Object.assign({}, state {
         isFetching: true
       })
+    
     case RECEIVE_SEARCH:
       return Object.assign({}, state {
         isFetching: false,
         series: action.results
       })
+    
     default:
       return state
   }
@@ -34,8 +38,11 @@ function setShows(state = {}, action){
   }
 }
 
-export default combineReducers({
+// combine above reducers
+const rootReducer = combineReducers({
   setShows,
   search
 })
+
+export default rootReducer
 

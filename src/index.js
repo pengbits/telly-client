@@ -3,7 +3,7 @@ import 'babel-polyfill'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
-import { selectSubreddit, fetchPosts } from './actions'
+import { setSearchTerm, performSearch } from './actions'
 import rootReducer from './reducers'
 
 const loggerMiddleware = createLogger()
@@ -16,7 +16,7 @@ const store = createStore(
   )
 )
 
-store.dispatch(selectSearch('Dicte'))
-store.dispatch(perfornSearch('Dicte')).then(() =>
+store.dispatch(setSearchTerm('Dicte'))
+store.dispatch(performSearch('Dicte')).then(() =>
   console.log(store.getState())
 )

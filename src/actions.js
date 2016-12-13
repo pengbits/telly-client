@@ -12,7 +12,7 @@ export function setShows(shows) {
 
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'
-export function setSearchTerm(term){
+export function setSearchTerm(search){
   return {
     type: SET_SEARCH,
     search

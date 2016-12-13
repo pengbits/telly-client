@@ -14,12 +14,12 @@ function search(state = {}, action){
       return action.search
       
     case REQUEST_SEARCH:
-      return Object.assign({}, state {
+      return Object.assign({}, state, {
         isFetching: true
       })
     
     case RECEIVE_SEARCH:
-      return Object.assign({}, state {
+      return Object.assign({}, state, {
         isFetching: false,
         series: action.results
       })

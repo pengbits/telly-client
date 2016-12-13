@@ -9,6 +9,15 @@ export function setShows(shows) {
   }
 }
 
+// select a show to display details for
+export const SELECT_SHOW = 'SELECT_SHOW'
+export function selectShow(show) {
+  return {
+    type: SELECT_SHOW,
+    show
+  }
+}
+
 
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'
@@ -48,14 +57,18 @@ export function performSearch(search){
     dispatch(requestSearch(search));
     
     // this won't actually work yet because we need to get a token and set in authorize header..
-    return fetch(`https://api.thetvdb.com/search/series?name=${search}`)
-      then(response => response.json())
-      then(json => {
-        
-          dispatch(receiveSearch)
-        
-        
-      })
+    // return fetch(`https://api.thetvdb.com/search/series?name=${search}`)
+    //   then(response => response.json())
+    //   then(json => {
+    //     
+    //       dispatch(receiveSearch)
+    //   })
+    
+    // similate latency
+    setTimeout(() => {
+      dispatch(receiveSearch(search, {}))
+    }, 
+    1000)
   }
 }
 

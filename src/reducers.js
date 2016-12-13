@@ -7,9 +7,8 @@ import {
 } from './actions';
 
 
-function search(state = {}, action){
+const search = (state = '', action) => {
   switch (action.type){
-    
     case SET_SEARCH:
       return action.search
       
@@ -29,7 +28,7 @@ function search(state = {}, action){
   }
 }
 
-function setShows(state = {}, action){
+const shows = (state =[], action) => {
   switch (action.type){
     case SET_SHOWS:
       return action.shows
@@ -40,7 +39,7 @@ function setShows(state = {}, action){
 
 // combine above reducers
 const rootReducer = combineReducers({
-  setShows,
+  shows,
   search
 })
 

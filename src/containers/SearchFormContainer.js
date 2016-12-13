@@ -11,11 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-  const setSearchTerm = (e) => {
-    console.log(e.currentTarget.value);
-  }
-  
-  const onSubmit = () => {
+  const onSubmit = (term) => {
+    dispatch(setSearchTerm(term))
     // dispatch(requestSearch(term))  
   }
   

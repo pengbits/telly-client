@@ -1,11 +1,21 @@
 import React, { PropTypes } from 'react'
 
 const SearchForm = ({ search, onSubmit, onChange }) => {
+  let textInput;
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(textInput.value);
+  }
+  
   return (
-    <form action="#" onSubmit={onSubmit}>
-      <input type="text" defaultValue={search} onChange={onChange} />
-      <input type="submit" value="Submit" />
-    </form>
+    <div>
+      <h1>Search</h1>
+      <form action="#" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Enter a Series" ref={(i) => textInput = i} />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
   )
 }
 

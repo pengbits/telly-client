@@ -31,12 +31,12 @@ export function setSearchTerm(searchTerm){
 
 // prepare the search request 
 export const REQUEST_SEARCH = 'REQUEST_SEARCH'
-// export function requestSearch(searchTerm) {
-//   return {
-//     type: REQUEST_SEARCH,
-//     searchTerm
-//   }
-// }
+export function requestSearch(searchTerm) {
+  return {
+    type: REQUEST_SEARCH,
+    searchTerm
+  }
+}
 
 
 // onready

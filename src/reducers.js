@@ -19,6 +19,11 @@ const search = (state = {}, action) => {
         term: action.searchTerm
       }
       
+    case REQUEST_SEARCH:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+      
     case PERFORM_SEARCH:
       return Object.assign({}, state, {
         isFetching: false,

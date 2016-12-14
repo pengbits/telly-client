@@ -4,14 +4,13 @@ import SearchForm from '../components/SearchForm'
 
 const mapStateToProps = (state) => {
   return {
-    search: state.search
+    searchTerm: state.searchTerm
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
 
   const onSubmit = (term) => {
-    console.log('|formContainer| onSubmit: '+term)
     dispatch(setSearchTerm(term))
     dispatch(performSearch(term))  
   }

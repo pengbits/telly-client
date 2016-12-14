@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const SearchForm = ({ search, onSubmit, onChange, isFetching }) => {
+const SearchForm = ({ searchTerm, onSubmit, onChange, isFetching }) => {
   let textInput;
   
   const handleSubmit = (e) => {

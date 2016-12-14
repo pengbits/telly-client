@@ -39,6 +39,24 @@ export function requestSearch(searchTerm) {
 }
 
 
+
+export const fetchSearch = () =>{
+  
+  // Thunk middleware knows how to handle functions.
+  // It passes the dispatch method as an argument to the function,
+  // thus making it able to dispatch actions itself.
+  return (dispatch, getState) => {
+    // First dispatch: the app state is updated to inform
+    // that the API call is starting.
+    
+    let term = getState().search.term;
+    console.log(`|fetchSearch -> dispatch -> requestSearch('${term}')`)
+    dispatch(requestSearch(term))
+  }
+}
+
+
+
 // onready
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 // export function receiveSearch(search, json) {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const SearchForm = ({ searchTerm, onSubmit, onChange, isFetching }) => {
+const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => {
   let textInput;
   
   const handleSubmit = (e) => {
@@ -17,6 +17,13 @@ const SearchForm = ({ searchTerm, onSubmit, onChange, isFetching }) => {
         <input type="text" placeholder="Enter a Series" ref={(i) => textInput = i} />
         <input type="submit" value="Search" />
       </form>
+      {results && results.length &&
+        <ul>
+        {results.map(function(r,idx){
+          return <li key={idx}>{r.seriesName}</li>
+        })}
+        </ul>
+      }
     </div>
   )
 }

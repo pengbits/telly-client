@@ -3,8 +3,11 @@ import { setSearchTerm,performSearch } from '../actions'
 import SearchForm from '../components/SearchForm'
 
 const mapStateToProps = (state) => {
+  const search = state.search;
+//  console.log(search.results && search.results.length ? search.results[0].seriesName : undefined)
   return {
-    searchTerm: state.searchTerm
+    searchTerm: search.term,
+    results: search.results
   }
 }
 

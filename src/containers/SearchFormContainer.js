@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setSearchTerm,performSearch } from '../actions'
+import { setSearchTerm, requestSearch, fetchSearch } from '../actions'
 import SearchForm from '../components/SearchForm'
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 
   const onSubmit = (term) => {
     dispatch(setSearchTerm(term))
-    dispatch(performSearch(term))  
+    dispatch(fetchSearch())  
   }
   
   return {

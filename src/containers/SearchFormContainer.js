@@ -1,22 +1,21 @@
 import { connect } from 'react-redux'
-import { setSearchTerm } from '../actions'
+import { setSearchTerm,performSearch } from '../actions'
 import SearchForm from '../components/SearchForm'
 
 const mapStateToProps = (state) => {
-  console.log(state.search)
+  const search = state.search;
+//  console.log(search.results && search.results.length ? search.results[0].seriesName : undefined)
   return {
-    search: state.search
+    searchTerm: search.term,
+    results: search.results
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
 
-  const setSearchTerm = (e) => {
-    console.log(e.currentTarget.value);
-  }
-  
-  const onSubmit = () => {
-    // dispatch(requestSearch(term))  
+  const onSubmit = (term) => {
+    dispatch(setSearchTerm(term))
+    dispatch(performSearch(term))  
   }
   
   return {

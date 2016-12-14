@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const SearchForm = ({ search, onSubmit, onChange }) => {
+const SearchForm = ({ search, onSubmit, onChange, isFetching }) => {
   let textInput;
   
   const handleSubmit = (e) => {
@@ -10,7 +10,9 @@ const SearchForm = ({ search, onSubmit, onChange }) => {
   
   return (
     <div>
-      <h1>Search</h1>
+      <h1>Search: {isFetching && 
+          <span>...</span>
+      }</h1>
       <form action="#" onSubmit={handleSubmit}>
         <input type="text" placeholder="Enter a Series" ref={(i) => textInput = i} />
         <input type="submit" value="Search" />

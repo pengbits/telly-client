@@ -3,44 +3,46 @@ import {
   SET_SHOWS,
   SET_SEARCH,
   REQUEST_SEARCH,
-  RECEIVE_SEARCH
+  RECEIVE_SEARCH,
+  PERFORM_SEARCH
 } from './actions';
 
 
-const search = (state = '', action) => {
+// jumping around with format of state is breaking everything
+// remember these only work on one node at a time, so might not be maps
+
+const search = (state = {}, action) => {
   switch (action.type){
     case SET_SEARCH:
-      return action.search
+      return {
+        isFetching: false,
+        term: action.searchTerm
+      }
       
-    case REQUEST_SEARCH:
-      return Object.assign({}, state, {
-        isFetching: true
-      })
-    
-    case RECEIVE_SEARCH:
+    case PERFORM_SEARCH:
       return Object.assign({}, state, {
         isFetching: false,
-        series: action.results
+        results: action.results
       })
-    
+      
     default:
       return state
   }
 }
 
-const shows = (state =[], action) => {
+const shows = (list =[], action) => {
   switch (action.type){
     case SET_SHOWS:
       return action.shows
     default:
-      return state
+      return list
   }
 }
 
 // combine above reducers
 const rootReducer = combineReducers({
-  shows,
-  search
+  search,
+  shows
 })
 
 export default rootReducer

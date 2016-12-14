@@ -21,54 +21,49 @@ export function selectShow(show) {
 
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'
-export function setSearchTerm(search){
+export function setSearchTerm(searchTerm){
   return {
     type: SET_SEARCH,
-    search
+    searchTerm
   }
 }
 
 
 // prepare the search request 
 export const REQUEST_SEARCH = 'REQUEST_SEARCH'
-export function requestSearch(search) {
-  return {
-    type: REQUEST_SEARCH,
-    search
-  }
-}
+// export function requestSearch(searchTerm) {
+//   return {
+//     type: REQUEST_SEARCH,
+//     searchTerm
+//   }
+// }
 
 
 // onready
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
-export function receiveSearch(search, json) {
-  return {
-    type: RECEIVE_SEARCH,
-    search,
-    results: json.data // json.data.map(show => show.data)
-  }
-}
+// export function receiveSearch(search, json) {
+//   return {
+//     type: RECEIVE_SEARCH,
+//     search,
+//     results: json.data // json.data.map(show => show.data)
+//   }
+// }
 
-// async action creator for the search
-export function performSearch(search){
-  
-  return function(dispatch){
-    
-    dispatch(requestSearch(search));
-    
-    // this won't actually work yet because we need to get a token and set in authorize header..
-    // return fetch(`https://api.thetvdb.com/search/series?name=${search}`)
-    //   then(response => response.json())
-    //   then(json => {
-    //     
-    //       dispatch(receiveSearch)
-    //   })
-    
-    // similate latency
-    setTimeout(() => {
-      dispatch(receiveSearch(search, {}))
-    }, 
-    1000)
+// skipping past async states for now
+export const PERFORM_SEARCH = 'PERFORM_SEARCH'
+export function performSearch(){
+  return {
+    type: PERFORM_SEARCH,
+    results: [{
+      "aliases": [],
+      "banner": "graphical/265571-g.jpg",
+      "firstAired": "2013-01-07",
+      "id": 265571,
+      "network": "TV 2",
+      "overview": "Dicte is a dedicated reporter and refuses to give up before she has her story. Her stubborness gives her problems immediately with the policeman John Wagner, and they often get into clashes with each other.",
+      "seriesName": "Dicte",
+      "status": "Continuing"
+    }]
   }
 }
 

@@ -1,11 +1,25 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import App from './components/App'
 
-let store = createStore(rootReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composeEnhancers = composeWithDevTools({}); 
+
+// 
+// const logger = store => next => action => {
+//   console.log('dispatching', action)
+//   let result = next(action)
+//   console.log('next state', store.getState())
+//   return result
+// }
+
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunk)// (thunk,logger)
+))
 
 render(
   <Provider store={store}>

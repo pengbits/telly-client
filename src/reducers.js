@@ -24,7 +24,7 @@ const search = (state = {}, action) => {
         isFetching: true
       })
       
-    case PERFORM_SEARCH:
+    case RECEIVE_SEARCH:
       return Object.assign({}, state, {
         isFetching: false,
         results: action.results

@@ -39,6 +39,15 @@ export function requestSearch(searchTerm) {
 }
 
 
+// onready
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
+export function receiveSearch(searchTerm, json) {
+  return {
+    type: RECEIVE_SEARCH,
+    searchTerm,
+    results: json.data // json.data.map(show => show.data)
+  }
+}
 
 export const fetchSearch = () =>{
   
@@ -48,41 +57,27 @@ export const fetchSearch = () =>{
   return (dispatch, getState) => {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
+    let searchTerm = getState().search.term;
+    dispatch(requestSearch(searchTerm));
     
-    let term = getState().search.term;
-    console.log(`|fetchSearch -> dispatch -> requestSearch('${term}')`)
-    dispatch(requestSearch(term))
+    // simulate latency
+    setTimeout(() => {
+      dispatch(receiveSearch(searchTerm, {
+        "data": [{
+          "aliases": [],
+          "banner": "graphical/265571-g.jpg",
+          "firstAired": "2013-01-07",
+          "id": 265571,
+          "network": "TV 2",
+          "overview": "Dicte is a dedicated reporter and refuses to give up before she has her story. Her stubborness gives her problems immediately with the policeman John Wagner, and they often get into clashes with each other.",
+          "seriesName": "Dicte",
+          "status": "Continuing"
+        }]
+      }))
+    }, 1000)
   }
 }
-
-
-
-// onready
-export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
-// export function receiveSearch(search, json) {
-//   return {
-//     type: RECEIVE_SEARCH,
-//     search,
-//     results: json.data // json.data.map(show => show.data)
-//   }
-// }
 
 // skipping past async states for now
 export const PERFORM_SEARCH = 'PERFORM_SEARCH'
-export function performSearch(){
-  return {
-    type: PERFORM_SEARCH,
-    results: [{
-      "aliases": [],
-      "banner": "graphical/265571-g.jpg",
-      "firstAired": "2013-01-07",
-      "id": 265571,
-      "network": "TV 2",
-      "overview": "Dicte is a dedicated reporter and refuses to give up before she has her story. Her stubborness gives her problems immediately with the policeman John Wagner, and they often get into clashes with each other.",
-      "seriesName": "Dicte",
-      "status": "Continuing"
-    }]
-  }
-}
-
 

@@ -42,49 +42,45 @@ export function requestSearch(searchTerm) {
 
 // onready
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
-export function receiveSearch(searchTerm, json) {
+export function receiveSearch(searchTerm, results) {
   return {
     type: RECEIVE_SEARCH,
     searchTerm,
-    results: json.data // json.data.map(show => show.data)
+    results
   }
 }
 
 // only good for 24 hours
 export const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODE4Mjk2MDAsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxNzQzMjAwLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.zNEPjXV31Jitg-dv5bDgWf5bcjDVzA8VjYlfrxTzUSwoamiXdvxR7Eo8QX5pOyWff7K7ATouBdXNBTiQL1sYmhFmQBX51WWRJU5mqXmGoGQOUnOPaZ4MvNbR1cUCGyIqqoDISzoHpbTnR5iNgnFJDpNDOMgC4pL3a-kwgKe_FelixAIFS8CL9aZH7057HDgyFqr8XzfzLqHvYbTqYzSOpnBylTCx6ywg8eJGgjdtYheZRYvY3hcfWAWnESc0sInIoh4Wuc1zzRV2w6LkS_OxhgNfXvg51mbblgJYK0ZR61CdlZfiVEKGAe17anARKX64QBL72YlxEFQbD4COc90k0g";
-export const fetchSearch = () =>{
-  
-  // Thunk middleware knows how to handle functions.
-  // It passes the dispatch method as an argument to the function,
-  // thus making it able to dispatch actions itself.
+// when server is running in adjacent folder
+export const CORS_PROXY_PORT = 3000;
+
+// initiate api call to search for show by name
+export const fetchSearch = () => {
+
   return (dispatch, getState) => {
-    // First dispatch: the app state is updated to inform
-    // that the API call is starting.
+
     let searchTerm = getState().search.term;
     dispatch(requestSearch(searchTerm));
-    
-    // The function called by the thunk middleware can return a value,
-   // that is passed on as the return value of the dispatch method.
-   // In this case, we return a promise to wait for.
-   // This is not required by thunk middleware, but it is convenient for us.
 
-  return fetch(`https://api.thetvdb.com/search/series?name=${searchTerm}`, {
-    method: 'GET',
-    mode: 'no-cors',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_TOKEN}`
-    }
-  })
-     .then(response => response.json())
-     .then(json => {
-       console.log(json)
-       dispatch(receiveSearch(searchTerm, json))
-     })
-     .catch(error => {
-       console.log(error)
-     })
+    let url = `https://api.thetvdb.com/search/series?name=${searchTerm}`;
+    console.log(`fetching proxy'd GET of ${url}....`);
+
+    return fetch(`http://localhost:${CORS_PROXY_PORT}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${API_TOKEN}`,
+        'Target-URL': url
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.data)
+      dispatch(receiveSearch(searchTerm, json.data))
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
 

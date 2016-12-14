@@ -1,11 +1,14 @@
 import React from 'react'
+import { Router, Route, hashHistory } from 'react-router'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import App from './components/App'
+import SearchFormContainer from './containers/SearchFormContainer'
+import ShowsListContainer from './containers/ShowsListContainer'
 
 const composeEnhancers = composeWithDevTools({}); 
 
@@ -23,7 +26,12 @@ const store = createStore(rootReducer, composeEnhancers(
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={hashHistory}>
+      <Route path="/" component={App}> 
+        <Route path="/shows" component={ShowsListContainer} /> 
+        <Route path="/search" component={SearchFormContainer} /> 
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('app')
 )

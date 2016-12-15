@@ -3,7 +3,6 @@ import { selectShow, setShows } from '../actions'
 import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     shows: state.shows
   }
@@ -11,6 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onInit: () => {
+      dispatch(setShows())
+    },
     onTodoClick: (id) => {
       dispatch(selectShow(id))
     }

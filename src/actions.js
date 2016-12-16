@@ -61,6 +61,7 @@ export const RECEIVE_SHOW_DETAILS = 'RECEIVE_SHOW_DETAILS'
 export function receiveShowDetails(id, show) {
   return {
     type: RECEIVE_SHOW_DETAILS,
+    id,
     show
   }
 }
@@ -68,9 +69,11 @@ export function receiveShowDetails(id, show) {
 
 
 // only good for 24 hours
-export const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwMDA4NzEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxOTE0NDcxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.1zGcREoWKkv_6RRF38LRIq6J9xBZC29zEUKAX6Px17eQ31g9DfRhgT5a1okRPlK2Tz_J8UKqn3PWccjCHGUyeQi_JbGabjawzjSKud1So84x0MGn9Sm6hkBRbNrJYjgG8zCH0RTkFe50O-q5tEvEzty2y0ozlwqmr6IbYVID5PEtUSdwRILRPydS5bB7LUuITRaKhxiftpGmRSTADwyRgOI7aNLqlo73LSVB6xCo5RLOSvVv2jsD6S4uDHe9OMS1qFtKFhHabbPNsbmOjsCFA6rSTbtbOoFv6UNnogDHJbpCeVOrmLdZPi_ETtUt7XxaFnTeuFr-EyGMUKFup-6Kpw";
+const TVDB_HOST = "https://api.thetvdb.com"
+const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwMTI1NzEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxOTI2MTcxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.QsiHM8hExo0t4P-soNS_qXzGCe5GkHfqEfChG_mbQ3crill_ODbfkE_azn7xW6jLmuH7w7IpFwgtrVAw89ZfZgDvxgzAWz4S6iCPuaybcIVM6b61sRFTnHH9VB9_9rPAeN0TrZQEHxBoR5WNLqcRqGU7oJx_Fzs47cqqcSmMOx9lh5-gt4sQt10qTFnk3XKSv9OUU_sNjTLQ25LExjKZrl-VI_fZaOudpwU84UqVmOyZmCKlHxe2NEHFphFqvKY0f9JD6BVZLumHtaNHHiF8jr1gZLS5lkOt64OnAeweRjxFtGu7dqizBNdt2BHbyX1YrL8Hr2dMSn160xSF4PC8DA";
+
 // when server is running in adjacent folder
-export const CORS_PROXY_PORT = 3000;
+const CORS_PROXY_PORT = 3000;
 
 
 
@@ -82,15 +85,14 @@ export const fetchSearch = () => {
 
     let searchTerm = getState().search.term;
     dispatch(requestSearch(searchTerm));
-
-    let url = `https://api.thetvdb.com/search/series?name=${searchTerm}`;
-    console.log(`fetching proxy'd GET of ${url}....`);
-
-    return fetch(`http://localhost:${CORS_PROXY_PORT}`, {
+    
+    // TODO write a wrapper for all the repeated boilerplate that returns a Promise
+    let path = `/search/series?name=${searchTerm}`;
+    return fetch(`http://localhost:${CORS_PROXY_PORT}/${path}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${API_TOKEN}`,
-        'Target-URL': url
+        'Target-URL': TVDB_HOST
       }
     })
     .then(response => response.json())
@@ -99,7 +101,7 @@ export const fetchSearch = () => {
       if(json.data && json.data.length){
         dispatch(receiveSearch(searchTerm, json.data))
       } else {
-        console.log('not quite an error but something went wrong')
+        console.log('something went wrong')
       }
     })
     .catch(error => {
@@ -112,7 +114,23 @@ export const fetchSearch = () => {
 export const fetchShowDetails = (id) => {
   return (dispatch, getState) => {
     dispatch(requestShowDetails(id));  
-    console.log(`getting show details for #${id}`)
+    
+    let path = `/series/${id}`;
+    return fetch(`http://localhost:${CORS_PROXY_PORT}/${path}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${API_TOKEN}`,
+        'Target-URL': TVDB_HOST
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.data)
+      dispatch(receiveShowDetails(id, json.data))
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
 

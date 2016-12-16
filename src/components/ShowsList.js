@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import Show from './Show'
-
 
 class ShowsList extends Component {
   constructor (props){

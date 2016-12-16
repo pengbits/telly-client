@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 const Show = ({ onClick, name, id }) => (
   <li data-id={id} onClick={onClick}>
-    {name}
+    <Link to={`shows/${id}`}>
+      {name}
+    </Link>
   </li>
 )
 

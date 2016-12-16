@@ -7,6 +7,9 @@ import {
   PERFORM_SEARCH
 } from './actions';
 
+import {
+  INITIAL_SHOWS
+} from '../config/shows';
 
 // jumping around with format of state is breaking everything
 // remember these only work on one node at a time, so might not be maps
@@ -38,7 +41,7 @@ const search = (state = {}, action) => {
 const shows = (list =[], action) => {
   switch (action.type){
     case SET_SHOWS:
-      return action.shows
+      return action.shows || INITIAL_SHOWS
     default:
       return list
   }

@@ -14,8 +14,7 @@ class ShowsList extends Component {
   
   render(props){
     const { shows, onShowClick } = this.props;
-    console.log(shows)
-    return (
+    return (  
       <div>
         <h1>Shows</h1>
         <ul className="show-list">

@@ -20,10 +20,12 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
         <input type="submit" value="Submit" />
       </form>
       {results && results.length &&
-        <ul>
-        {results.map((show,idx) => (
-          <Show key={idx} name={show.seriesName} id={show.id} />
-        ))}
+        <ul className="show-list">
+          {results.map((show,idx) => (
+            <li key={idx} data-id={show.id}>
+              {show.seriesName}
+            </li>
+          ))}
         </ul>
       }
     </div>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectShow } from '../actions'
+import { selectShow, setShows } from '../actions'
 import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
@@ -10,6 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onInit: () => {
+      dispatch(setShows())
+    },
     onTodoClick: (id) => {
       dispatch(selectShow(id))
     }

@@ -10,7 +10,7 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
   
   return (
     <div>
-      <h1>Search: {isFetching && 
+      <h1>Search {isFetching && 
           <span>...</span>
       }</h1>
       <form action="#" onSubmit={handleSubmit}>

@@ -13,13 +13,14 @@ class ShowsList extends Component {
   }
   
   render(props){
-    const { shows } = this.props;
+    const { shows, onShowClick } = this.props;
+    console.log(shows)
     return (
       <div>
         <h1>Shows</h1>
-        <ul>
+        <ul className="show-list">
           {shows.map((show,idx) => (
-            <li key={idx}>{show}</li>
+            <Show key={idx} name={show.seriesName} id={show.id} onClick={onShowClick} />
           ))}
         </ul>
       </div>

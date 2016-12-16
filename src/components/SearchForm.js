@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react'
+import Show from './Show'
+import ShowsList from './ShowsList'
 
 const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => {
   let textInput;
@@ -19,9 +21,9 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
       </form>
       {results && results.length &&
         <ul>
-        {results.map(function(r,idx){
-          return <li key={idx}>{r.seriesName}</li>
-        })}
+        {results.map((show,idx) => (
+          <Show key={idx} name={show.seriesName} id={show.id} />
+        ))}
         </ul>
       }
     </div>

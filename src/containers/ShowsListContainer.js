@@ -13,8 +13,10 @@ const mapDispatchToProps = (dispatch) => {
     setShows: () => {
       dispatch(setShows())
     },
-    onTodoClick: (id) => {
-      dispatch(selectShow(id))
+    onShowClick: (e) => {
+      e.preventDefault()
+      console.log(e.target)
+      //dispatch(selectShow(id))
     }
   }
 }

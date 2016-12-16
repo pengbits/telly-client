@@ -1,16 +1,15 @@
 import React, { PropTypes } from 'react'
 
-const Show = ({ onClick, text }) => (
-  <li
-    onClick={onClick}
-  >
-    {text}
+const Show = ({ onClick, name, id }) => (
+  <li data-id={id} onClick={onClick}>
+    {name}
   </li>
 )
 
 Show.propTypes = {
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired
 }
 
 export default Show

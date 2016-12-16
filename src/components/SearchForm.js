@@ -28,6 +28,9 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
           ))}
         </ul>
       }
+      {results && !results.length && 
+        <p>No results found.</p>
+      }
     </div>
   )
 }

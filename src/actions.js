@@ -50,6 +50,15 @@ export function receiveSearch(searchTerm, results) {
   }
 }
 
+export const RECEIVE_SEARCH_ERROR = 'RECEIVE_SEARCH_ERROR'
+export function receiveSearchError(searchTerm, error) {
+  return {
+    type: RECEIVE_SEARCH_ERROR,
+    searchTerm,
+    error
+  }
+}
+
 // only good for 24 hours
 export const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwMDA4NzEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxOTE0NDcxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.1zGcREoWKkv_6RRF38LRIq6J9xBZC29zEUKAX6Px17eQ31g9DfRhgT5a1okRPlK2Tz_J8UKqn3PWccjCHGUyeQi_JbGabjawzjSKud1So84x0MGn9Sm6hkBRbNrJYjgG8zCH0RTkFe50O-q5tEvEzty2y0ozlwqmr6IbYVID5PEtUSdwRILRPydS5bB7LUuITRaKhxiftpGmRSTADwyRgOI7aNLqlo73LSVB6xCo5RLOSvVv2jsD6S4uDHe9OMS1qFtKFhHabbPNsbmOjsCFA6rSTbtbOoFv6UNnogDHJbpCeVOrmLdZPi_ETtUt7XxaFnTeuFr-EyGMUKFup-6Kpw";
 // when server is running in adjacent folder
@@ -76,10 +85,15 @@ export const fetchSearch = () => {
     .then(response => response.json())
     .then(json => {
       console.log(json.data)
-      dispatch(receiveSearch(searchTerm, json.data))
+      if(json.data && json.data.length){
+        dispatch(receiveSearch(searchTerm, json.data))
+      } else {
+        console.log('not quite an error but something went wrong')
+      }
     })
     .catch(error => {
       console.log(error)
+      dispatch(receiveSearchError(searchTerm, error))
     })
   }
 }

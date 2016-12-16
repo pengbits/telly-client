@@ -4,6 +4,7 @@ import {
   SET_SEARCH,
   REQUEST_SEARCH,
   RECEIVE_SEARCH,
+  RECEIVE_SEARCH_ERROR,
   PERFORM_SEARCH
 } from './actions';
 
@@ -33,6 +34,13 @@ const search = (state = {}, action) => {
         results: action.results
       })
       
+    case RECEIVE_SEARCH_ERROR:
+      return Object.assign({}, state, {
+        isFetching: false,
+        results: [],
+        error: error
+      })
+    
     default:
       return state
   }

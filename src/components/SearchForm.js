@@ -15,7 +15,7 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
       }</h1>
       <form action="#" onSubmit={handleSubmit}>
         <input type="text" placeholder="Enter a Series" ref={(i) => textInput = i} />
-        <input type="submit" value="Search" />
+        <input type="submit" value="Submit" />
       </form>
       {results && results.length &&
         <ul>

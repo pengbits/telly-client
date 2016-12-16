@@ -72,6 +72,9 @@ export const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwM
 // when server is running in adjacent folder
 export const CORS_PROXY_PORT = 3000;
 
+
+
+// SEARCH
 // initiate api call to search for show by name
 export const fetchSearch = () => {
 
@@ -105,6 +108,12 @@ export const fetchSearch = () => {
   }
 }
 
-// skipping past async states for now
-export const PERFORM_SEARCH = 'PERFORM_SEARCH'
+// SHOW details
+export const fetchShowDetails = (id) => {
+  return (dispatch, getState) => {
+    dispatch(requestShowDetails(id));  
+    console.log(`getting show details for #${id}`)
+  }
+}
+
 

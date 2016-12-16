@@ -5,11 +5,19 @@ class ShowDetails extends Component {
     super(props);
   }
   
+  componentDidMount(){
+    const {fetchShowDetails} = this.props;
+    fetchShowDetails();
+  }
+  
   render(props){
-    const {seriesName} = this.props;
+    const {seriesName, isFetching} = this.props;
     return (
       <div>
         <h1>{seriesName}</h1>
+        {isFetching && 
+          <p>loading...</p>
+        }
       </div>
     )
   }

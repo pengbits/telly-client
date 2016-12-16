@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onShowClick: (e) => {
       e.preventDefault()
-      console.log(e.target)
+      //console.log(e.target)
       //dispatch(selectShow(id))
     }
   }

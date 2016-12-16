@@ -2,16 +2,22 @@ import { connect } from 'react-redux'
 import { requestShowDetails, fetchShowDetails } from '../actions'
 import ShowDetails from '../components/ShowDetails'
 
-const mapStateToProps = (state, ownProps) => {
-  const {id} = ownProps && ownProps.routeParams ? ownProps.routeParams : {id:undefined}
+const mapStateToProps = (state) => {
   return {
-    seriesName: "A Series"
+    seriesName: state.isFetching ? "Loading Series Data..." : state.seriesName,
+    isFetching: state.isFetching
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {id } = ownProps.routeParams;
+  console.log(id)
   return {
+    requestShowDetails,
     
+    fetchShowDetails: () => {
+      dispatch(fetchShowDetails(id))
+    }
   }
 }
 

@@ -4,11 +4,11 @@ import Show from './Show'
 class ShowsList extends Component {
   constructor (props){
     super(props);
-    this.setShows = props.setShows
   }
   
   componentDidMount(){
-    this.setShows();
+    const {setShows} = this.props;
+    setShows();
   }
   
   render(props){

@@ -9,6 +9,7 @@ import rootReducer from './reducers'
 import App from './components/App'
 import SearchFormContainer from './containers/SearchFormContainer'
 import ShowsListContainer from './containers/ShowsListContainer'
+import ShowDetailsContainer from './containers/ShowDetailsContainer'
 
 const composeEnhancers = composeWithDevTools({}); 
 
@@ -29,6 +30,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={App}> 
         <Route path="/shows" component={ShowsListContainer} /> 
+        <Route path="/shows/:id" component={ShowDetailsContainer} /> 
         <Route path="/search" component={SearchFormContainer} /> 
       </Route>
     </Router>

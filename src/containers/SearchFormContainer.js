@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setSearchTerm, requestSearch, fetchSearch } from '../actions'
+import { setSearchTerm, fetchSearch } from '../actions'
 import SearchForm from '../components/SearchForm'
 
 const mapStateToProps = (state) => {

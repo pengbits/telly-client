@@ -19,7 +19,6 @@ export function selectShow(show) {
   }
 }
 
-
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'
 export function setSearchTerm(searchTerm){
@@ -28,8 +27,6 @@ export function setSearchTerm(searchTerm){
     searchTerm
   }
 }
-
-
 // prepare the search request 
 export const REQUEST_SEARCH = 'REQUEST_SEARCH'
 export function requestSearch(searchTerm) {
@@ -39,8 +36,7 @@ export function requestSearch(searchTerm) {
   }
 }
 
-
-// onready
+// handle search onready
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 export function receiveSearch(searchTerm, results) {
   return {
@@ -50,14 +46,26 @@ export function receiveSearch(searchTerm, results) {
   }
 }
 
-export const RECEIVE_SEARCH_ERROR = 'RECEIVE_SEARCH_ERROR'
-export function receiveSearchError(searchTerm, error) {
+// prepare the show details request 
+export const REQUEST_SHOW_DETAILS = 'REQUEST_SHOW_DETAILS'
+export function requestShowDetails(id) {
   return {
-    type: RECEIVE_SEARCH_ERROR,
-    searchTerm,
-    error
+    type: REQUEST_SHOW_DETAILS,
+    id
   }
 }
+
+
+// onready
+export const RECEIVE_SHOW_DETAILS = 'RECEIVE_SHOW_DETAILS'
+export function receiveShowDetails(id, show) {
+  return {
+    type: RECEIVE_SHOW_DETAILS,
+    show
+  }
+}
+
+
 
 // only good for 24 hours
 export const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwMDA4NzEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxOTE0NDcxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.1zGcREoWKkv_6RRF38LRIq6J9xBZC29zEUKAX6Px17eQ31g9DfRhgT5a1okRPlK2Tz_J8UKqn3PWccjCHGUyeQi_JbGabjawzjSKud1So84x0MGn9Sm6hkBRbNrJYjgG8zCH0RTkFe50O-q5tEvEzty2y0ozlwqmr6IbYVID5PEtUSdwRILRPydS5bB7LUuITRaKhxiftpGmRSTADwyRgOI7aNLqlo73LSVB6xCo5RLOSvVv2jsD6S4uDHe9OMS1qFtKFhHabbPNsbmOjsCFA6rSTbtbOoFv6UNnogDHJbpCeVOrmLdZPi_ETtUt7XxaFnTeuFr-EyGMUKFup-6Kpw";
@@ -93,7 +101,6 @@ export const fetchSearch = () => {
     })
     .catch(error => {
       console.log(error)
-      dispatch(receiveSearchError(searchTerm, error))
     })
   }
 }

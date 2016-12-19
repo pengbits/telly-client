@@ -1,4 +1,7 @@
-/* https://api.thetvdb.com/search/series?name=dicte */
+/* 
+GET https://api.thetvdb.com/search/series?name=dicte 
+GET http://localhost:3000/search/series?name=dicte, Target-URL: https://api.thetvdb.com
+*/
 {
   "data": [
     {

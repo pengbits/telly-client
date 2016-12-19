@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react'
+import Show from './Show'
+import ShowsList from './ShowsList'
 
 const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => {
   let textInput;
@@ -18,11 +20,16 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
         <input type="submit" value="Submit" />
       </form>
       {results && results.length &&
-        <ul>
-        {results.map(function(r,idx){
-          return <li key={idx}>{r.seriesName}</li>
-        })}
+        <ul className="show-list">
+          {results.map((show,idx) => (
+            <li key={idx} data-id={show.id}>
+              {show.seriesName}
+            </li>
+          ))}
         </ul>
+      }
+      {results && !results.length && 
+        <p>No results found.</p>
       }
     </div>
   )

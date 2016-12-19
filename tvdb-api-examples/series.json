@@ -1,0 +1,32 @@
+/* 
+GET https://api.thetvdb.com/series/265571
+GET http://localhost:3000/series/265571 Target-URL: https://api.thetvdb.com
+*/
+{
+  "data": {
+    "id": 265571,
+    "seriesName": "Dicte",
+    "aliases": [],
+    "banner": "graphical/265571-g.jpg",
+    "seriesId": "",
+    "status": "Continuing",
+    "firstAired": "2013-01-07",
+    "network": "TV 2",
+    "networkId": "",
+    "runtime": "45",
+    "genre": [
+      "Drama"
+    ],
+    "overview": "Dicte is a dedicated reporter and refuses to give up before she has her story. Her stubborness gives her problems immediately with the policeman John Wagner, and they often get into clashes with each other.",
+    "lastUpdated": 1481466670,
+    "airsDayOfWeek": "Monday",
+    "airsTime": "20:00",
+    "rating": "TV-14",
+    "imdbId": "tt2025899",
+    "zap2itId": "",
+    "added": "2013-01-07 12:57:43",
+    "addedBy": 350594,
+    "siteRating": 7.4,
+    "siteRatingCount": 5
+  }
+}

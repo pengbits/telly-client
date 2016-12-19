@@ -76,14 +76,12 @@ const api = (state={}, action) => {
     
     case REQUEST_API_TOKEN:
       return Object.assign({}, state, {
-        credentials: action.credentials,
-        isFetching: true
+        credentials: action.credentials
       })
       
     case RECEIVE_API_TOKEN:
       return Object.assign({}, state, {
         credentials: action.credentials,
-        isFetching: false,
         token: action.token
       })
     

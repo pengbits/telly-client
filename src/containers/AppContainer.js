@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAPIToken: () => {
-      console.log('[mapDispatch] #fetchAPIToken')
       dispatch(fetchAPIToken(API_CREDENTIALS))
     }
   }

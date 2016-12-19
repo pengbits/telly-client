@@ -7,10 +7,10 @@ import Nav from './Nav.js'
 class App extends Component {
   constructor(props){
     super(props)
+    this.bootstraping = true
   }
   
   componentWillMount() {
-    console.log('how about doing some api stuff')
     const {fetchAPIToken} = this.props;
     fetchAPIToken()
   }
@@ -19,7 +19,8 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        {this.props.children}
+       {this.props.children}
+        <p>loading...</p>
       </div>
     )
   }

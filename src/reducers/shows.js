@@ -28,10 +28,11 @@ export const show = (state={}, action) => {
       })
       
     case RECEIVE_SHOW_DETAILS:
+      console.log(action)
       return Object.assign({}, state, {
         isFetching: false,
       }, 
-      action.data)
+      action.show)
     
     default:
       return state

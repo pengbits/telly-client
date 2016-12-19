@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+import {CORS_PROXY_PORT, TVDB_HOST} from './api'
 
 // load initial shows into list
 export const SET_SHOWS = 'SET_SHOWS'
@@ -45,25 +47,30 @@ export const fetchShowDetails = (id) => {
     
     let state = getState();
     let apiToken = state.api.token; 
-    if(!apiToken) throw new Error('no api token found in fetchShowDetails')
-
-    dispatch(requestShowDetails(id));  
     
-    let path = `/series/${id}`;
-    return fetch(`http://localhost:${CORS_PROXY_PORT}/${path}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${apiToken}`,
-        'Target-URL': TVDB_HOST
-      }
-    })
-    .then(response => response.json())
-    .then(json => {
-      dispatch(receiveShowDetails(id, json))
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    if(apiToken){
+      dispatch(requestShowDetails(id));  
+      
+      let path = `/series/${id}`;
+      return fetch(`http://localhost:${CORS_PROXY_PORT}${path}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiToken}`,
+          'Target-URL': TVDB_HOST
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(receiveShowDetails(id, json.data))
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+    
+    else {
+      throw new Error('no api token found in shows#fetchShowDetails')
+    }
   }
 }
 

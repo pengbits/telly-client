@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import {CORS_PROXY_PORT, TVDB_HOST} from './api'
 
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'

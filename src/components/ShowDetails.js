@@ -15,9 +15,6 @@ class ShowDetails extends Component {
     return (
       <div>
         <h1>{seriesName}</h1>
-        {isFetching && 
-          <p>loading...</p>
-        }
       </div>
     )
   }

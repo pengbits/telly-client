@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchAPIToken } from '../actions'
+import { fetchAPIToken } from '../actions/api'
 import API_CREDENTIALS from '../../config/api_credentials'
 import App from '../components/App'
 

@@ -125,8 +125,7 @@ export const fetchShowDetails = (id) => {
     })
     .then(response => response.json())
     .then(json => {
-      console.log(json.data)
-      dispatch(receiveShowDetails(id, json.data))
+      dispatch(receiveShowDetails(id, json))
     })
     .catch(error => {
       console.log(error)

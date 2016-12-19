@@ -83,13 +83,40 @@ export function receiveAPIToken(credentials, token){
     token
   }
 }
-export const fetchAPIToken = () => {
-  console.log('fetch API token')
+
+export const fetchAPIToken = (credentials) => {
+
+  return (dispatch, getState) => {
+    dispatch(requestAPIToken(credentials));
+    
+    let path = '/login'
+    console.log(credentials)
+    return false;
+    
+    return fetch(`http://localhost:${CORS_PROXY_PORT}/${path}`, {
+      method: 'POST',
+      headers: {
+        'Target-URL': TVDB_HOST
+      },
+      body: body
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.data)
+    })
+  }
+
 }
+
+
+
+
+
+
 
 // only good for 24 hours
 const TVDB_HOST = "https://api.thetvdb.com"
-const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIwMTI1NzEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgxOTI2MTcxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.QsiHM8hExo0t4P-soNS_qXzGCe5GkHfqEfChG_mbQ3crill_ODbfkE_azn7xW6jLmuH7w7IpFwgtrVAw89ZfZgDvxgzAWz4S6iCPuaybcIVM6b61sRFTnHH9VB9_9rPAeN0TrZQEHxBoR5WNLqcRqGU7oJx_Fzs47cqqcSmMOx9lh5-gt4sQt10qTFnk3XKSv9OUU_sNjTLQ25LExjKZrl-VI_fZaOudpwU84UqVmOyZmCKlHxe2NEHFphFqvKY0f9JD6BVZLumHtaNHHiF8jr1gZLS5lkOt64OnAeweRjxFtGu7dqizBNdt2BHbyX1YrL8Hr2dMSn160xSF4PC8DA";
+const API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0ODIyNTg0NDEsImlkIjoiaGVsbG93b3JsZGFwcCIsIm9yaWdfaWF0IjoxNDgyMTcyMDQxLCJ1c2VyaWQiOjQ2OTgzOSwidXNlcm5hbWUiOiJteWRyb25lIn0.wgSDjyE71acTh-VaUuX7fPyXbu4oE9pZqz3qabOCQpenQtI0F6YOonkE6QlPAGAf3zNPeExz7LqziLU90Qd47jeN5cKX8-36kwBUxC6FWZkgZIl0rEOavMOZQjncnx0p9B1SY0eODiJ7UyOOGPwkNltiYOjp8EbROx_NWJGWHXzD1H1kfQtq934vugYmn_T3XgRr2MbJl5StD1Um2EwnhiaCZws2EC6-kcJURCxz_OcTslKA37APjWmQq2V-Gf1zpMoKwHSVuBuPURZVuNpv_OsTJa2klxbkAFjqP0X3of0qoq33q_ZnfIA06Mlhid30JSb5mVCxZMuIXYqtaCYE6A"
 
 // when server is running in adjacent folder
 const CORS_PROXY_PORT = 3000;

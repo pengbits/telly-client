@@ -5,7 +5,9 @@ import {
   REQUEST_SEARCH,
   RECEIVE_SEARCH,
   REQUEST_SHOW_DETAILS,
-  RECEIVE_SHOW_DETAILS
+  RECEIVE_SHOW_DETAILS,
+  REQUEST_API_TOKEN,
+  RECEIVE_API_TOKEN
   
 } from './actions';
 
@@ -69,11 +71,34 @@ const show = (state={}, action) => {
   }
 }
 
+const api = (state={}, action) => {
+  switch (action.type){
+    
+    case REQUEST_API_TOKEN:
+      return Object.assign({}, state, {
+        credentials: action.credentials,
+        isFetching: true
+      })
+      
+    case RECEIVE_API_TOKEN:
+      return Object.assign({}, state, {
+        credentials: action.credentials,
+        isFetching: false,
+        token: action.token
+      })
+    
+    default:
+      return state
+  }
+}
+
+
 // combine above reducers
 const rootReducer = combineReducers({
   search,
   shows,
-  show
+  show,
+  api
 })
 
 export default rootReducer

@@ -66,7 +66,26 @@ export function receiveShowDetails(id, show) {
   }
 }
 
+// get api credentials
+export const REQUEST_API_TOKEN = 'REQUEST_API_TOKEN';
+export function requestAPIToken(credentials){
+  return {
+    type: REQUEST_API_TOKEN,
+    credentials
+  }
+}
 
+export const RECIEVE_API_TOKEN = 'RECIEVE_API_TOKEN';
+export function receiveAPIToken(credentials, token){
+  return {
+    type: RECIEVE_API_TOKEN,
+    credentials,
+    token
+  }
+}
+export const fetchAPIToken = () => {
+  console.log('fetch API token')
+}
 
 // only good for 24 hours
 const TVDB_HOST = "https://api.thetvdb.com"

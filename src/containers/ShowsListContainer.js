@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     setShows: () => {
       dispatch(setShows())
     },
+    
     onShowClick: (e) => {
       e.preventDefault()
       //console.log(e.target)

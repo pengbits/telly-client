@@ -1,40 +1,27 @@
 import {
   SET_SHOWS,
-  REQUEST_SHOW_DETAILS,
-  RECEIVE_SHOW_DETAILS,
-  SELECT_SHOW
+  SELECT_SHOW,
+  ADD_SHOW_TO_QUEUE
 } from '../actions/shows';
 
 import {
   INITIAL_SHOWS
 } from '../../config/shows';
 
-export const shows = (list =[], action) => {
+const shows = (state = [], action) => {
   switch (action.type){
     case SET_SHOWS:
       return action.shows || INITIAL_SHOWS
-  
-    default:
-      return list
-  }
-}
-
-export const show = (state={}, action) => {
-  switch (action.type){
-    
-    case REQUEST_SHOW_DETAILS:
-      return Object.assign({}, state, {
-        isFetching: true
-      })
       
-    case RECEIVE_SHOW_DETAILS:
-      // console.log(action)
-      return Object.assign({}, state, {
-        isFetching: false,
-      }, 
-      action.show)
-    
+    case ADD_SHOW_TO_QUEUE: 
+      return []
+      // return Object.assign({}, state, {
+      //   shows: (list.concat(addition))
+      // })
+  
     default:
       return state
   }
 }
+
+export default shows

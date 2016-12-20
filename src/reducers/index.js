@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 import api from './api'
 import app from './app'
 import search from './search'
-import {shows,show} from './shows'
+import shows from './shows'
+import show from './show'
+
 
 const rootReducer = combineReducers({
   search,

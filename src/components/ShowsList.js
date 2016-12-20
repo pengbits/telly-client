@@ -15,7 +15,7 @@ class ShowsList extends Component {
     const { shows } = this.props;
     return (  
       <div>
-        <h1>Shows</h1>
+        <h1>My Shows</h1>
         <ul className="show-list">
           {shows.map((show,idx) => (
             <Show key={idx} name={show.seriesName} id={show.id} />

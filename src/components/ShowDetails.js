@@ -18,9 +18,9 @@ class ShowDetails extends Component {
   }
     
   renderDetail(){
-    console.log(this.props.show)
-    const {id,seriesName,banner,status,network,genre} = this.props.show;
-
+    // console.log(this.props.show)
+    const {id,seriesName,banner,status,network,genre,overview} = this.props.show;
+    const {addShowToQueue} = this.props;
     
     return (
       <div>
@@ -28,6 +28,7 @@ class ShowDetails extends Component {
         {banner &&
           <img src={`http://thetvdb.com/banners/_cache/${banner}`} />
         }
+        <p></p>
         <table>
           <tbody>
             <tr>
@@ -62,7 +63,12 @@ class ShowDetails extends Component {
             </tr>
             }
           </tbody>
+          
         </table>
+        <h3>About</h3>
+        <p>{overview}</p>
+        
+        <button onClick={addShowToQueue}>Add to Queue</button>
       </div>
     )
   }

@@ -22,13 +22,15 @@ class ShowDetails extends Component {
     return (
       <div>
         <h1>{seriesName}</h1>
-        <p>    
-          id: {id}<br />
-          seriesName: {seriesName}<br />
-          banner: {banner}<br />
-          status: {status}<br />
-          network: {network}
-        </p>
+        <table>
+          <tbody>
+            <tr><td>id</td><td>{id}</td></tr>
+            <tr><td>seriesName</td><td>{seriesName}</td></tr>
+            <tr><td>banner</td><td>{banner}</td></tr>
+            <tr><td>status</td><td>{status}</td></tr>
+            <tr><td>network</td><td>{network}</td></tr>
+            </tbody>
+        </table>
       </div>
     )
   }

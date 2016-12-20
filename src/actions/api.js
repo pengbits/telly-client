@@ -46,9 +46,9 @@ export const fetchAPIToken = (credentials) => {
     .then(response => response.json())
     .then(json => {
       dispatch(receiveAPIToken(json.token));
-      setTimeout(() => {
-        dispatch(initializeApp())
-      }, 2000);
+    })
+    .then(() => {
+      dispatch(initializeApp())
     })
   }
 }

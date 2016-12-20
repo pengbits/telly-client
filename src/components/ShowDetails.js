@@ -18,20 +18,50 @@ class ShowDetails extends Component {
   }
     
   renderDetail(){
-    const {id,seriesName,banner,status,network} = this.props.show;
+    console.log(this.props.show)
+    const {id,seriesName,banner,status,network,genre} = this.props.show;
 
+    
     return (
       <div>
         <h1>{seriesName}</h1>
-        <img src={`http://thetvdb.com/banners/_cache/${banner}`} />
+        {banner &&
+          <img src={`http://thetvdb.com/banners/_cache/${banner}`} />
+        }
         <table>
           <tbody>
-            <tr><td>id</td><td>{id}</td></tr>
-            <tr><td>seriesName</td><td>{seriesName}</td></tr>
-            <tr><td>banner</td><td>{banner}</td></tr>
-            <tr><td>status</td><td>{status}</td></tr>
-            <tr><td>network</td><td>{network}</td></tr>
-            </tbody>
+            <tr>
+              <td>id</td>
+              <td>{id}</td>
+            </tr>
+            <tr>
+              <td>seriesName</td>
+              <td>{seriesName}</td>
+            </tr>
+            <tr>
+              <td>network</td>
+              <td>{network}</td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>{status}</td>
+            </tr>
+            {genre && genre.length &&
+            <tr>
+              <td>genre</td>
+              <td>
+                {genre.map((g,idx) => (
+                  <span key={idx}>
+                    {g}
+                    {genre.length-1 > idx &&
+                    <i>, </i>
+                    }
+                  </span>
+                ))}
+              </td>
+            </tr>
+            }
+          </tbody>
         </table>
       </div>
     )

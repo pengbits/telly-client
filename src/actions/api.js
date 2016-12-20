@@ -1,3 +1,4 @@
+import {initializeApp} from './app'
 import fetch from 'isomorphic-fetch'
 import API_CREDENTIALS from '../../config/api_credentials'
 
@@ -44,7 +45,10 @@ export const fetchAPIToken = (credentials) => {
     })
     .then(response => response.json())
     .then(json => {
-      dispatch(receiveAPIToken(json.token))
+      dispatch(receiveAPIToken(json.token));
+      setTimeout(() => {
+        dispatch(initializeApp())
+      }, 2000);
     })
   }
 }

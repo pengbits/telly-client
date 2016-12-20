@@ -12,6 +12,7 @@ export function setShows(shows) {
 
 export const GET_SHOWS = 'GET_SHOWS'
 export function getShows() {
+  console.log('|actions| shows.GET_SHOWS')
   return {
     type: GET_SHOWS
   }

@@ -17,17 +17,17 @@ const shows = (state = [], action) => {
       return action.shows || INITIAL_SHOWS
     
     case GET_SHOWS:
+      console.log('|reducer| shows.GET_SHOWS')
       return state.shows || INITIAL_SHOWS
       
     case ADD_SHOW_TO_QUEUE: 
       var {id,seriesName} = action.show;
       var list =  state.map(({id}) => id)
       var isNew = list.indexOf(id) == -1
-      if(isNew){
-        return [].concat(state, {id,seriesName})
-      } else {
-        return state
-      }
+
+      return !isNew ? state : [ 
+        ...state, {id,seriesName}
+      ]
 
     default:
       return state

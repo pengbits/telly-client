@@ -10,18 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setShows: () => {
-      dispatch(setShows())
-    },
-    
     getShows: () => {
       dispatch(getShows())
-    },
-    
-    onShowClick: (e) => {
-      e.preventDefault()
-      //console.log(e.target)
-      //dispatch(selectShow(id))
     }
   }
 }

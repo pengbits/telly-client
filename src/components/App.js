@@ -9,28 +9,26 @@ class App extends Component {
     super(props)
   }
   
-  componentWillMount() {
+  componentDidMount() {
+    console.log('App#componentDidMount');
     const {fetchAPIToken} = this.props;
-    fetchAPIToken().then((res) => {
-      console.log(res)
-      console.log('all done')
-    })
+    
+    fetchAPIToken();
   }
   
+  componentWillReceiveProps(nextProps) {}
+  
   render(){
-    const {isFetching} = this.props;
-    
+    return !this.props.ready ? (<p>loading...</p>) : this.renderApp()
+  }
+  
+  renderApp(){
     return (
-      <div>
-        <Nav />
-        {isFetching &&
-           <p>loading...</p>
-        }
-        
-        {!isFetching && this.props.children}  
-      </div>
+    <div>
+      <Nav />
+      {this.props.children}  
+    </div>
     )
   }
 }
-
 export default App

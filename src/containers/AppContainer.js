@@ -4,7 +4,7 @@ import App from '../components/App'
 
 const mapStateToProps = (state) => {
   return {
-    token: 'wibble'
+    ready: state.app && state.app.ready
   }
 }
 

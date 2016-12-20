@@ -4,12 +4,7 @@ import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
   const {show} = state
-  // console.log(['mapStateToProps', show.seriesName, show.isFetching])
-
-  return !show || show.isFetching ? 
-    {isFetching:true}
-    :
-    {show}
+  return {show}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

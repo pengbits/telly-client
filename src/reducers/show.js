@@ -11,10 +11,11 @@ const show = (state={}, action={}) => {
         isFetching: true
       })
       
-    case RECEIVE_SHOW_DETAILS:
-      // console.log(action)
+    case RECEIVE_SHOW_DETAILS:  
+
       return Object.assign({}, state, {
         isFetching: false,
+        inQueue: action.inQueue
       }, 
       action.show)
       

@@ -10,7 +10,6 @@ export function setShows(shows) {
   }
 }
 
-
 export const GET_SHOWS = 'GET_SHOWS'
 export function getShows() {
   console.log('|actions| shows.GET_SHOWS')
@@ -21,16 +20,6 @@ export function getShows() {
       type: GET_SHOWS,
       shows: shows.length ? shows : INITIAL_SHOWS
     })
-  }
-}
-
-
-// select a show to display details for
-export const SELECT_SHOW = 'SELECT_SHOW'
-export function selectShow(show) {
-  return {
-    type: SELECT_SHOW,
-    show
   }
 }
 

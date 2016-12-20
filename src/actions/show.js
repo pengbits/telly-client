@@ -12,22 +12,21 @@ export function requestShowDetails(id) {
 
 // onready
 export const RECEIVE_SHOW_DETAILS = 'RECEIVE_SHOW_DETAILS'
-export function receiveShowDetails(id, show) {
+export function receiveShowDetails(show, inQueue) {
   return {
     type: RECEIVE_SHOW_DETAILS,
-    id,
-    show
+    show,
+    inQueue
   }
 }
 
 // SHOW details
 export const fetchShowDetails = (id) => {
-  
+
   return (dispatch, getState) => {
     
     let state = getState();
     let apiToken = state.api.token; 
-    
     if(apiToken){
       dispatch(requestShowDetails(id));  
       
@@ -41,7 +40,11 @@ export const fetchShowDetails = (id) => {
       })
       .then(response => response.json())
       .then(json => {
-        dispatch(receiveShowDetails(id, json.data))
+
+          let showIds = state.shows.map(({id}) => id)
+          let inQueue = showIds.indexOf(json.data.id) > -1
+        
+        dispatch(receiveShowDetails(json.data, inQueue))
       })
       .catch(error => {
         console.log(error)

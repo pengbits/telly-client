@@ -11,6 +11,10 @@ class ShowDetails extends Component {
     fetchShowDetails();
   }
   
+  componentWillReceiveProps(nextProps) {
+    console.log('incoming...')
+  }
+  
   render(){
     return this.props.isFetching ? (
       <p>loading...</p>
@@ -19,7 +23,7 @@ class ShowDetails extends Component {
     
   renderDetail(){
     // console.log(this.props.show)
-    const {id,seriesName,banner,status,network,genre,overview} = this.props.show;
+    const {id,seriesName,banner,status,network,genre,overview,inQueue} = this.props.show;
     const {addShowToQueue} = this.props;
     
     return (
@@ -68,7 +72,9 @@ class ShowDetails extends Component {
         <h3>About</h3>
         <p>{overview}</p>
         
-        <button onClick={addShowToQueue}>Add to Queue</button>
+        {!inQueue &&
+          <button onClick={addShowToQueue}>Add to Queue</button>
+        }
       </div>
     )
   }

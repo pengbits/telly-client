@@ -1,5 +1,6 @@
-import fetch from 'isomorphic-fetch'
-import {CORS_PROXY_PORT, TVDB_HOST} from './api'
+import {
+  INITIAL_SHOWS
+} from '../../config/shows';
 
 export const SET_SHOWS = 'SET_SHOWS'
 export function setShows(shows) {
@@ -13,10 +14,16 @@ export function setShows(shows) {
 export const GET_SHOWS = 'GET_SHOWS'
 export function getShows() {
   console.log('|actions| shows.GET_SHOWS')
-  return {
-    type: GET_SHOWS
+  
+  return (dispatch, getState) => {
+    const {shows} = getState()
+    return dispatch({
+      type: GET_SHOWS,
+      shows: shows.length ? shows : INITIAL_SHOWS
+    })
   }
 }
+
 
 // select a show to display details for
 export const SELECT_SHOW = 'SELECT_SHOW'

@@ -7,19 +7,16 @@ import {
   ADD_SHOW_TO_QUEUE
 } from '../actions/shows';
 
-import {
-  INITIAL_SHOWS
-} from '../../config/shows';
 
 const shows = (state = [], action) => {
   switch (action.type){
     case SET_SHOWS:
-      return action.shows || INITIAL_SHOWS
+      return []
     
     case GET_SHOWS:
       console.log('|reducer| shows.GET_SHOWS')
-      return state.shows || INITIAL_SHOWS
-      
+      return action.shows
+          
     case ADD_SHOW_TO_QUEUE: 
       var {id,seriesName} = action.show;
       var list =  state.map(({id}) => id)

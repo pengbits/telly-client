@@ -6,8 +6,7 @@ export const SET_SHOWS = 'SET_SHOWS'
 export function setShows(shows, foo) {
   return {
     type: SET_SHOWS,
-    shows,
-    foo
+    shows
   }
 }
 

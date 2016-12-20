@@ -1,3 +1,5 @@
+import show from './show'
+
 import {
   SET_SHOWS,
   SELECT_SHOW,
@@ -14,6 +16,7 @@ const shows = (state = [], action) => {
       return action.shows || INITIAL_SHOWS
       
     case ADD_SHOW_TO_QUEUE: 
+      console.log(show())
       return []
       // return Object.assign({}, state, {
       //   shows: (list.concat(addition))

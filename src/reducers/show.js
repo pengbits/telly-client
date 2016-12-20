@@ -3,7 +3,7 @@ import {
   RECEIVE_SHOW_DETAILS
 } from '../actions/show';
 
-const show = (state={}, action) => {
+const show = (state={}, action={}) => {
   switch (action.type){
     
     case REQUEST_SHOW_DETAILS:

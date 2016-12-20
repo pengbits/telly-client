@@ -13,9 +13,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     requestShowDetails,
+    
     addShowToQueue: () => {
+      console.log('add to queue')
       dispatch(addShowToQueue())
     },
+    
     fetchShowDetails: () => {
       dispatch(fetchShowDetails(id))
     }

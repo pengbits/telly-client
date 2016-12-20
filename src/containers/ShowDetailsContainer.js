@@ -3,8 +3,8 @@ import { requestShowDetails, fetchShowDetails } from '../actions/shows'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  return Object.assign({}, state)
+  const {show} = state
+  return {show}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

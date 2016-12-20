@@ -7,23 +7,28 @@ import Nav from './Nav.js'
 class App extends Component {
   constructor(props){
     super(props)
-    this.bootstraping = true
   }
   
-  componentWillMount() {
+  componentDidMount() {
+    console.log('App#componentDidMount');
     const {fetchAPIToken} = this.props;
-    fetchAPIToken()
+    
+    fetchAPIToken();
   }
+  
+  componentWillReceiveProps(nextProps) {}
   
   render(){
+    return !this.props.ready ? (<p>loading...</p>) : this.renderApp()
+  }
+  
+  renderApp(){
     return (
-      <div>
-        <Nav />
-       {this.props.children}
-        <p>loading...</p>
-      </div>
+    <div>
+      <Nav />
+      {this.props.children}  
+    </div>
     )
   }
 }
-
 export default App

@@ -22,9 +22,11 @@ const SearchForm = ({ searchTerm, results, onSubmit, onChange, isFetching }) => 
       {results && results.length &&
         <ul className="show-list">
           {results.map((show,idx) => (
-            <li key={idx} data-id={show.id}>
-              {show.seriesName}
-            </li>
+            <Show 
+              key={idx} 
+              id={show.id} 
+              name={show.seriesName}
+            />
           ))}
         </ul>
       }

@@ -23,6 +23,7 @@ class ShowDetails extends Component {
     return (
       <div>
         <h1>{seriesName}</h1>
+        <img src={`http://thetvdb.com/banners/_cache/${banner}`} />
         <table>
           <tbody>
             <tr><td>id</td><td>{id}</td></tr>

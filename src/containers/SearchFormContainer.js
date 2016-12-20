@@ -18,9 +18,14 @@ const mapDispatchToProps = (dispatch) => {
     dispatch(fetchSearch())  
   }
   
+  const onShowClick = (e) => {
+    console.log('i clicked')
+  }
+  
   return {
     onChange: setSearchTerm,
-    onSubmit: onSubmit
+    onSubmit,
+    onShowClick
   }
 }
 

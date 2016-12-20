@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-const Show = ({ onClick, name, id }) => (
-  <li data-id={id} onClick={onClick}>
+const Show = ({name, id }) => (
+  <li data-id={id}>
     <Link to={`shows/${id}`}>
       {name}
     </Link>
@@ -10,7 +10,6 @@ const Show = ({ onClick, name, id }) => (
 )
 
 Show.propTypes = {
-  onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired
 }

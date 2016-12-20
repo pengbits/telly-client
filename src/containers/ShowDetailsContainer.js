@@ -10,12 +10,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {id } = ownProps.routeParams;
-
   return {
     requestShowDetails,
     
     addShowToQueue: () => {
-      dispatch(addShowToQueue(id))
+      dispatch(addShowToQueue())
     },
     
     fetchShowDetails: () => {

@@ -1,12 +1,19 @@
 import fetch from 'isomorphic-fetch'
 import {CORS_PROXY_PORT, TVDB_HOST} from './api'
 
-// load initial shows into list
 export const SET_SHOWS = 'SET_SHOWS'
 export function setShows(shows) {
   return {
     type: SET_SHOWS,
     shows
+  }
+}
+
+
+export const GET_SHOWS = 'GET_SHOWS'
+export function getShows() {
+  return {
+    type: GET_SHOWS
   }
 }
 
@@ -21,12 +28,15 @@ export function selectShow(show) {
 
 // add show to watch list
 export const ADD_SHOW_TO_QUEUE = 'ADD_SHOW_TO_QUEUE'
-export function addShowToQueue(id){
-  return {
-    type: ADD_SHOW_TO_QUEUE,
-    show: {
-      id,
-      seriesName: 'Unknown'
-    }
+export function addShowToQueue() {
+  
+  return (dispatch, getState) => {
+    const {show} = getState();
+    
+    return dispatch({
+      type: ADD_SHOW_TO_QUEUE,
+      show
+    })
   }
 }
+

@@ -5,18 +5,24 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+
+
 import rootReducer from './reducers/index'
 import AppContainer from './containers/AppContainer'
-
+import { loadState, saveState } from './localStorage'
 import SearchFormContainer from './containers/SearchFormContainer'
 import ShowsListContainer from './containers/ShowsListContainer'
 import ShowDetailsContainer from './containers/ShowDetailsContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
-const store = createStore(rootReducer, composeEnhancers(
+const preloadedState = loadState();
+const store = createStore(rootReducer, preloadedState, composeEnhancers(
   applyMiddleware(thunk)// (thunk,logger)
 ))
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 
 render(

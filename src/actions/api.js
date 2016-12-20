@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import API_CREDENTIALS from '../../config/api_credentials'
 
 export const TVDB_HOST = "https://api.thetvdb.com"
 export const CORS_PROXY_PORT = 3000;
@@ -36,9 +37,9 @@ export const fetchAPIToken = (credentials) => {
       // into the server app, and add them to the fetch in the server layer,
       // if the path is `/login`
       body: JSON.stringify({
-        apikey:   credentials.apikey,
-        userkey:  credentials.userkey,
-        username: credentials.username
+        apikey:   API_CREDENTIALS.apikey,
+        userkey:  API_CREDENTIALS.userkey,
+        username: API_CREDENTIALS.username
       })
     })
     .then(response => response.json())

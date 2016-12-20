@@ -7,20 +7,27 @@ import Nav from './Nav.js'
 class App extends Component {
   constructor(props){
     super(props)
-    this.bootstraping = true
   }
   
   componentWillMount() {
     const {fetchAPIToken} = this.props;
-    fetchAPIToken()
+    fetchAPIToken().then((res) => {
+      console.log(res)
+      console.log('all done')
+    })
   }
   
   render(){
+    const {isFetching} = this.props;
+    
     return (
       <div>
         <Nav />
-       {this.props.children}
-        <p>loading...</p>
+        {isFetching &&
+           <p>loading...</p>
+        }
+        
+        {!isFetching && this.props.children}  
       </div>
     )
   }

@@ -28,7 +28,7 @@ export const show = (state={}, action) => {
       })
       
     case RECEIVE_SHOW_DETAILS:
-      console.log(action)
+      // console.log(action)
       return Object.assign({}, state, {
         isFetching: false,
       }, 

@@ -3,8 +3,13 @@ import { requestShowDetails, fetchShowDetails } from '../actions/shows'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  return Object.assign({}, state)
+  const {show} = state
+  // console.log(['mapStateToProps', show.seriesName, show.isFetching])
+
+  return !show || show.isFetching ? 
+    {isFetching:true}
+    :
+    {show}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

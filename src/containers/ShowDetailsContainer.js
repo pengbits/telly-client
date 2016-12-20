@@ -15,8 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestShowDetails,
     
     addShowToQueue: () => {
-      console.log('add to queue')
-      dispatch(addShowToQueue())
+      dispatch(addShowToQueue(id))
     },
     
     fetchShowDetails: () => {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectShow, setShows } from '../actions/shows'
+import { selectShow, setShows, getShows } from '../actions/shows'
 import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
@@ -10,14 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setShows: () => {
-      dispatch(setShows())
-    },
-    
-    onShowClick: (e) => {
-      e.preventDefault()
-      //console.log(e.target)
-      //dispatch(selectShow(id))
+    getShows: () => {
+      dispatch(getShows())
     }
   }
 }

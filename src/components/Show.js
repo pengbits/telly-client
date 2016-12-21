@@ -9,9 +9,4 @@ const Show = ({name, id }) => (
   </li>
 )
 
-Show.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
-}
-
 export default Show

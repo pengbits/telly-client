@@ -52,7 +52,6 @@ export const fetchSearch = () => {
     })
     .then(response => response.json())
     .then(json => {
-      console.log(json.data)
       if(json.data && json.data.length){
         dispatch(receiveSearch(searchTerm, json.data))
       } else {

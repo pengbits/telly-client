@@ -7,8 +7,12 @@ class ShowDetails extends Component {
   
   componentDidMount(){
     const {fetchShowDetails} = this.props;
-    console.log('ShowDetails#componentDidMount')
+    // console.log('ShowDetails#componentDidMount')
     fetchShowDetails();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    //console.log('incoming...')
   }
   
   render(){
@@ -19,8 +23,8 @@ class ShowDetails extends Component {
     
   renderDetail(){
     // console.log(this.props.show)
-    const {id,seriesName,banner,status,network,genre,overview} = this.props.show;
-    const {addShowToQueue} = this.props;
+    const {id,seriesName,banner,status,network,genre,overview,inQueue} = this.props.show;
+    const {addShowToQueue,removeShowFromQueue} = this.props;
     
     return (
       <div>
@@ -68,7 +72,11 @@ class ShowDetails extends Component {
         <h3>About</h3>
         <p>{overview}</p>
         
-        <button onClick={addShowToQueue}>Add to Queue</button>
+        {!inQueue ?
+          (<button onClick={addShowToQueue}>Add to Queue</button>)
+          :
+          (<button onClick={removeShowFromQueue}>Remove from Queue</button>)
+        }
       </div>
     )
   }

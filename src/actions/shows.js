@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-fetch'
-import {CORS_PROXY_PORT, TVDB_HOST} from './api'
+import {
+  INITIAL_SHOWS
+} from '../../config/shows';
 
-// load initial shows into list
 export const SET_SHOWS = 'SET_SHOWS'
 export function setShows(shows) {
   return {
@@ -10,23 +10,61 @@ export function setShows(shows) {
   }
 }
 
-// select a show to display details for
-export const SELECT_SHOW = 'SELECT_SHOW'
-export function selectShow(show) {
-  return {
-    type: SELECT_SHOW,
-    show
+export const GET_SHOWS = 'GET_SHOWS'
+export function getShows() {
+  console.log('|actions| shows.GET_SHOWS')
+  
+  return (dispatch, getState) => {
+    
+    // use seed data if the list is empty...
+    const {shows} = getState()
+    const list = shows.length ? shows : INITIAL_SHOWS
+    
+    return dispatch({
+      type: GET_SHOWS,
+      shows: list
+    })
   }
 }
 
+export const SET_SHOW_IS_QUEUED = 'SET_SHOW_IS_QUEUED'
+
 // add show to watch list
 export const ADD_SHOW_TO_QUEUE = 'ADD_SHOW_TO_QUEUE'
-export function addShowToQueue(id){
-  return {
-    type: ADD_SHOW_TO_QUEUE,
-    show: {
-      id,
-      seriesName: 'Unknown'
-    }
+export function addShowToQueue() {
+  
+  return (dispatch, getState) => {
+    const {show} = getState();
+    
+    dispatch({
+      type: ADD_SHOW_TO_QUEUE,
+      show
+    })
+    
+    dispatch({
+      type: SET_SHOW_IS_QUEUED,
+      show,
+      inQueue: true
+    })
   }
 }
+
+export const REMOVE_SHOW_FROM_QUEUE = 'REMOVE_SHOW_FROM_QUEUE'
+export const removeShowFromQueue = () => {
+  
+  return (dispatch, getState) => {
+    const {show} = getState()
+    
+    dispatch({
+      type: REMOVE_SHOW_FROM_QUEUE,
+      show
+    })
+    
+    dispatch({
+      type: SET_SHOW_IS_QUEUED,
+      show,
+      inQueue: false
+    })
+  }
+}
+

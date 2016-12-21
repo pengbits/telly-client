@@ -55,9 +55,18 @@ RECEIVE_SHOW_DETAILS
   }
 }
 
-SET_SHOWS
+GET_SHOWS
 {
-  shows: ["Dicte","Berlin Station","Chewing Gum"],
+  shows: [{
+    id:806780, 
+    seriesName:"Dicte"
+  },{
+    id:806790, 
+    seriesName: "Berlin Station"
+  },{
+    id:7788989,
+    seriesName:"Chewing Gum"
+  }]
 }
 
 SELECT_SHOW

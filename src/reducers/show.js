@@ -14,8 +14,7 @@ const show = (state={}, action={}) => {
       
     case RECEIVE_SHOW_DETAILS:  
       return Object.assign({}, state, {
-        isFetching: false,
-        inQueue: action.inQueue
+        isFetching: false      
       }, 
       action.show)
       

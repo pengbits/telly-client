@@ -21,7 +21,7 @@ export function receiveShowDetails(show, inQueue) {
   }
 }
 
-// SHOW details
+// show details
 export const fetchShowDetails = (id) => {
 
   return (dispatch, getState) => {
@@ -34,8 +34,8 @@ export const fetchShowDetails = (id) => {
 
         let showIds = getState().shows.map(({id}) => id)
         let inQueue = showIds.indexOf(json.data.id) > -1
-      
-        dispatch(receiveShowDetails(json.data, inQueue))
+        let show =    Object.assign({}, json.data, {inQueue})
+        dispatch(receiveShowDetails(show))
       }),
       error: (error => {
         // do stuff

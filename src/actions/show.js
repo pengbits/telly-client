@@ -25,6 +25,7 @@ export function receiveShowDetails(show, inQueue) {
 export const fetchShowDetails = (id) => {
 
   return (dispatch, getState) => {
+    
     dispatch(requestShowDetails(id));  
     
     return performFetch(`/series/${id}`, {

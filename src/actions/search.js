@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch'
-import {CORS_PROXY_PORT, TVDB_HOST} from './api'
+import {performFetch} from './api'
 
 // set the search term to use in searches of tvdb
 export const SET_SEARCH = 'SET_SEARCH'
@@ -37,29 +36,25 @@ export const fetchSearch = () => {
 
     let state = getState();
     let searchTerm = state.search.term;
-    let apiToken = state.api.token; 
-    if(!apiToken) throw new Error('no api token found')
+    
     dispatch(requestSearch(searchTerm));
     
-    // TODO write a wrapper for all the repeated boilerplate that returns a Promise
-    let path = `/search/series?name=${searchTerm}`;
-    return fetch(`http://localhost:${CORS_PROXY_PORT}${path}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${apiToken}`,
-        'Target-URL': TVDB_HOST
-      }
+    return performFetch(`/search/series?name=${searchTerm}`, {
+      apiToken: getState().api.token,
+      ready: (results => {
+        if(results.data && results.data.length){
+          dispatch(receiveSearch(searchTerm, results.data))
+        } else {
+          console.log('something went wrong')
+        }
+      }),
+      error: (error => {
+        // do stuff
+        console.log(error) 
+      })
     })
-    .then(response => response.json())
-    .then(json => {
-      if(json.data && json.data.length){
-        dispatch(receiveSearch(searchTerm, json.data))
-      } else {
-        console.log('something went wrong')
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    
   }
 }
+
+

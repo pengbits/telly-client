@@ -24,7 +24,7 @@ class ShowDetails extends Component {
   renderDetail(){
     // console.log(this.props.show)
     const {id,seriesName,banner,status,network,genre,overview,inQueue} = this.props.show;
-    const {addShowToQueue} = this.props;
+    const {addShowToQueue,removeShowFromQueue} = this.props;
     
     return (
       <div>
@@ -72,8 +72,10 @@ class ShowDetails extends Component {
         <h3>About</h3>
         <p>{overview}</p>
         
-        {!inQueue &&
-          <button onClick={addShowToQueue}>Add to Queue</button>
+        {!inQueue ?
+          (<button onClick={addShowToQueue}>Add to Queue</button>)
+          :
+          (<button onClick={removeShowFromQueue}>Remove from Queue</button>)
         }
       </div>
     )

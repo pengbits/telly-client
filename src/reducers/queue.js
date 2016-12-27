@@ -15,25 +15,24 @@ const queue = (state = [], action) => {
     //   return action.shows
     //       
     case ADD_SHOW_TO_QUEUE: 
-      var {id,seriesName} = action.show;
-      var list =  state.map(({id}) => id)
-      var isNew = list.indexOf(id) == -1
+      var {id} = action.show;
+      var isNew = state.indexOf(id) == -1
     
       return !isNew ? state : [ 
-        ...state, {id,seriesName}
+        ...state, id
       ]
     
-    // case REMOVE_SHOW_FROM_QUEUE:
-    //   var {id,seriesName} = action.show;
-    //   var edit = []
-    //   state.map(function(s){
-    //     if(s.id !== id){
-    //       edit.push(s)
-    //     }
-    //   })
-    // 
-    //   return edit
-    //   
+    case REMOVE_SHOW_FROM_QUEUE:
+      var {id} = action.show;
+      var edit = []
+      state.map(function(s){
+        if(s !== id){
+          edit.push(s)
+        }
+      })
+    
+      return edit
+      
     
     default:
       return state

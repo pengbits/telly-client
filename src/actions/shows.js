@@ -12,8 +12,6 @@ export function setShows(shows) {
 
 export const GET_SHOWS = 'GET_SHOWS'
 export function getShows() {
-  console.log('|actions| shows.GET_SHOWS')
-  
   return (dispatch, getState) => {
     
     // use seed data if the list is empty...

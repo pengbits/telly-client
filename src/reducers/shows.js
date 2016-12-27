@@ -15,7 +15,6 @@ const shows = (state = [], action) => {
       return []
     
     case GET_SHOWS:
-      console.log('|reducer| shows.GET_SHOWS')
       return action.shows
           
     case ADD_SHOW_TO_QUEUE: 

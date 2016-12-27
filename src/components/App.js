@@ -10,13 +10,12 @@ class App extends Component {
   }
   
   componentDidMount() {
-    console.log('App#componentDidMount');
+    // console.log('App#componentDidMount');
     const {fetchAPIToken} = this.props;
     
     fetchAPIToken();
   }
   
-  componentWillReceiveProps(nextProps) {}
   
   render(){
     return !this.props.ready ? (<p>loading...</p>) : this.renderApp()

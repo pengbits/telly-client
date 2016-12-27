@@ -16,12 +16,12 @@ import ShowDetailsContainer from './containers/ShowDetailsContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
-const preloadedState = loadState();
+const preloadedState = {shows: loadState()};
 const store = createStore(rootReducer, preloadedState, composeEnhancers(
   applyMiddleware(thunk)// (thunk,logger)
 ))
 store.subscribe(() => {
-  saveState(store.getState())
+  saveState(store.getState().shows)
 })
 
 

@@ -16,7 +16,6 @@ class App extends Component {
     fetchAPIToken();
   }
   
-  
   render(){
     return !this.props.ready ? (<p>loading...</p>) : this.renderApp()
   }

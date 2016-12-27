@@ -11,7 +11,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {id } = ownProps.routeParams;
   return {
-    requestShowDetails,
+
+    fetchShowDetails: () => {
+      dispatch(fetchShowDetails(id))
+    },
+    
+    requestShowDetails: () => {
+      dispatch(requestShowDetails())
+    },
     
     addShowToQueue: () => {
       dispatch(addShowToQueue())
@@ -19,11 +26,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     
     removeShowFromQueue: () => {
       dispatch(removeShowFromQueue())
-    },
-
-    fetchShowDetails: () => {
-      dispatch(fetchShowDetails(id))
     }
+
   }
 }
 

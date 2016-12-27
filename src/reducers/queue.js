@@ -14,15 +14,15 @@ const queue = (state = [], action) => {
     // case GET_SHOWS:
     //   return action.shows
     //       
-    // case ADD_SHOW_TO_QUEUE: 
-    //   var {id,seriesName} = action.show;
-    //   var list =  state.map(({id}) => id)
-    //   var isNew = list.indexOf(id) == -1
-    // 
-    //   return !isNew ? state : [ 
-    //     ...state, {id,seriesName}
-    //   ]
-    // 
+    case ADD_SHOW_TO_QUEUE: 
+      var {id,seriesName} = action.show;
+      var list =  state.map(({id}) => id)
+      var isNew = list.indexOf(id) == -1
+    
+      return !isNew ? state : [ 
+        ...state, {id,seriesName}
+      ]
+    
     // case REMOVE_SHOW_FROM_QUEUE:
     //   var {id,seriesName} = action.show;
     //   var edit = []
@@ -34,9 +34,6 @@ const queue = (state = [], action) => {
     // 
     //   return edit
     //   
-    case ADD_SHOW_TO_QUEUE:
-      var {id,seriesName} = action.show;
-      return [...state, {id,seriesName}]
     
     default:
       return state

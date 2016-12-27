@@ -22,7 +22,7 @@ class ShowDetails extends Component {
   }
     
   renderDetail(){
-    // console.log(this.props.show)
+
     const {
       id,
       seriesName,

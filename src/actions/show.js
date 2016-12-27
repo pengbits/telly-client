@@ -45,7 +45,6 @@ export const fetchShowDetails = (id) => {
   }
 }
 
-
 export const SET_SHOW_IS_QUEUED = 'SET_SHOW_IS_QUEUED'
 export function setShowIsQueued(show, inQueue) {
   return {

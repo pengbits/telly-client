@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { requestShowDetails, fetchShowDetails } from '../actions/show'
-import { addShowToQueue, removeShowFromQueue } from '../actions/shows'
+import { addShowToQueue } from '../actions/queue'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     
     removeShowFromQueue: () => {
-      dispatch(removeShowFromQueue())
+      //dispatch(removeShowFromQueue())
     }
 
   }

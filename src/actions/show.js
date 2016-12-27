@@ -32,8 +32,8 @@ export const fetchShowDetails = (id) => {
       apiToken: getState().api.token,
       ready: (json => {
 
-        let showIds = getState().shows.map(({id}) => id)
-        let inQueue = showIds.indexOf(json.data.id) > -1
+        let queue =   getState().queue || []
+        let inQueue = queue.indexOf(json.data.id) > -1
         let show =    Object.assign({}, json.data, {inQueue})
         dispatch(receiveShowDetails(show))
       }),

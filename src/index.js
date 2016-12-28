@@ -6,7 +6,6 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-
 import rootReducer from './reducers/index'
 import AppContainer from './containers/AppContainer'
 import { loadState, saveState } from './localStorage'
@@ -16,14 +15,14 @@ import ShowDetailsContainer from './containers/ShowDetailsContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
-const preloadedState = {shows: loadState()};
-const store = createStore(rootReducer, preloadedState, composeEnhancers(
+const store = createStore(rootReducer, loadState(), composeEnhancers(
   applyMiddleware(thunk)// (thunk,logger)
 ))
-store.subscribe(() => {
-  saveState(store.getState().shows)
-})
 
+store.subscribe(() => {
+  const {shows,queue} = store.getState()
+  saveState({shows,queue})
+})
 
 render(
   <Provider store={store}>

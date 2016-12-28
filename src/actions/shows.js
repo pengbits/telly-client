@@ -15,9 +15,8 @@ export function getShows() {
   return (dispatch, getState) => {
     
     // use seed data if the list is empty...
-    const {shows} = getState()
-    const list = shows.length ? shows : INITIAL_SHOWS
-    
+    const {shows,queue} = getState()
+    const list = shows.length && shows[0].seriesName ? addQueueData(shows, queue) : INITIAL_SHOWS
     return dispatch({
       type: GET_SHOWS,
       shows: list
@@ -25,44 +24,9 @@ export function getShows() {
   }
 }
 
-export const SET_SHOW_IS_QUEUED = 'SET_SHOW_IS_QUEUED'
-
-// add show to watch list
-export const ADD_SHOW_TO_QUEUE = 'ADD_SHOW_TO_QUEUE'
-export function addShowToQueue() {
-  
-  return (dispatch, getState) => {
-    const {show} = getState();
-    
-    dispatch({
-      type: ADD_SHOW_TO_QUEUE,
-      show
-    })
-    
-    dispatch({
-      type: SET_SHOW_IS_QUEUED,
-      show,
-      inQueue: true
-    })
-  }
+const addQueueData = (shows, queue) => {
+  return shows.map((s) => {
+    s.inQueue = queue.indexOf(s.id) > -1
+    return s
+  })
 }
-
-export const REMOVE_SHOW_FROM_QUEUE = 'REMOVE_SHOW_FROM_QUEUE'
-export const removeShowFromQueue = () => {
-  
-  return (dispatch, getState) => {
-    const {show} = getState()
-    
-    dispatch({
-      type: REMOVE_SHOW_FROM_QUEUE,
-      show
-    })
-    
-    dispatch({
-      type: SET_SHOW_IS_QUEUED,
-      show,
-      inQueue: false
-    })
-  }
-}
-

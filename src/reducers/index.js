@@ -4,6 +4,7 @@ import app from './app'
 import search from './search'
 import shows from './shows'
 import show from './show'
+import queue from './queue'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   shows,
   show,
   api,
-  app
+  app,
+  queue
 })
 
 export default rootReducer

@@ -5,8 +5,12 @@ const shows = (state = [], action) => {
     
     case 'GET_SHOWS':
       return action.shows
-
-      return edit
+    
+    case 'GET_SHOW_LIST':
+      return action.showList
+    
+    // case 'ADD_SHOW_TO_CACHE':
+    //   return [...state].concat(action.show)
       
     default:
       return state

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Show from './Show'
 import GenreList from './GenreList'
-import VisibilityFilter from './VisibilityFilter'
+import Footer from './Footer'
 
 class ShowsList extends Component {
   constructor (props){
@@ -50,7 +50,7 @@ class ShowsList extends Component {
             ))}
           </tbody>
         </table>
-        <VisibilityFilter />
+        <Footer />
       </div>
     )
   }

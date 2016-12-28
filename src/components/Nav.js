@@ -6,7 +6,7 @@ const Nav = ({children}) => (
     <Link to="shows">
       Shows
     </Link>
-    |
+    {" | "}
     <Link to="search">
       Search
     </Link>

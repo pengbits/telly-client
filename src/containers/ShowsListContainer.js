@@ -22,7 +22,7 @@ const getVisibleShows = (shows, filter) => {
 
 const mapStateToProps = (state) => {
   return {
-    shows: getVisibleShows(state.shows)
+    shows: getVisibleShows(state.shows, state.visibilityFilter)
   }
 }
 

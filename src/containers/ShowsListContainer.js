@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
-import { selectShow, setShows, getShows, getShowList} from '../actions/shows'
+import { getShows} from '../actions/shows'
 import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
   return {
-    showList: state.showList
+    shows: state.shows
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getShowList: () => {
-      dispatch(getShowList())
+    getShows: () => {
+      dispatch(getShows())
     }
   }
 }

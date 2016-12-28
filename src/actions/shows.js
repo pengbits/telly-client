@@ -22,16 +22,6 @@ export const getShows = () => {
   }
 }
 
-export const getShowList = () => {
-  return (dispatch, getState) => {
-    dispatch(getShows())
-    // return dispatch({
-    //   type: 'GET_SHOW_LIST',
-    //   showList: []
-    // })
-  }
-}
-
 const addQueueData = (shows, queue) => {
   return shows.map((s) => {
     s.inQueue = queue.indexOf(s.id) > -1

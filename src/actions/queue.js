@@ -1,7 +1,3 @@
-import {
-  SET_SHOW_IS_QUEUED
-} from './show'
-
 export const addShowToQueue = () => {
   
   return (dispatch, getState) => {

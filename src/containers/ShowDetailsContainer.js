@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { requestShowDetails, fetchShowDetails } from '../actions/show'
+import { getShowDetails } from '../actions/show'
 import { addShowToQueue, removeShowFromQueue } from '../actions/queue'
 import ShowDetails from '../components/ShowDetails'
 
@@ -12,12 +12,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const {id } = ownProps.routeParams;
   return {
 
-    fetchShowDetails: () => {
-      dispatch(fetchShowDetails(id))
-    },
-    
-    requestShowDetails: () => {
-      dispatch(requestShowDetails())
+    getShowDetails: () => {
+      dispatch(getShowDetails(id))
     },
     
     addShowToQueue: () => {

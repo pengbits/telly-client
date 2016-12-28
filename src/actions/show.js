@@ -1,5 +1,3 @@
-// import fetch from 'isomorphic-fetch'
-// import {CORS_PROXY_PORT, TVDB_HOST} from './api'
 import {performFetch} from './api'
 
 // prepare the show details request 
@@ -19,8 +17,38 @@ export function receiveShowDetails(show, inQueue) {
   }
 }
 
-// show details
-export const fetchShowDetails = (id) => {
+export function getShowDetails(id) {
+  
+  return (dispatch, getState) => {
+    // look in local cache, and if nothing is there, fetch the show details via api
+    let state = getState()
+    if(isCached(id, state)) {
+      console.log(`getShowFromCache ${id}`);
+      dispatch(receiveShowDetails(getShowFromCache(id, state)))
+    }
+    else {
+      console.log('not cached')
+      dispatch(fetchShowDetails(id))
+    }
+  }
+}
+
+function isCached(showId, state){
+  let showIds = state.shows.map(({id}) => `${id}`); // cast number to string
+  return (showIds.indexOf(showId) > -1)
+}
+
+const getShowFromCache = (id, state) => {
+  let show; state.shows.map((s) => {
+    if(s.id == id) {
+      show = s; 
+      return
+    }
+  })
+  return show
+}
+
+const fetchShowDetails = (id) => {
 
   return (dispatch, getState) => {
     

@@ -2,14 +2,14 @@ import {
   INITIAL_SHOWS
 } from '../../config/shows';
 
-export function setShows(shows) {
+export const setShows = (shows) => {
   return {
     type: 'SET_SHOWS',
     shows
   }
 }
 
-export function getShows() {
+export const getShows = () => {
   return (dispatch, getState) => {
     
     // use seed data if the list is empty...

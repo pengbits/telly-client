@@ -17,11 +17,28 @@ class ShowsList extends Component {
     return (  
       <div>
         <h1>My Shows</h1>
-        <ul className="show-list">
-          {shows.map((show,idx) => (
-            <Show key={idx} name={show.seriesName} id={show.id} />
-          ))}
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>In Queue</th>
+            </tr>
+            {shows.map((show,idx) => (
+              <tr key={idx}>
+                <td>
+                  <Show name={show.seriesName} id={show.id} />
+                </td>
+                <td>
+                  {show.inQueue ?
+                    (<b>√</b>) : (<b>x</b>)
+                  }
+                </td>
+              </tr>
+            ))}
+
+          </tbody>
+        </table>
+        
       </div>
     )
   }

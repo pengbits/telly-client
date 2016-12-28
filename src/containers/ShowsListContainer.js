@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectShow, setShows, getShows } from '../actions/shows'
+import { getShows} from '../actions/shows'
 import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {

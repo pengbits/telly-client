@@ -6,9 +6,9 @@ class ShowDetails extends Component {
   }
   
   componentDidMount(){
-    const {fetchShowDetails} = this.props;
+    const {getShowDetails} = this.props;
     // console.log('ShowDetails#componentDidMount')
-    fetchShowDetails();
+    getShowDetails();
   }
   
   componentWillReceiveProps(nextProps) {

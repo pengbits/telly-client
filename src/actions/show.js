@@ -1,29 +1,23 @@
-// import fetch from 'isomorphic-fetch'
-// import {CORS_PROXY_PORT, TVDB_HOST} from './api'
 import {performFetch} from './api'
 
-// prepare the show details request 
-export function requestShowDetails(id) {
-  return {
-    type: 'REQUEST_SHOW_DETAILS',
-    id
-  }
-}
-
-// onready
-export function receiveShowDetails(show, inQueue) {
-  return {
-    type: 'RECEIVE_SHOW_DETAILS',
-    show,
-    inQueue
-  }
-}
-
-// show details
-export const fetchShowDetails = (id) => {
-
+export function getShowDetails(id) {
+  
   return (dispatch, getState) => {
+    // look in local cache, and if nothing is there, fetch the show details via api
+    let state = getState()
     
+    if(isCached(id, state)) {
+      dispatch(receiveShowDetails(getShowFromCache(id, state)))
+    }
+    else {
+      dispatch(fetchShowDetails(id))
+    }
+  }
+}
+
+function fetchShowDetails(id){
+  return (dispatch, getState) => {
+      
     dispatch(requestShowDetails(id));  
     
     return performFetch(`/series/${id}`, {
@@ -33,6 +27,7 @@ export const fetchShowDetails = (id) => {
         let queue =   getState().queue || []
         let inQueue = queue.indexOf(json.data.id) > -1
         let show =    Object.assign({}, json.data, {inQueue})
+        
         dispatch(receiveShowDetails(show))
       }),
       error: (error => {
@@ -42,6 +37,43 @@ export const fetchShowDetails = (id) => {
     })
   }
 }
+
+function addShowToCache(show){
+  return {
+    type: 'ADD_SHOW_TO_CACHE',
+    show
+  }
+}
+
+function requestShowDetails(id) {
+  return {
+    type: 'REQUEST_SHOW_DETAILS',
+    id
+  }
+}
+
+function receiveShowDetails(show, inQueue) {
+  return {
+    type: 'RECEIVE_SHOW_DETAILS',
+    show,
+    inQueue
+  }
+}
+
+function isCached(showId, state) {
+  let showIds = state.shows.map(({id}) => `${id}`); // cast number to string
+  return (showIds.indexOf(showId) > -1)
+}
+
+function getShowFromCache(id, state) {
+  let show; 
+  state.shows.map((s) => {
+    if(s.id == id) { show = s; return }
+  })
+  return show
+}
+
+
 
 export function setShowIsQueued(show, inQueue) {
   return {

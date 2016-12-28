@@ -8,7 +8,6 @@ class ShowsList extends Component {
   
   componentDidMount(){
     const {getShows} = this.props;
-    //setShows();
     getShows();
   }
   

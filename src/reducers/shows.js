@@ -6,11 +6,17 @@ const shows = (state = [], action) => {
     case 'GET_SHOWS':
       return action.shows
     
-    case 'GET_SHOW_LIST':
-      return action.showList
     
-    // case 'ADD_SHOW_TO_CACHE':
-    //   return [...state].concat(action.show)
+    case 'RECEIVE_SHOW_DETAILS':
+      // build a list of show ids
+      let list = state.map(({id}) => id)
+      // if the fetched show is already cached, do nothing,
+      // otherwise add it to the list
+      if(list.indexOf(action.show.id) > -1){
+        return state
+      } else { 
+        return [...state].concat(action.show)
+      }
       
     default:
       return state

@@ -28,7 +28,6 @@ function fetchShowDetails(id){
         let inQueue = queue.indexOf(json.data.id) > -1
         let show =    Object.assign({}, json.data, {inQueue})
         
-        // dispatch(addShowToCache(show))
         dispatch(receiveShowDetails(show))
       }),
       error: (error => {
@@ -73,6 +72,8 @@ function getShowFromCache(id, state) {
   })
   return show
 }
+
+
 
 export function setShowIsQueued(show, inQueue) {
   return {

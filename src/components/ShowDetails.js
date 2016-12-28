@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GenreList from './GenreList'
 
 class ShowDetails extends Component {
   constructor (props){
@@ -31,6 +32,7 @@ class ShowDetails extends Component {
       network,
       genre,
       overview,
+      siteRating,
       inQueue
     } = this.props.show;
     const {
@@ -67,14 +69,7 @@ class ShowDetails extends Component {
             <tr>
               <td>genre</td>
               <td>
-                {genre.map((g,idx) => (
-                  <span key={idx}>
-                    {g}
-                    {genre.length-1 > idx &&
-                    <i>, </i>
-                    }
-                  </span>
-                ))}
+                <GenreList genre={genre} />
               </td>
             </tr>
             }
@@ -83,6 +78,8 @@ class ShowDetails extends Component {
         
         <h3>About</h3>
         <p>{overview}</p>
+        <h3>TVDB Rating</h3>
+        <p>{siteRating}</p>
         
         {!inQueue ?
           (<button onClick={addShowToQueue}>Add to Queue</button>)

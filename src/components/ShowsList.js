@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Show from './Show'
+import GenreList from './GenreList'
 
 class ShowsList extends Component {
   constructor (props){
@@ -16,16 +17,28 @@ class ShowsList extends Component {
     return (  
       <div>
         <h1>My Shows</h1>
-        <table>
+        <table cellPadding="5">
           <tbody>
             <tr>
               <th>Name</th>
+              <th>Network</th>
+              <th>Status</th>
+              <th>Genre</th>
               <th>In Queue</th>
             </tr>
             {shows.map((show,idx) => (
               <tr key={idx}>
                 <td>
                   <Show name={show.seriesName} id={show.id} />
+                </td>
+                <td>
+                  {show.network}
+                </td>
+                <td>
+                  {show.status}
+                </td>
+                <td>
+                  <GenreList genre={show.genre} />
                 </td>
                 <td>
                   {show.inQueue ?

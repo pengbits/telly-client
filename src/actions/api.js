@@ -6,17 +6,15 @@ export const TVDB_HOST = "https://api.thetvdb.com"
 export const CORS_PROXY_PORT = 3000;
 
 // get api credentials
-export const REQUEST_API_TOKEN = 'REQUEST_API_TOKEN';
 export function requestAPIToken(){
   return {
-    type: REQUEST_API_TOKEN
+    type: 'REQUEST_API_TOKEN'
   }
 }
 
-export const RECEIVE_API_TOKEN = 'RECEIVE_API_TOKEN';
 export function receiveAPIToken(token){
   return {
-    type: RECEIVE_API_TOKEN,
+    type: 'RECEIVE_API_TOKEN',
     token
   }
 }

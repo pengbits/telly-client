@@ -1,20 +1,14 @@
 import show from './show'
 
-import {
-  ADD_SHOW_TO_QUEUE,
-  REMOVE_SHOW_FROM_QUEUE
-} from '../actions/queue';
-
-
 const queue = (state = [], action) => {
   switch (action.type){
-    // case SET_SHOWS:
+    // case 'SET_SHOWS':
     //   return []
     // 
-    // case GET_SHOWS:
+    // case 'GET_SHOWS':
     //   return action.shows
     //       
-    case ADD_SHOW_TO_QUEUE: 
+    case 'ADD_SHOW_TO_QUEUE': 
       var {id} = action.show;
       var isNew = state.indexOf(id) == -1
     
@@ -22,7 +16,7 @@ const queue = (state = [], action) => {
         ...state, id
       ]
     
-    case REMOVE_SHOW_FROM_QUEUE:
+    case 'REMOVE_SHOW_FROM_QUEUE':
       var {id} = action.show;
       var edit = []
       state.map(function(s){

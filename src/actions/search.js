@@ -1,27 +1,24 @@
 import {performFetch} from './api'
 
 // set the search term to use in searches of tvdb
-export const SET_SEARCH = 'SET_SEARCH'
 export function setSearchTerm(searchTerm){
   return {
-    type: SET_SEARCH,
+    type: 'SET_SEARCH',
     searchTerm
   }
 }
 // prepare the search request 
-export const REQUEST_SEARCH = 'REQUEST_SEARCH'
 export function requestSearch(searchTerm) {
   return {
-    type: REQUEST_SEARCH,
+    type: 'REQUEST_SEARCH',
     searchTerm
   }
 }
 
 // handle search onready
-export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 export function receiveSearch(searchTerm, results) {
   return {
-    type: RECEIVE_SEARCH,
+    type: 'RECEIVE_SEARCH',
     searchTerm,
     results
   }

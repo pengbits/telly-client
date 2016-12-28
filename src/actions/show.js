@@ -3,19 +3,17 @@
 import {performFetch} from './api'
 
 // prepare the show details request 
-export const REQUEST_SHOW_DETAILS = 'REQUEST_SHOW_DETAILS'
 export function requestShowDetails(id) {
   return {
-    type: REQUEST_SHOW_DETAILS,
+    type: 'REQUEST_SHOW_DETAILS',
     id
   }
 }
 
 // onready
-export const RECEIVE_SHOW_DETAILS = 'RECEIVE_SHOW_DETAILS'
 export function receiveShowDetails(show, inQueue) {
   return {
-    type: RECEIVE_SHOW_DETAILS,
+    type: 'RECEIVE_SHOW_DETAILS',
     show,
     inQueue
   }
@@ -45,10 +43,9 @@ export const fetchShowDetails = (id) => {
   }
 }
 
-export const SET_SHOW_IS_QUEUED = 'SET_SHOW_IS_QUEUED'
 export function setShowIsQueued(show, inQueue) {
   return {
-    type: SET_SHOW_IS_QUEUED,
+    type: 'SET_SHOW_IS_QUEUED',
     show,
     inQueue
   }

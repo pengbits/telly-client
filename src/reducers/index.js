@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import api from './api'
-import app from './app'
+import api    from './api'
+import app    from './app'
 import search from './search'
-import shows from './shows'
-import show from './show'
-import queue from './queue'
-
+import shows  from './shows'
+import show   from './show'
+import queue  from './queue'
+import visibilityFilter from './visibilityFilter'
 
 const rootReducer = combineReducers({
   search,
@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
   show,
   api,
   app,
-  queue
+  queue,
+  visibilityFilter
 })
 
 export default rootReducer
-

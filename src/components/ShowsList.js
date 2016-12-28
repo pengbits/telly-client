@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Show from './Show'
 import GenreList from './GenreList'
+import VisibilityFilter from './VisibilityFilter'
 
 class ShowsList extends Component {
   constructor (props){
@@ -47,10 +48,9 @@ class ShowsList extends Component {
                 </td>
               </tr>
             ))}
-
           </tbody>
         </table>
-        
+        <VisibilityFilter />
       </div>
     )
   }

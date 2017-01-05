@@ -6,6 +6,7 @@ import shows  from './shows'
 import show   from './show'
 import queue  from './queue'
 import visibilityFilter from './visibilityFilter'
+import userRating from './userRating'
 
 const rootReducer = combineReducers({
   search,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   api,
   app,
   queue,
-  visibilityFilter
+  visibilityFilter,
+  userRating
 })
 
 export default rootReducer

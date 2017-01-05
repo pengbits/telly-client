@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GenreList from './GenreList'
+import UserRating from './UserRating'
 
 class ShowDetails extends Component {
   constructor (props){
@@ -78,9 +79,12 @@ class ShowDetails extends Component {
         
         <h3>About</h3>
         <p>{overview}</p>
+        
         <h3>TVDB Rating</h3>
         <p>{siteRating}</p>
         
+        <UserRating rating={UserRating} />
+          
         {!inQueue ?
           (<button onClick={addShowToQueue}>Add to Queue</button>)
           :

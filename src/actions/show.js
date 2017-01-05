@@ -1,3 +1,4 @@
+import {find} from 'lodash'
 import {performFetch} from './api'
 
 export function getShowDetails(id) {
@@ -29,6 +30,7 @@ function fetchShowDetails(id){
         let show =    Object.assign({}, json.data, {inQueue})
         
         dispatch(receiveShowDetails(show))
+  
       }),
       error: (error => {
         // do stuff
@@ -60,9 +62,23 @@ function receiveShowDetails(show, inQueue) {
   }
 }
 
+function requestEpisodes(id) {
+  return {
+    type: 'REQUEST_EPISODES',
+    id
+  }
+}
+
+function receiveEpisodes(id) {
+  return {
+    type: 'RECEiVE_EPISODES',
+    episodes
+  }
+}
+
+
 function isCached(showId, state) {
-  let showIds = state.shows.map(({id}) => `${id}`); // cast number to string
-  return (showIds.indexOf(showId) > -1)
+  return find(state.shows, (s) => {return `${s.id}` == showId})
 }
 
 function getShowFromCache(id, state) {

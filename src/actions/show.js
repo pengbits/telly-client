@@ -1,5 +1,4 @@
 import {find} from 'lodash'
-import {performFetch} from './api'
 
 export function getShowDetails(id) {
   

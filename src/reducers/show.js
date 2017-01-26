@@ -11,11 +11,6 @@ const show = (state={}, action={}) => {
         isFetching: false      
       }, 
       action.show)
-      
-    case 'SET_SHOW_IS_QUEUED': 
-      return Object.assign({}, state, { 
-        inQueue: action.inQueue
-      })
     
     default:
       return state

@@ -12,21 +12,16 @@ function fetchShowDetails(id){
       
     dispatch(requestShowDetails(id));  
     
-    return performFetch(`/series/${id}`, {
-      apiToken: getState().api.token,
-      ready: (json => {
-
-        let queue =   getState().queue || []
-        let inQueue = queue.indexOf(json.data.id) > -1
-        let show =    Object.assign({}, json.data, {inQueue})
-        
-        dispatch(receiveShowDetails(show))
-  
-      }),
-      error: (error => {
-        // do stuff
-        console.log(error) 
-      })
+    fetch(`http://localhost:3000/shows/${id}`)
+    .then((res)=>{
+      if(res.status >= 400){
+        dispatch(serverError(res))
+      } else {
+        return res.json()
+      }
+    })
+    .then((xhr) => {
+      dispatch(receiveShowDetails(xhr.show))
     })
   }
 }
@@ -45,10 +40,9 @@ function requestShowDetails(id) {
   }
 }
 
-function receiveShowDetails(show, inQueue) {
+function receiveShowDetails(show) {
   return {
     type: 'RECEIVE_SHOW_DETAILS',
-    show,
-    inQueue
+    show
   }
 }

@@ -28,7 +28,6 @@ export const fetchShows = () => {
       }
     })
     .then((xhr) => {
-
       dispatch(receiveShows(xhr.shows))
     })
   }

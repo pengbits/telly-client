@@ -1,7 +1,4 @@
-import {
-  INITIAL_SHOWS
-} from '../../config/shows';
-
+import fetch from 'isomorphic-fetch'
 export const setShows = (shows) => {
   return {
     type: 'SET_SHOWS',
@@ -10,24 +7,41 @@ export const setShows = (shows) => {
 }
 
 export const getShows = () => {
+    // we could cache api calls and look in the cache before invoking fetchShows below..
   return (dispatch, getState) => {
-    
-    // use seed data if the list is empty...
-    const {shows,queue} = getState()
-    const list = shows.length && shows[0].seriesName ? addQueueData(shows, queue) : INITIAL_SHOWS
-
-    return dispatch({
-      type: 'GET_SHOWS',
-      shows: sortByName(list)
-    })
+    dispatch(fetchShows())
   }
 }
 
-const addQueueData = (shows, queue) => {
-  return shows.map((s) => {
-    s.inQueue = queue.indexOf(s.id) > -1
-    return s
-  })
+
+export const fetchShows = () => {
+  return (dispatch, getState) => {
+    
+    dispatch(requestShows());
+    
+    setTimeout(() => {
+      dispatch(receiveShows([{
+        name: 'The OA',
+        network: 'Netflix'
+      },{
+        name: 'Chewing Gum',
+        network: 'E4'
+      }]))
+    }, 1000)
+  }
+}
+
+export const requestShows = () => {
+  return {
+    type: 'REQUEST_SHOWS'
+  }
+}
+
+export const receiveShows = (shows) => {
+  return {
+    type: 'RECEIVE_SHOWS',
+    shows
+  }
 }
 
 const sortByName = (shows) => {

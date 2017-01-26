@@ -3,12 +3,9 @@ const shows = (state = [], action) => {
     case 'SET_SHOWS':
       return []
     
-    case 'GET_SHOWS':
+    case 'RECEIVE_SHOWS':
       return action.shows
     
-    case 'REQUEST_EPISODES':
-      return action.id
-      
     default:
       return state
   }

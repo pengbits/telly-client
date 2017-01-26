@@ -5,6 +5,11 @@ class ShowsList extends Component {
     super(props);
   }
   
+  componentWillMount() {
+    const {getShows} = this.props
+    getShows();
+  }
+  
   render(props){
     return (  
       <div>

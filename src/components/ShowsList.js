@@ -11,12 +11,25 @@ class ShowsList extends Component {
   }
   
   render(){
-    const {shows,isFetching} = this.props;
+    const {isFetching,hasErrors} = this.props;
+    
+    if(isFetching){
+      return (<p>Loading...</p>)
+    } else if(hasErrors){
+      return (<p>An Error has occured</p>)
+    } else {
+      return this.renderList()
+    }
+  }
+  
+  renderList(){
+    const {shows} = this.props;
+      
     return (  
       <div>
         <h3>My Shows</h3>
         <ul>
-        {isFetching ? (<p>Loading...</p>) : shows.map((s,idx) =>
+        {shows.map((s,idx) =>
           <li key={idx}>{s.name}</li>
         )}
         </ul>

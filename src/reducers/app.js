@@ -7,6 +7,12 @@ const app = (state={isFetching: true}, action) => {
     case 'RECEIVE_SHOWS':
       return {isFetching: false}
       
+    case 'SERVER_ERROR':
+      return  {
+        isFetching: false,
+        hasErrors: true
+      }
+      
     default:
       return state
   }

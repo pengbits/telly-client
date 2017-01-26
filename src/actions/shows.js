@@ -19,15 +19,18 @@ export const fetchShows = () => {
     
     dispatch(requestShows());
     
-    setTimeout(() => {
-      dispatch(receiveShows([{
-        name: 'The OA',
-        network: 'Netflix'
-      },{
-        name: 'Chewing Gum',
-        network: 'E4'
-      }]))
-    }, 2000)
+    fetch('http://localhost:3000/shows')
+    .then((res)=>{
+      if(res.status >= 400){
+        dispatch(serverError(res))
+      } else {
+        return res.json()
+      }
+    })
+    .then((xhr) => {
+
+      dispatch(receiveShows(xhr.shows))
+    })
   }
 }
 
@@ -38,9 +41,17 @@ export const requestShows = () => {
 }
 
 export const receiveShows = (shows) => {
+
   return {
     type: 'RECEIVE_SHOWS',
     shows
+  }
+}
+
+export const serverError = (response) => {
+  return {
+    type: 'SERVER_ERROR',
+    response
   }
 }
 

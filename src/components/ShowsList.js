@@ -10,10 +10,16 @@ class ShowsList extends Component {
     getShows();
   }
   
-  render(props){
+  render(){
+    const {shows} = this.props;
     return (  
       <div>
         <h3>My Shows</h3>
+        <ul>
+        {shows.map((s,idx) =>
+          <li key={idx}>{s.name}</li>
+        )}
+        </ul>
       </div>
     )
   }

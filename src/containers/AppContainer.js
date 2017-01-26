@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { fetchAPIToken } from '../actions/api'
 import App from '../components/App'
 
 const mapStateToProps = (state) => {

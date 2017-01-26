@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import ShowsListContainer from '../containers/ShowsListContainer'
-import SearchFormContainer from '../containers/SearchFormContainer'
 
 import Nav from './Nav.js'
 
@@ -23,7 +21,7 @@ class App extends Component {
   renderApp(){
     return (
     <div>
-      <Nav />
+      <h1>Telly</h1>
       {this.props.children}  
     </div>
     )

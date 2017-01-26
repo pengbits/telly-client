@@ -6,10 +6,6 @@ class App extends Component {
   }
   
   render(){
-    return !this.props.ready ? (<p>loading...</p>) : this.renderApp()
-  }
-  
-  renderApp(){
     return (
     <div>
       <h1>Telly</h1>

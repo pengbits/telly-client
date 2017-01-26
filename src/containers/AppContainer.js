@@ -2,17 +2,11 @@ import { connect } from 'react-redux'
 import App from '../components/App'
 
 const mapStateToProps = (state) => {
-  return {
-    ready: state.app && state.app.ready
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAPIToken: () => {
-      return dispatch(fetchAPIToken())
-    }
-  }
+  return {}
 }
 
 const AppContainer = connect(

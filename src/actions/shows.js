@@ -27,7 +27,7 @@ export const fetchShows = () => {
         name: 'Chewing Gum',
         network: 'E4'
       }]))
-    }, 1000)
+    }, 2000)
   }
 }
 

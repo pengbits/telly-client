@@ -9,7 +9,7 @@ class App extends Component {
     return (
     <div>
       <h1>Telly</h1>
-      {this.props.children}  
+      {this.props.children}
     </div>
     )
   }

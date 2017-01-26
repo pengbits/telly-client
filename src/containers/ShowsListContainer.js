@@ -5,7 +5,8 @@ import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
   return {
-    shows: state.shows
+    shows: state.shows,
+    isFetching: state.app.isFetching
   }
 }
 

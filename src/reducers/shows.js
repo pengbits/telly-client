@@ -1,8 +1,9 @@
-const shows = (state = [], action) => {
+const shows = (state = {}, action) => {
   switch (action.type){
-    case 'SET_SHOWS':
-      return []
     
+    case 'REQUEST_SHOWS':
+      return state
+      
     case 'RECEIVE_SHOWS':
       return action.shows
     

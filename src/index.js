@@ -20,7 +20,7 @@ const store = createStore(rootReducer, loadState(), composeEnhancers(
 
 store.subscribe(() => {
   const {shows,queue} = store.getState()
-  saveState({shows,queue})
+  //saveState({shows,queue})
 })
 
 render(

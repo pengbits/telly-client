@@ -1,11 +1,12 @@
-const app = (state={}, action) => {
+const app = (state={isFetching: true}, action) => {
   switch (action.type){
     
-    case 'INITIALIZE_APP':
-      return {
-        ready: true
-      }
-          
+    case 'REQUEST_SHOWS':
+      return {isFetching: true}
+    
+    case 'RECEIVE_SHOWS':
+      return {isFetching: false}
+      
     default:
       return state
   }

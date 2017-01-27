@@ -23,27 +23,26 @@ export const fetchShows = () => {
     })
     
     fetch('http://localhost:3000/shows')
-    .then((res)=>{
-      if(res.status >= 400){
-        const message = `${res.status} ${res.statusText}`;
-        throw new Error(message);
-      } else {
-        return res.json()
-      }
-    })
-    .then(xhr => {
-      dispatch(receiveShows(xhr.shows))
-    })
-    .catch((error) => {
-      dispatch(onFetchShowsError(error.message))
-    })
+      .then((res)=>{
+        if(res.status >= 400){
+          throw new Error(`${res.status} ${res.statusText}`);
+        } else {
+          return res.json()
+        }
+      })
+      .then(xhr => {
+        dispatch(onFetchShows(xhr.shows))
+      })
+      .catch((error) => {
+        dispatch(onFetchShowsError(error.message))
+      })
   }
 }
 
-export const receiveShows = (shows) => {
+export const onFetchShows = (shows) => {
 
   return {
-    type: 'RECEIVE_SHOWS',
+    type: 'FETCH_SHOWS_SUCCESS',
     loading: false,
     shows
   }

@@ -1,7 +1,7 @@
 const shows = (state = {list: [], loading:false}, action) => {
   switch (action.type){
     
-    case 'RECEIVE_SHOWS':
+    case 'FETCH_SHOWS_SUCCESS':
       return {
         list: action.shows,
         loading: false

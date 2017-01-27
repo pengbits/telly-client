@@ -3,15 +3,17 @@ import { getShowDetails } from '../actions/show'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
+  const {showDetails,loading,error} = state.show;
   return {
-    show: state.show,
-    isFetching: state.app.isFetching,
-    hasErrors: state.app.hasErrors
+    show: showDetails,
+    error,
+    loading
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const {id } = ownProps.routeParams;
+  const {id} = ownProps.routeParams;
+
   return {
     getShowDetails: () => {
       dispatch(getShowDetails(id))

@@ -12,19 +12,25 @@ class ShowDetails extends Component {
   }
   
   render(){
-    const {isFetching,hasErrors} = this.props;
+    const {loading,error,show} = this.props;
     
-    if(isFetching){
+    if(loading){
       return (<p>Loading...</p>)
-    } else if(hasErrors){
-      return (<p>An Error has occured</p>)
+    } else if(error){
+      return (
+        <div class="error">
+          {error}
+        </div>
+      )
     } else {
-      return this.renderDetails()
+      return show 
+        ? this.renderDetails() : ''
     }
   }
   
   renderDetails(){
     const {_id, name, network} = this.props.show
+    
     return (
       <div>
         <h3>{name}</h3>

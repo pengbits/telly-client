@@ -50,7 +50,7 @@ class ShowsList extends Component {
           {shows.length ? shows.map((s,idx) =>
             <tr key={idx}>
               <td>
-                <a href={`/shows/${s._id}`}>{s.name}</a>
+                <Link to={`/shows/${s._id}`}>{s.name}</Link>
               </td>
               <td>
                 {s.network}

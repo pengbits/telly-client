@@ -61,6 +61,9 @@ class ShowsList extends Component {
           )}
         </tbody>
       </table>
+      <p>
+        <Link to='/shows/create'>Add a Show</Link>
+      </p>
       </div>
     )
   }

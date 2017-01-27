@@ -11,7 +11,7 @@ const shows = (state = {list: [], loading:false}, action) => {
       return {
         list: [],
         loading: false,
-        errors: action.errors
+        error: action.error
       }
       
     default:

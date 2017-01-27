@@ -25,13 +25,17 @@ export const fetchShows = () => {
     fetch('http://localhost:3000/shows')
     .then((res)=>{
       if(res.status >= 400){
-        dispatch(onFetchShowsError(res))
+        const message = `${res.status} ${res.statusText}`;
+        throw new Error(message);
       } else {
         return res.json()
       }
     })
-    .then((xhr) => {
+    .then(xhr => {
       dispatch(receiveShows(xhr.shows))
+    })
+    .catch((error) => {
+      dispatch(onFetchShowsError(error.message))
     })
   }
 }
@@ -45,11 +49,11 @@ export const receiveShows = (shows) => {
   }
 }
 
-export const onFetchShowsError = (response) => {
+export const onFetchShowsError = (error) => {
   return {
     type: 'FETCH_SHOWS_ERROR',
     loading: false,
-    errors: [response]
+    error
   }
 }
 

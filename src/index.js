@@ -9,7 +9,6 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
 import AppContainer from './containers/AppContainer'
 import { loadState, saveState } from './localStorage'
-import SearchFormContainer from './containers/SearchFormContainer'
 import ShowsListContainer from './containers/ShowsListContainer'
 import ShowDetailsContainer from './containers/ShowDetailsContainer'
 
@@ -21,7 +20,7 @@ const store = createStore(rootReducer, loadState(), composeEnhancers(
 
 store.subscribe(() => {
   const {shows,queue} = store.getState()
-  saveState({shows,queue})
+  //saveState({shows,queue})
 })
 
 render(
@@ -30,7 +29,6 @@ render(
       <Route path="/" component={AppContainer}> 
         <Route path="/shows" component={ShowsListContainer} /> 
         <Route path="/shows/:id" component={ShowDetailsContainer} /> 
-        <Route path="/search" component={SearchFormContainer} /> 
       </Route>
     </Router>
   </Provider>,

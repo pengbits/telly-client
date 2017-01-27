@@ -1,7 +1,4 @@
-import {
-  INITIAL_SHOWS
-} from '../../config/shows';
-
+import fetch from 'isomorphic-fetch'
 export const setShows = (shows) => {
   return {
     type: 'SET_SHOWS',
@@ -10,24 +7,51 @@ export const setShows = (shows) => {
 }
 
 export const getShows = () => {
+    // we could cache api calls and look in the cache before invoking fetchShows below..
+  return (dispatch, getState) => {
+    dispatch(fetchShows())
+  }
+}
+
+
+export const fetchShows = () => {
   return (dispatch, getState) => {
     
-    // use seed data if the list is empty...
-    const {shows,queue} = getState()
-    const list = shows.length && shows[0].seriesName ? addQueueData(shows, queue) : INITIAL_SHOWS
-
-    return dispatch({
-      type: 'GET_SHOWS',
-      shows: sortByName(list)
+    dispatch(requestShows());
+    
+    fetch('http://localhost:3000/shows')
+    .then((res)=>{
+      if(res.status >= 400){
+        dispatch(serverError(res))
+      } else {
+        return res.json()
+      }
+    })
+    .then((xhr) => {
+      dispatch(receiveShows(xhr.shows))
     })
   }
 }
 
-const addQueueData = (shows, queue) => {
-  return shows.map((s) => {
-    s.inQueue = queue.indexOf(s.id) > -1
-    return s
-  })
+export const requestShows = () => {
+  return {
+    type: 'REQUEST_SHOWS'
+  }
+}
+
+export const receiveShows = (shows) => {
+
+  return {
+    type: 'RECEIVE_SHOWS',
+    shows
+  }
+}
+
+export const serverError = (response) => {
+  return {
+    type: 'SERVER_ERROR',
+    response
+  }
 }
 
 const sortByName = (shows) => {

@@ -1,56 +1,69 @@
-import React, { Component } from 'react'
-import Show from './Show'
-import GenreList from './GenreList'
-import Footer from './Footer'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class ShowsList extends Component {
   constructor (props){
     super(props);
   }
   
-  componentDidMount(){
-    const {getShows} = this.props;
+  componentWillMount() {
+    const {getShows} = this.props
     getShows();
   }
   
-  render(props){
-    const { shows } = this.props;
+  render(){
+    const {isFetching,hasErrors} = this.props;
+    
+    if(isFetching){
+      return (<p>Loading...</p>)
+    } else if(hasErrors){
+      return (<p>An Error has occured</p>)
+    } else {
+      return this.renderList()
+    }
+  }
+  
+  renderList(){
+    const {shows} = this.props;
+      
     return (  
       <div>
-        <h1>My Shows</h1>
-        <table cellPadding="5">
+        <h3>My Shows</h3>
+        <table>
           <tbody>
             <tr>
-              <th>Name</th>
-              <th>Network</th>
-              <th>Status</th>
-              <th>Genre</th>
-              <th>In Queue</th>
+              <th>
+                name
+              </th>
+              <th>
+                network
+              </th>
+              <th>
+                options
+              </th>
             </tr>
-            {shows.map((show,idx) => (
-              <tr key={idx}>
-                <td>
-                  <Show name={show.seriesName} id={show.id} />
-                </td>
-                <td>
-                  {show.network}
-                </td>
-                <td>
-                  {show.status}
-                </td>
-                <td>
-                  <GenreList genre={show.genre} />
-                </td>
-                <td>
-                  {show.inQueue ?
-                    (<b>√</b>) : (<b>x</b>)
-                  }
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Footer />
+          {shows.length && shows.map((s,idx) =>
+            <tr key={idx}>
+              <td>
+                <a href={`/shows/${s._id}`}>{s.name}</a>
+              </td>
+              <td>
+                {s.network}
+              </td>
+              <td>
+                <Link to={`/shows/${s._id}`}>View</Link>
+                {' | '}
+                <Link to={`/shows/${s._id}/edit`}>Edit</Link>
+                {' | '}
+                <Link to={`/shows/${s._id}/delete`}>Delete</Link>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      <p>
+        <Link to='/shows/create'>Add a Show</Link>
+      </p>
       </div>
     )
   }

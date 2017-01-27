@@ -29,7 +29,7 @@ class ShowsList extends Component {
       <div>
         <h3>My Shows</h3>
         <ul>
-        {shows.map((s,idx) =>
+        {shows.length && shows.map((s,idx) =>
           <li key={idx}>
             <a href={`/#/shows/${s._id}`}>{s.name}</a>
           </li>

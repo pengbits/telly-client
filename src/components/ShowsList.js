@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class ShowsList extends Component {
   constructor (props){
@@ -28,13 +29,38 @@ class ShowsList extends Component {
     return (  
       <div>
         <h3>My Shows</h3>
-        <ul>
-        {shows.length && shows.map((s,idx) =>
-          <li key={idx}>
-            <a href={`/#/shows/${s._id}`}>{s.name}</a>
-          </li>
-        )}
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                name
+              </th>
+              <th>
+                network
+              </th>
+              <th>
+                options
+              </th>
+            </tr>
+          {shows.length && shows.map((s,idx) =>
+            <tr key={idx}>
+              <td>
+                <a href={`/shows/${s._id}`}>{s.name}</a>
+              </td>
+              <td>
+                {s.network}
+              </td>
+              <td>
+                <Link to={`/shows/${s._id}`}>View</Link>
+                {' | '}
+                <Link to={`/shows/${s._id}/edit`}>Edit</Link>
+                {' | '}
+                <Link to={`/shows/${s._id}/delete`}>Delete</Link>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
       </div>
     )
   }

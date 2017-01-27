@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class ShowDetails extends Component {
   constructor (props){
@@ -23,7 +24,7 @@ class ShowDetails extends Component {
   }
   
   renderDetails(){
-    const {name, network} = this.props.show
+    const {_id, name, network} = this.props.show
     return (
       <div>
         <h3>{name}</h3>
@@ -35,6 +36,11 @@ class ShowDetails extends Component {
           <b>network</b><br />
           {network}
         </p>
+        <p>
+          <Link to={`/shows/${_id}/edit`}>Edit</Link><br />
+          <Link to='/shows'>Back</Link>
+        </p>
+          
       </div>
     )
   }

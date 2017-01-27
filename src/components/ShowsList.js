@@ -12,11 +12,11 @@ class ShowsList extends Component {
   }
   
   render(){
-    const {isFetching,hasErrors} = this.props;
+    const {loading,errors} = this.props;
     
-    if(isFetching){
+    if(loading){
       return (<p>Loading...</p>)
-    } else if(hasErrors){
+    } else if(errors && errors.length){
       return (<p>An Error has occured</p>)
     } else {
       return this.renderList()

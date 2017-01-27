@@ -22,7 +22,7 @@ export const fetchShows = () => {
     fetch('http://localhost:3000/shows')
     .then((res)=>{
       if(res.status >= 400){
-        dispatch(serverError(res))
+        dispatch(onRecieveShowsError(res))
       } else {
         return res.json()
       }
@@ -35,7 +35,8 @@ export const fetchShows = () => {
 
 export const requestShows = () => {
   return {
-    type: 'REQUEST_SHOWS'
+    type: 'REQUEST_SHOWS',
+    loading: true
   }
 }
 
@@ -43,13 +44,15 @@ export const receiveShows = (shows) => {
 
   return {
     type: 'RECEIVE_SHOWS',
+    loading: false,
     shows
   }
 }
 
-export const serverError = (response) => {
+export const onRecieveShowsError = (response) => {
   return {
-    type: 'SERVER_ERROR',
+    type: 'RECEIVE_SHOWS_ERROR',
+    Loading: true,
     response
   }
 }

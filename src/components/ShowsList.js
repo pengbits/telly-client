@@ -42,7 +42,7 @@ class ShowsList extends Component {
                 options
               </th>
             </tr>
-          {shows.length && shows.map((s,idx) =>
+          {shows.length ? shows.map((s,idx) =>
             <tr key={idx}>
               <td>
                 <a href={`/shows/${s._id}`}>{s.name}</a>
@@ -57,8 +57,7 @@ class ShowsList extends Component {
                 {' | '}
                 <Link to={`/shows/${s._id}/delete`}>Delete</Link>
               </td>
-            </tr>
-          )}
+            </tr>) : <tr></tr>}
         </tbody>
       </table>
       <p>

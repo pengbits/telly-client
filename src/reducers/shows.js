@@ -1,12 +1,19 @@
-const shows = (state = {}, action) => {
+const shows = (state = {list: [], loading:false}, action) => {
   switch (action.type){
     
-    case 'REQUEST_SHOWS':
-      return state
-      
     case 'RECEIVE_SHOWS':
-      return action.shows
-    
+      return {
+        list: action.shows,
+        loading: false
+      }
+      
+    case 'FETCH_SHOWS_ERROR':
+      return {
+        list: [],
+        loading: false,
+        errors: action.errors
+      }
+      
     default:
       return state
   }

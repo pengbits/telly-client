@@ -18,7 +18,7 @@ class ShowsList extends Component {
       return (<p>Loading...</p>)
     } else if(error){
       return (
-        <div class="error">
+        <div className="error">
           <h3>An Error has occurred</h3>
           <p>{error}</p>
         </div>

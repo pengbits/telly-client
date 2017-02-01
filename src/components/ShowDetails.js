@@ -18,7 +18,7 @@ class ShowDetails extends Component {
       return (<p>Loading...</p>)
     } else if(error){
       return (
-        <div class="error">
+        <div className="error">
           {error}
         </div>
       )

@@ -24,7 +24,7 @@ class ShowDetails extends Component {
       )
     } else {
       return show 
-        ? this.renderDetails() : ''
+        ? this.renderDetails() : null
     }
   }
   

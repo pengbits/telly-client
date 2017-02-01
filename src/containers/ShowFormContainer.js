@@ -1,19 +1,23 @@
 import { connect } from 'react-redux'
+import { createShow } from '../actions/show'
 import ShowForm from '../components/ShowForm'
 
 const mapStateToProps = (state) => {
-  const {showDetails,loading,error} = state.show;
+  const {showDetails,error,loading} = state.show
   return {
-    show: showDetails,
+    showDetails,
     error,
     loading
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const {id} = ownProps.routeParams;
-
-  return {}
+  // const {id} = ownProps.routeParams;
+  return {
+    onSubmit: (show) => {
+      dispatch(createShow(show))
+    },
+  }
 }
 
 const ShowFormContainer = connect(

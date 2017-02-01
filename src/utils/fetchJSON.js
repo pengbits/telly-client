@@ -5,7 +5,19 @@ const isFunction = (fn) => {
 };
 
 const fetchJSON = (path, opts={}) => {
-  fetch(`http://localhost:3000${path}`)
+  const cfg = {};
+  
+  if(opts.method){
+    cfg.method = opts.method;
+  }
+  if(opts.body){
+    cfg.body = (typeof opts.body !== 'string' 
+      ? JSON.stringify(opts.body) 
+      : 
+      opts.body)
+  }
+  
+  fetch(`http://localhost:3000${path}`, cfg)
     .then((res)=>{
       if(res.status >= 400){
         throw new Error(`${res.status} ${res.statusText}`);
@@ -15,7 +27,7 @@ const fetchJSON = (path, opts={}) => {
     })
     .then(xhr => {
       if(isFunction(opts.success)){
-        console.log('|fetchJSON| calling success callback');
+        console.log(xhr)
         opts.success(xhr)
       } else {
         throw new Error('a success callback must be provided to fetchJSON()')

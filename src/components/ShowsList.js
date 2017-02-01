@@ -22,7 +22,7 @@ class ShowsList extends Component {
           <h3>An Error has occurred</h3>
           <p>{error}</p>
         </div>
-      )
+      ) 
     } else {
       return this.renderList()
     }

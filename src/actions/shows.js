@@ -1,4 +1,5 @@
-import fetch from 'isomorphic-fetch'
+import fetchJSON from '../utils/fetchJSON'
+
 export const setShows = (shows) => {
   return {
     type: 'SET_SHOWS',
@@ -22,25 +23,18 @@ export const fetchShows = () => {
       loading: true
     })
     
-    fetch('http://localhost:3000/shows')
-      .then((res)=>{
-        if(res.status >= 400){
-          throw new Error(`${res.status} ${res.statusText}`);
-        } else {
-          return res.json()
-        }
-      })
-      .then(xhr => {
+    fetchJSON(`/shows`, {
+      'success': (xhr => {
         dispatch(onFetchShows(xhr.shows))
+      }),
+      'error' :  (e => {
+        dispatch(onFetchShowsError(e.message))
       })
-      .catch((error) => {
-        dispatch(onFetchShowsError(error.message))
-      })
+    })
   }
 }
 
 export const onFetchShows = (shows) => {
-
   return {
     type: 'FETCH_SHOWS_SUCCESS',
     loading: false,

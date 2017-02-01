@@ -1,42 +1,46 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
-class ShowDetails extends Component {
+class ShowForm extends Component {
   constructor (props){
     super(props);
   }
   
   componentWillMount() {
-    // const {getShowDetails} = this.props
-    // getShowDetails();
+    // const {getShowForm} = this.props
+    // getShowForm();
   }
   
   render(){
-    const {loading,error,show} = this.props;
-    
-    if(loading){
-      return (<p>Loading...</p>)
-    } else if(error){
-      return (
-        <div className="error">
-          {error}
-        </div>
-      )
-    } else {
-      return show 
-        ? this.renderForm() : ''
-    }
+    const {newShow} = this.props;
+
+    return this.renderForm();
   }
   
   renderForm(){
-    const {_id, name, network} = this.props.show
-    
+    // const {_id, name, network} = this.props.newShow
+    const {handleSubmit, onSubmit, pristine, reset, submitting} = this.props;
+
     return (
-      <div>
-        show form
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <p>
+          <b><label htmlFor="name">Name</label></b><br />
+          <Field name="name" component="input" type="text"/>
+        </p>
+        <p>
+          <b><label htmlFor="network">Network</label></b><br />
+          <Field name="network" component="input" type="text"/>
+        </p>
+        <p>
+          <button type="submit" disabled={submitting}>Submit</button>
+        </p>
+    </form>
     )
   }
+
 }
 
-export default ShowDetails
+export default reduxForm({
+  form: 'show'
+})(ShowForm)

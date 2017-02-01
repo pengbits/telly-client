@@ -1,16 +1,23 @@
-const show = (state={}, action={}) => {
+const show = (state={showDetails:{}, loading:false}, action={}) => {
   switch (action.type){
     
-    case 'REQUEST_SHOW_DETAILS':
-      return Object.assign({}, state, {
-        isFetching: true
-      })
+    case 'FETCH_SHOW_DETAILS':
+      return {
+        loading: true
+      }
       
-    case 'RECEIVE_SHOW_DETAILS':  
-      return Object.assign({}, state, {
-        isFetching: false      
-      }, 
-      action.show)
+    case 'FETCH_SHOW_DETAILS_SUCCESS':  
+      return {
+        loading: false,
+        showDetails: action.showDetails
+      }
+    
+    case 'FETCH_SHOW_DETAILS_ERROR':
+      return {
+        loading: false,
+        error: action.error
+      }
+        
     
     default:
       return state

@@ -1,48 +1,51 @@
-import {find} from 'lodash'
+import fetch from 'isomorphic-fetch'
 
-export function getShowDetails(id) {
-  
+
+export const getShowDetails = (id) => {
+    // we could cache api calls and look in the cache before invoking fetchShow below..
   return (dispatch, getState) => {
     dispatch(fetchShowDetails(id))
   }
 }
 
-function fetchShowDetails(id){
+
+export const fetchShowDetails = (id) => {
   return (dispatch, getState) => {
-      
-    dispatch(requestShowDetails(id));  
+    
+    dispatch({
+      type: 'FETCH_SHOW_DETAILS',
+      loading: true
+    })
     
     fetch(`http://localhost:3000/shows/${id}`)
-    .then((res)=>{
-      if(res.status >= 400){
-        dispatch(serverError(res))
-      } else {
-        return res.json()
-      }
-    })
-    .then((xhr) => {
-      dispatch(receiveShowDetails(xhr.show))
-    })
+      .then((res)=>{
+        if(res.status >= 400){
+          throw new Error(`${res.status} ${res.statusText}`);
+        } else {
+          return res.json()
+        }
+      })
+      .then(xhr => {
+        dispatch(onFetchShowDetails(xhr.show))
+      })
+      .catch((error) => {
+        dispatch(onFetchShowDetailsError(error.message))
+      })
   }
 }
 
-function addShowToCache(show){
+export const onFetchShowDetails = (data) => {
   return {
-    type: 'ADD_SHOW_TO_CACHE',
-    show
+    type: 'FETCH_SHOW_DETAILS_SUCCESS',
+    loading: false,
+    showDetails: data
   }
 }
 
-function requestShowDetails(id) {
+export const onFetchShowDetailsError = (error) => {
   return {
-    type: 'REQUEST_SHOW_DETAILS',
-    id
-  }
-}
-
-function receiveShowDetails(show) {
-  return {
-    type: 'RECEIVE_SHOW_DETAILS',
-    show
+    type: 'FETCH_SHOW_DETAILS_ERROR',
+    loading: false,
+    error
   }
 }

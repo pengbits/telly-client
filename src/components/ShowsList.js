@@ -12,12 +12,17 @@ class ShowsList extends Component {
   }
   
   render(){
-    const {isFetching,hasErrors} = this.props;
+    const {loading,error} = this.props;
     
-    if(isFetching){
+    if(loading){
       return (<p>Loading...</p>)
-    } else if(hasErrors){
-      return (<p>An Error has occured</p>)
+    } else if(error){
+      return (
+        <div className="error">
+          <h3>An Error has occurred</h3>
+          <p>{error}</p>
+        </div>
+      )
     } else {
       return this.renderList()
     }
@@ -42,10 +47,10 @@ class ShowsList extends Component {
                 options
               </th>
             </tr>
-          {shows.length && shows.map((s,idx) =>
+          {shows.length ? shows.map((s,idx) =>
             <tr key={idx}>
               <td>
-                <a href={`/shows/${s._id}`}>{s.name}</a>
+                <Link to={`/shows/${s._id}`}>{s.name}</Link>
               </td>
               <td>
                 {s.network}
@@ -57,8 +62,7 @@ class ShowsList extends Component {
                 {' | '}
                 <Link to={`/shows/${s._id}/delete`}>Delete</Link>
               </td>
-            </tr>
-          )}
+            </tr>) : <tr></tr>}
         </tbody>
       </table>
       <p>

@@ -4,10 +4,12 @@ import ShowsList from '../components/ShowsList'
 
 
 const mapStateToProps = (state) => {
+  const {list,loading,error} = state.shows;
+  
   return {
-    shows: state.shows,
-    isFetching: state.app.isFetching,
-    hasErrors: state.app.hasErrors
+    shows: list,
+    error,
+    loading
   }
 }
 

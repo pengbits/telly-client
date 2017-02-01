@@ -17,40 +17,42 @@ export const getShows = () => {
 export const fetchShows = () => {
   return (dispatch, getState) => {
     
-    dispatch(requestShows());
+    dispatch({
+      type: 'FETCH_SHOWS',
+      loading: true
+    })
     
     fetch('http://localhost:3000/shows')
-    .then((res)=>{
-      if(res.status >= 400){
-        dispatch(serverError(res))
-      } else {
-        return res.json()
-      }
-    })
-    .then((xhr) => {
-      dispatch(receiveShows(xhr.shows))
-    })
+      .then((res)=>{
+        if(res.status >= 400){
+          throw new Error(`${res.status} ${res.statusText}`);
+        } else {
+          return res.json()
+        }
+      })
+      .then(xhr => {
+        dispatch(onFetchShows(xhr.shows))
+      })
+      .catch((error) => {
+        dispatch(onFetchShowsError(error.message))
+      })
   }
 }
 
-export const requestShows = () => {
-  return {
-    type: 'REQUEST_SHOWS'
-  }
-}
-
-export const receiveShows = (shows) => {
+export const onFetchShows = (shows) => {
 
   return {
-    type: 'RECEIVE_SHOWS',
+    type: 'FETCH_SHOWS_SUCCESS',
+    loading: false,
     shows
   }
 }
 
-export const serverError = (response) => {
+export const onFetchShowsError = (error) => {
   return {
-    type: 'SERVER_ERROR',
-    response
+    type: 'FETCH_SHOWS_ERROR',
+    loading: false,
+    error
   }
 }
 

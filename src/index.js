@@ -11,6 +11,7 @@ import AppContainer from './containers/AppContainer'
 import { loadState, saveState } from './localStorage'
 import ShowsListContainer from './containers/ShowsListContainer'
 import ShowDetailsContainer from './containers/ShowDetailsContainer'
+import ShowFormContainer from './containers/ShowFormContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
@@ -28,6 +29,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={AppContainer}> 
         <Route path="/shows" component={ShowsListContainer} /> 
+        <Route path="/shows/new" component={ShowFormContainer} /> 
         <Route path="/shows/:id" component={ShowDetailsContainer} /> 
       </Route>
     </Router>

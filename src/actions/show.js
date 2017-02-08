@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch'
-
+import fetchJSON from '../utils/fetchJSON'
 
 export const getShowDetails = (id) => {
     // we could cache api calls and look in the cache before invoking fetchShow below..
@@ -7,7 +6,6 @@ export const getShowDetails = (id) => {
     dispatch(fetchShowDetails(id))
   }
 }
-
 
 export const fetchShowDetails = (id) => {
   return (dispatch, getState) => {
@@ -17,20 +15,14 @@ export const fetchShowDetails = (id) => {
       loading: true
     })
     
-    fetch(`http://localhost:3000/shows/${id}`)
-      .then((res)=>{
-        if(res.status >= 400){
-          throw new Error(`${res.status} ${res.statusText}`);
-        } else {
-          return res.json()
-        }
-      })
-      .then(xhr => {
+    fetchJSON(`/shows/${id}`, {
+      'success': (xhr => {
         dispatch(onFetchShowDetails(xhr.show))
+      }),
+      'error' :  (e => {
+        dispatch(onFetchShowDetailsError(e.message))
       })
-      .catch((error) => {
-        dispatch(onFetchShowDetailsError(error.message))
-      })
+    })
   }
 }
 
@@ -45,6 +37,45 @@ export const onFetchShowDetails = (data) => {
 export const onFetchShowDetailsError = (error) => {
   return {
     type: 'FETCH_SHOW_DETAILS_ERROR',
+    loading: false,
+    error
+  }
+}
+
+export const createShow = (show) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'CREATE_SHOW',
+      loading: true
+    })
+    fetchJSON(`/shows/`, {
+      'method' : 'POST',
+      'body' : {
+        show
+      },
+      'success': (xhr => {
+        console.log(xhr)
+        // dispatch(onCreateShow(xhr.show))
+      }),
+      'error':   (e => {
+        dispatch(onCreateShowError(e))
+      })
+    })
+  }
+}
+
+export const onCreateShow = (data) => {
+  console.log(data)
+  return {
+    type: 'CREATE_SHOW_SUCCESS',
+    loading: false,
+    showDetails: data
+  }
+}
+
+export const onCreateShowError = (error) => {
+  return {
+    type: 'CREATE_SHOW_ERROR',
     loading: false,
     error
   }

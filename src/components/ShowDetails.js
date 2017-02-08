@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import AddAsyncRendering from './AsyncRender';
+import WithAsyncRendering from './AsyncRender';
 
 class ShowDetails extends Component {
   constructor (props){
@@ -13,7 +13,7 @@ class ShowDetails extends Component {
   }
   
   render(){
-    const {_id, name, network} = this.props.show
+    const { _id, name, network } = this.props.show
     
     return (
       <div>
@@ -36,4 +36,4 @@ class ShowDetails extends Component {
   }
 }
 
-export default AddAsyncRendering(ShowDetails)
+export default WithAsyncRendering(ShowDetails)

@@ -4,6 +4,7 @@ import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
   const {showDetails,loading,error} = state.show;
+
   return {
     show: showDetails,
     error,

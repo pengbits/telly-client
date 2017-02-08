@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import WithAsyncRendering from './AsyncRender';
 
 class ShowDetails extends Component {
   constructor (props){
@@ -12,24 +13,7 @@ class ShowDetails extends Component {
   }
   
   render(){
-    const {loading,error,show} = this.props;
-    
-    if(loading){
-      return (<p>Loading...</p>)
-    } else if(error){
-      return (
-        <div className="error">
-          {error}
-        </div>
-      )
-    } else {
-      return show 
-        ? this.renderDetails() : null
-    }
-  }
-  
-  renderDetails(){
-    const {_id, name, network} = this.props.show
+    const { _id, name, network } = this.props.show
     
     return (
       <div>
@@ -52,4 +36,4 @@ class ShowDetails extends Component {
   }
 }
 
-export default ShowDetails
+export default WithAsyncRendering(ShowDetails)

@@ -7,10 +7,23 @@ const show = (state={showDetails:{}, loading:false}, action={}) => {
       }
       
     case 'FETCH_SHOW_DETAILS_SUCCESS': 
-    case 'CREATE_SHOW_SUCCESS': 
       return {
         loading: false,
         showDetails: action.showDetails
+      }
+      
+    case 'CREATE_SHOW_SUCCESS':
+      const payload = Object.assign({
+        '_id' : action.showDetails._id
+      }, ...showDetails);
+      
+      console.log(`
+        |reducer| ${action.type}
+        ${JSON.stringify(payload)}
+      `)
+      return {
+        loading: false,
+        showDetails: payload
       }
     
     case 'FETCH_SHOW_DETAILS_ERROR':

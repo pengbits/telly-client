@@ -54,8 +54,7 @@ export const createShow = (show) => {
         show
       },
       'success': (xhr => {
-        console.log(xhr)
-        // dispatch(onCreateShow(xhr.show))
+        dispatch(onCreateShow(xhr.show))
       }),
       'error':   (e => {
         dispatch(onCreateShowError(e))
@@ -65,7 +64,6 @@ export const createShow = (show) => {
 }
 
 export const onCreateShow = (data) => {
-  console.log(data)
   return {
     type: 'CREATE_SHOW_SUCCESS',
     loading: false,

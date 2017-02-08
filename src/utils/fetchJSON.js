@@ -27,7 +27,6 @@ const fetchJSON = (path, opts={}) => {
     })
     .then(xhr => {
       if(isFunction(opts.success)){
-        console.log(xhr)
         opts.success(xhr)
       } else {
         throw new Error('a success callback must be provided to fetchJSON()')

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import WithAsyncRendering from './AsyncRender'
 
 class ShowsList extends Component {
   constructor (props){
@@ -12,23 +13,6 @@ class ShowsList extends Component {
   }
   
   render(){
-    const {loading,error} = this.props;
-    
-    if(loading){
-      return (<p>Loading...</p>)
-    } else if(error){
-      return (
-        <div className="error">
-          <h3>An Error has occurred</h3>
-          <p>{error}</p>
-        </div>
-      ) 
-    } else {
-      return this.renderList()
-    }
-  }
-  
-  renderList(){
     const {shows} = this.props;
       
     return (  
@@ -73,4 +57,4 @@ class ShowsList extends Component {
   }
 }
 
-export default ShowsList
+export default WithAsyncRendering(ShowsList)

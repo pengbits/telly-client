@@ -27,7 +27,8 @@ const show = (state={showDetails:{}, loading:false}, action={}) => {
       }
     
     case 'FETCH_SHOW_DETAILS_ERROR':
-    case 'CASE_CREATE_SHOW_ERROR':
+    case 'CREATE_SHOW_ERROR':
+    case 'UPDATE_SHOW_ERROR':
       return {
         loading: false,
         error: action.error

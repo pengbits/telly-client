@@ -1,9 +1,15 @@
 import { connect } from 'react-redux'
-import { createShow } from '../actions/show'
+import { createShow, updateShow } from '../actions/show'
 import ShowForm from '../components/ShowForm'
 
-const mapStateToProps = (state) => {
+
+const isNew = (ownProps) => {
+  return ownProps.route.path.match(/\/edit$/) == null;
+}
+
+const mapStateToProps = (state, ownProps) => {
   const {showDetails,error,loading} = state.show
+
   return {
     showDetails,
     error,
@@ -12,10 +18,17 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  // const {id} = ownProps.routeParams;
   return {
     onSubmit: (show) => {
-      dispatch(createShow(show))
+      console.log(`hello from onSubmit
+        show: ${JSON.stringify(show)}
+        `)
+      dispatch(isNew(ownProps) ? 
+        createShow(show) : 
+        updateShow(Object.assign({}, show, {
+          '_id' : ownProps.params.id //  ugly hack redux-form surely does this for us
+        }))
+      )
     },
   }
 }

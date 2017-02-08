@@ -13,7 +13,7 @@ class ShowForm extends Component {
   }
   
   render(){
-    const {newShow} = this.props;
+    // const {newShow} = this.props;
 
     return this.renderForm();
   }

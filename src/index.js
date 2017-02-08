@@ -31,6 +31,7 @@ render(
         <Route path="/shows" component={ShowsListContainer} /> 
         <Route path="/shows/new" component={ShowFormContainer} /> 
         <Route path="/shows/:id" component={ShowDetailsContainer} /> 
+        <Route path="/shows/:id/edit" component={ShowFormContainer} /> 
       </Route>
     </Router>
   </Provider>,

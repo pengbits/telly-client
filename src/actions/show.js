@@ -48,11 +48,10 @@ export const createShow = (show) => {
       type: 'CREATE_SHOW',
       loading: true
     })
+    
     fetchJSON(`/shows/`, {
       'method' : 'POST',
-      'body' : {
-        show
-      },
+      'body' : show,
       'success': (xhr => {
         dispatch(onCreateShow(xhr.show))
       }),

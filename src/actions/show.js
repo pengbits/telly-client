@@ -118,3 +118,48 @@ export const onUpdateShowError = (error) => {
     error
   }
 }
+
+
+export const deleteShow = (show) => {
+  return (dispatch, getState) => {
+    
+    if(show._id == undefined){
+      return dispatch(onUpdateShowError('must provide id for DELETE'))
+    }
+      
+    dispatch({
+      type: 'DELETE_SHOW',
+      loading: true
+    })
+    
+    fetchJSON(`/shows/${show._id}`, {
+      'method' : 'DELETE',
+      'success': (xhr => {
+        console.log('success')
+        console.log(xhr)
+        // dispatch(onDeleteShow())
+      }),
+      'error':   (e => {
+        console.log('error')
+        console.log(e)
+        // dispatch(onDeleteShowError(e))
+      })
+    })
+  }
+}
+
+export const onDeleteShow = (data) => {
+  return {
+    type: 'DELETE_SHOW_SUCCESS',
+    loading: false,
+    showDetails: data
+  }
+}
+
+export const onDeleteShowError = (error) => {
+  return {
+    type: 'DELETE_SHOW_ERROR',
+    loading: false,
+    error
+  }
+}

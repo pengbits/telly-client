@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getShows} from '../actions/shows'
+import { getShows, deleteShow } from '../actions/shows'
 import ShowsList from '../components/ShowsList'
 
 
@@ -17,6 +17,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getShows: () => {
       dispatch(getShows())
+    },
+    deleteShow: (id) => {
+      console.log(`deleteShow ${id}`)
+      return
+      
+      dispatch(deleteShow({
+        '_id': id
+      }))
     }
   }
 }

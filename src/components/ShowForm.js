@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
+import WithAsyncRendering from './AsyncRender';
 
 class ShowForm extends Component {
   constructor (props){
@@ -11,28 +12,8 @@ class ShowForm extends Component {
     this.props.getShowDetails()
   }
   
-  componentDidMount(){
-    //this.props.initializeForm()
-  }
-  
   render(){
-    // const {newShow} = this.props;
-    const {loading,error} = this.props;
-    
-    if(loading){
-      return (<p>Loading...</p>)
-    } else if(error){
-      return (
-        <div className="error">
-          {error}
-        </div>
-      )
-    } else {
-      return this.renderForm();
-    }
-  }
-  
-  renderForm(){
+    console.log('render!')
     // const {_id, name, network} = this.props.newShow
     const {handleSubmit, onSubmit, pristine, reset, submitting} = this.props;
 
@@ -59,4 +40,4 @@ class ShowForm extends Component {
 export default reduxForm({
   form: 'show',
   enableReinitialize: true
-})(ShowForm)
+})(WithAsyncRendering(ShowForm))

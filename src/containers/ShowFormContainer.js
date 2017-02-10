@@ -1,19 +1,18 @@
 import { connect } from 'react-redux'
-import { initialize } from 'redux-form/immutable'
-import { fromJS } from 'immutable'
+import { SubmissionError } from 'redux-form'
 import { createShow, getShowDetails, updateShow } from '../actions/show'
 import ShowForm from '../components/ShowForm'
 
 
 const mapStateToProps = (state, ownProps) => {
   const {showDetails,error,loading} = state.show
-
   return {
     initialValues: showDetails ? {
       name: showDetails.name,
       network: showDetails.network
     }: {},
     error,
+    hasError: !!error, // our routing error is being clobbered by redux-form, so alias as hasError 
     loading
   }
 }

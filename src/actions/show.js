@@ -83,9 +83,7 @@ export const updateShow = (show) => {
   return (dispatch, getState) => {
     
     if(show._id == undefined){
-      return dispatch(onUpdateShowError({
-        message: 'must provide id for updates'
-      }))
+      return dispatch(onUpdateShowError('must provide id for updates'))
     }
     
     dispatch({
@@ -94,9 +92,7 @@ export const updateShow = (show) => {
     })
     fetchJSON(`/shows/${show._id}`, {
       'method' : 'PUT',
-      'body' : {
-        show
-      },
+      'body' : show,
       'success': (xhr => {
         dispatch(onUpdateShow(xhr.show))
       }),

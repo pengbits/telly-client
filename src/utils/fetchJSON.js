@@ -11,11 +11,20 @@ const fetchJSON = (path, opts={}) => {
     cfg.method = opts.method;
   }
   if(opts.body){
+    // https://github.com/matthew-andrews/isomorphic-fetch/issues/34#issuecomment-218335938
+    cfg.headers = new Headers();
+    cfg.headers.append('Content-Type','application/json');
+
     cfg.body = (typeof opts.body !== 'string' 
       ? JSON.stringify(opts.body) 
       : 
       opts.body)
   }
+  console.log(`
+    fetchJSON()
+    cfg.body: ${JSON.stringify(cfg.body)}
+  `)
+  
   
   fetch(`http://localhost:3000${path}`, cfg)
     .then((res)=>{

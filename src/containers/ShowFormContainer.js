@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
       network: showDetails.network
     }: {},
     error,
-    hasError: !!error, // our routing error is being clobbered by redux-form, so alias as hasError 
+    // our routing error is being clobbered by redux-form, so alias as hasError 
+    hasError: !!error, 
     loading
   }
 }
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     getShowDetails: () => {
-      dispatch(getShowDetails(id))
+      isNew(ownProps) || dispatch(getShowDetails(id))
     },
     
     onSubmit: (show) => {

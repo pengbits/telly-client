@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { getShows, deleteShow } from '../actions/shows'
+import { getShows } from '../actions/shows'
+import { deleteShow } from '../actions/show'
 import ShowsList from '../components/ShowsList'
-
 
 const mapStateToProps = (state) => {
   const {list,loading,error} = state.shows;
@@ -19,9 +19,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getShows())
     },
     deleteShow: (id) => {
-      console.log(`deleteShow ${id}`)
-      return
-      
       dispatch(deleteShow({
         '_id': id
       }))

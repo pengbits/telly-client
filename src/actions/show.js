@@ -135,14 +135,10 @@ export const deleteShow = (show) => {
     fetchJSON(`/shows/${show._id}`, {
       'method' : 'DELETE',
       'success': (xhr => {
-        console.log('success')
-        console.log(xhr)
-        // dispatch(onDeleteShow())
+        dispatch(onDeleteShow(xhr.show))
       }),
       'error':   (e => {
-        console.log('error')
-        console.log(e)
-        // dispatch(onDeleteShowError(e))
+        dispatch(onDeleteShowError(e))
       })
     })
   }
@@ -152,7 +148,7 @@ export const onDeleteShow = (data) => {
   return {
     type: 'DELETE_SHOW_SUCCESS',
     loading: false,
-    showDetails: data
+    show: data
   }
 }
 

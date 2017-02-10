@@ -48,11 +48,10 @@ export const createShow = (show) => {
       type: 'CREATE_SHOW',
       loading: true
     })
+    
     fetchJSON(`/shows/`, {
       'method' : 'POST',
-      'body' : {
-        show
-      },
+      'body' : show,
       'success': (xhr => {
         dispatch(onCreateShow(xhr.show))
       }),
@@ -74,6 +73,47 @@ export const onCreateShow = (data) => {
 export const onCreateShowError = (error) => {
   return {
     type: 'CREATE_SHOW_ERROR',
+    loading: false,
+    error
+  }
+}
+
+
+export const updateShow = (show) => {
+  return (dispatch, getState) => {
+    
+    if(show._id == undefined){
+      return dispatch(onUpdateShowError('must provide id for updates'))
+    }
+    
+    dispatch({
+      type: 'UPDATE_SHOW',
+      loading: true
+    })
+    fetchJSON(`/shows/${show._id}`, {
+      'method' : 'PUT',
+      'body' : show,
+      'success': (xhr => {
+        dispatch(onUpdateShow(xhr.show))
+      }),
+      'error':   (e => {
+        dispatch(onUpdateShowError(e))
+      })
+    })
+  }
+}
+
+export const onUpdateShow = (data) => {
+  return {
+    type: 'UPDATE_SHOW_SUCCESS',
+    loading: false,
+    showDetails: data
+  }
+}
+
+export const onUpdateShowError = (error) => {
+  return {
+    type: 'UPDATE_SHOW_ERROR',
     loading: false,
     error
   }

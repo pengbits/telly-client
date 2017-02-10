@@ -5,11 +5,16 @@ const isFunction = (fn) => {
 };
 
 const fetchJSON = (path, opts={}) => {
-  const cfg = {};
+  const cfg = {
+    headers : new Headers(),
+  };
+  // https://github.com/matthew-andrews/isomorphic-fetch/issues/34#issuecomment-218335938
+  cfg.headers.append('Content-Type','application/json');
   
   if(opts.method){
     cfg.method = opts.method;
   }
+  
   if(opts.body){
     cfg.body = (typeof opts.body !== 'string' 
       ? JSON.stringify(opts.body) 

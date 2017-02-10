@@ -8,14 +8,28 @@ class ShowForm extends Component {
   }
   
   componentWillMount() {
-    // const {getShowForm} = this.props
-    // getShowForm();
+    this.props.getShowDetails()
+  }
+  
+  componentDidMount(){
+    //this.props.initializeForm()
   }
   
   render(){
-    const {newShow} = this.props;
-
-    return this.renderForm();
+    // const {newShow} = this.props;
+    const {loading,error} = this.props;
+    
+    if(loading){
+      return (<p>Loading...</p>)
+    } else if(error){
+      return (
+        <div className="error">
+          {error}
+        </div>
+      )
+    } else {
+      return this.renderForm();
+    }
   }
   
   renderForm(){
@@ -33,8 +47,9 @@ class ShowForm extends Component {
           <Field name="network" component="input" type="text"/>
         </p>
         <p>
-          <button type="submit" disabled={submitting}>Submit</button>
+          <button type="submit" disabled={pristine || submitting}>Submit</button>
         </p>
+        
     </form>
     )
   }
@@ -42,5 +57,6 @@ class ShowForm extends Component {
 }
 
 export default reduxForm({
-  form: 'show'
+  form: 'show',
+  enableReinitialize: true
 })(ShowForm)

@@ -1,24 +1,29 @@
 import { connect } from 'react-redux'
-import { createShow, updateShow } from '../actions/show'
+import { createShow, getShowDetails, updateShow } from '../actions/show'
 import ShowForm from '../components/ShowForm'
 
 
-const isNew = (ownProps) => {
-  return ownProps.route.path.match(/\/edit$/) == null;
-}
-
 const mapStateToProps = (state, ownProps) => {
   const {showDetails,error,loading} = state.show
-
+  const intitialValues = {
+    name: 'test name',
+    network: 'test network'
+  }
   return {
-    showDetails,
+    intitialValues,
     error,
     loading
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const {id} = ownProps.routeParams;
+
   return {
+    getShowDetails: () => {
+      dispatch(getShowDetails(id))
+    },
+    
     onSubmit: (show) => {
       console.log(`hello from onSubmit
         show: ${JSON.stringify(show)}
@@ -31,6 +36,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       )
     },
   }
+}
+
+const isNew = (ownProps) => {
+  return ownProps.route.path.match(/\/edit$/) == null;
 }
 
 const ShowFormContainer = connect(

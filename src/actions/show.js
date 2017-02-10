@@ -54,12 +54,10 @@ export const createShow = (show) => {
         show
       },
       'success': (xhr => {
-        console.log(xhr)
         dispatch(onCreateShow(xhr.show))
       }),
       'error':   (e => {
-        console.log(e)
-        //dispatch(onCreateShowError(e))
+        dispatch(onCreateShowError(e))
       })
     })
   }

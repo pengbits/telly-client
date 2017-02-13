@@ -49,7 +49,7 @@ export const createShow = (show) => {
       loading: true
     })
     
-    fetchJSON(`/shows/`, {
+    return fetchJSON(`/shows/`, {
       'method' : 'POST',
       'body' : show,
       'success': (xhr => {
@@ -90,10 +90,12 @@ export const updateShow = (show) => {
       type: 'UPDATE_SHOW',
       loading: true
     })
-    fetchJSON(`/shows/${show._id}`, {
+    
+    return fetchJSON(`/shows/${show._id}`, {
       'method' : 'PUT',
       'body' : show,
       'success': (xhr => {
+        console.log(xhr)
         dispatch(onUpdateShow(xhr.show))
       }),
       'error':   (e => {
@@ -114,6 +116,47 @@ export const onUpdateShow = (data) => {
 export const onUpdateShowError = (error) => {
   return {
     type: 'UPDATE_SHOW_ERROR',
+    loading: false,
+    error
+  }
+}
+
+
+export const deleteShow = (show) => {
+  return (dispatch, getState) => {
+    
+    if(show._id == undefined){
+      return dispatch(onUpdateShowError('must provide id for DELETE'))
+    }
+      
+    dispatch({
+      type: 'DELETE_SHOW',
+      loading: true
+    })
+    
+    return fetchJSON(`/shows/${show._id}`, {
+      'method' : 'DELETE',
+      'success': (xhr => {
+        dispatch(onDeleteShow(xhr.show))
+      }),
+      'error':   (e => {
+        dispatch(onDeleteShowError(e))
+      })
+    })
+  }
+}
+
+export const onDeleteShow = (data) => {
+  return {
+    type: 'DELETE_SHOW_SUCCESS',
+    loading: false,
+    show: data
+  }
+}
+
+export const onDeleteShowError = (error) => {
+  return {
+    type: 'DELETE_SHOW_ERROR',
     loading: false,
     error
   }

@@ -8,15 +8,23 @@ class ShowsList extends Component {
   }
   
   componentWillMount() {
-    const {getShows} = this.props
-    getShows();
+    this.props.getShows();
+  }
+  
+  deleteShow(e){
+    e.preventDefault()
+    
+    const {id} = e.currentTarget.dataset;
+    const proceed = confirm('Are you sure?');
+    proceed && this.props.deleteShow(id);
   }
   
   render(){
-    const {shows} = this.props;
+    const {shows,message,deleteShow} = this.props;
       
     return (  
       <div>
+        {message ? <h3 className="message">{message}</h3> : null}
         <h3>My Shows</h3>
         <table>
           <tbody>
@@ -44,7 +52,7 @@ class ShowsList extends Component {
                 {' | '}
                 <Link to={`/shows/${s._id}/edit`}>Edit</Link>
                 {' | '}
-                <Link to={`/shows/${s._id}/delete`}>Delete</Link>
+                <Link to={`/shows/${s._id}/delete`} data-id={`${s._id}`} onClick={this.deleteShow.bind(this)}>Delete</Link>
               </td>
             </tr>) : <tr></tr>}
         </tbody>

@@ -49,7 +49,7 @@ export const createShow = (show) => {
       loading: true
     })
     
-    fetchJSON(`/shows/`, {
+    return fetchJSON(`/shows/`, {
       'method' : 'POST',
       'body' : show,
       'success': (xhr => {
@@ -90,10 +90,12 @@ export const updateShow = (show) => {
       type: 'UPDATE_SHOW',
       loading: true
     })
-    fetchJSON(`/shows/${show._id}`, {
+    
+    return fetchJSON(`/shows/${show._id}`, {
       'method' : 'PUT',
       'body' : show,
       'success': (xhr => {
+        console.log(xhr)
         dispatch(onUpdateShow(xhr.show))
       }),
       'error':   (e => {
@@ -132,7 +134,7 @@ export const deleteShow = (show) => {
       loading: true
     })
     
-    fetchJSON(`/shows/${show._id}`, {
+    return fetchJSON(`/shows/${show._id}`, {
       'method' : 'DELETE',
       'success': (xhr => {
         dispatch(onDeleteShow(xhr.show))

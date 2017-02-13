@@ -5,11 +5,13 @@ import ShowsList from '../components/ShowsList'
 
 const mapStateToProps = (state) => {
   const {list,loading,error} = state.shows;
+  const {message} = state.show;
   
   return {
     shows: list,
     error,
-    loading
+    loading,
+    message
   }
 }
 

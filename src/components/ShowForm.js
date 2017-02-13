@@ -12,26 +12,39 @@ class ShowForm extends Component {
     this.props.getShowDetails()
   }
   
+  deleteShow(e){
+    e.preventDefault()
+    
+    const {id} = e.currentTarget.dataset;
+    const {router} = this.context;
+    const proceed = confirm('Are you sure?');
+    proceed && this.props.deleteShow(id, router);
+  }
+  
   render(){
-    console.log('render!')
-    // const {_id, name, network} = this.props.newShow
-    const {handleSubmit, onSubmit, pristine, reset, submitting} = this.props;
+    const {handleSubmit, onSubmit, pristine, reset, submitting, id, isNew, message} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <p>
-          <b><label htmlFor="name">Name</label></b><br />
-          <Field name="name" component="input" type="text"/>
-        </p>
-        <p>
-          <b><label htmlFor="network">Network</label></b><br />
-          <Field name="network" component="input" type="text"/>
-        </p>
-        <p>
-          <button type="submit" disabled={pristine || submitting}>Submit</button>
-        </p>
-        
-    </form>
+      <div>
+        {message ? <h3 className="message">{message}</h3> : null}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <p>
+            <b><label htmlFor="name">Name</label></b><br />
+            <Field name="name" component="input" type="text"/>
+          </p>
+          <p>
+            <b><label htmlFor="network">Network</label></b><br />
+            <Field name="network" component="input" type="text"/>
+          </p>
+          <p>
+            <button type="submit" disabled={pristine || submitting}>Submit</button>
+          </p>
+          <p>
+            {isNew ? null : (<Link to={`/shows/${id}/delete`} 
+              data-id={`${id}`} onClick={this.deleteShow.bind(this)}>Delete</Link>)}
+          </p>
+        </form>
+      </div>
     )
   }
 

@@ -13,13 +13,17 @@ const show = (state={showDetails:{}, loading:false}, action={}) => {
       }
       
     case 'CREATE_SHOW_SUCCESS':
-      const {showDetails} = action;
-      
       return {
         loading: false,
-        showDetails
+        message: 'Your changes have been saved'
       }
-    
+    case 'UPDATE_SHOW_SUCCESS':
+      return {
+        loading: false,
+        message: 'Your changes have been saved',
+        showDetails: action.showDetails
+      }
+      
     case 'FETCH_SHOW_DETAILS_ERROR':
     case 'CREATE_SHOW_ERROR':
     case 'UPDATE_SHOW_ERROR':

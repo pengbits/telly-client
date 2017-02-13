@@ -20,10 +20,11 @@ class ShowsList extends Component {
   }
   
   render(){
-    const {shows,deleteShow} = this.props;
+    const {shows,message,deleteShow} = this.props;
       
     return (  
       <div>
+        {message ? <h3 className="message">{message}</h3> : null}
         <h3>My Shows</h3>
         <table>
           <tbody>

@@ -22,7 +22,7 @@ const fetchJSON = (path, opts={}) => {
       opts.body)
   }
   
-  fetch(`http://localhost:3000${path}`, cfg)
+  return fetch(`http://localhost:3000${path}`, cfg)
     .then((res)=>{
       if(res.status >= 400){
         throw new Error(`${res.status} ${res.statusText}`);

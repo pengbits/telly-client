@@ -1,3 +1,4 @@
+import {createAction} from 'redux-actions'
 import fetchJSON from '../utils/fetchJSON'
 
 //
@@ -111,15 +112,12 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 // ----------------------------------------------------------------------------
 export const getShows = () => {
   return (dispatch, getState) => {
-    dispatch({
-      type: 'FETCH_SHOWS',
-      payload: fetchJSON(`/shows`)
-        .then((xhr) => {
-          return xhr
-        }, (error) => {
-          throw error
-        })
-    })
+    dispatch(
+      createAction('FETCH_SHOWS')(
+        fetchJSON(`/shows`)
+          .then((xhr => xhr), (e => {throw e}))
+      )
+    )
     .catch(e => {
       console.log(e)
     })
@@ -140,11 +138,7 @@ export const getShowDetails = (id) => {
   }
 }
 
-export const getShowForm = () => {
-  return {
-    type: 'CREATE_SHOW'
-  }
-}
+export const getShowForm = createAction('CREATE_SHOW')
 
 export const createShow = (show) => {
   return (dispatch, getState) => {

@@ -15,7 +15,7 @@ const FETCH_SHOW_DETAILS_LOADING = 'FETCH_SHOW_DETAILS_LOADING';
 const FETCH_SHOW_DETAILS_SUCCESS = 'FETCH_SHOW_DETAILS_SUCCESS'; 
 const FETCH_SHOW_DETAILS_ERROR   = 'FETCH_SHOW_DETAILS_ERROR';
 
-const CREATE_SHOW                = 'CREATE_SHOW'; // this is more of a getForm kind of state
+const CREATE_SHOW                = 'CREATE_SHOW';  // this is more of a getForm kind of state
 const CREATE_SHOW_LOADING        = 'CREATE_SHOW_LOADING';
 const CREATE_SHOW_SUCCESS        = 'CREATE_SHOW_SUCCESS';
 const CREATE_SHOW_ERROR          = 'CREATE_SHOW_ERROR';
@@ -111,7 +111,6 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 // ----------------------------------------------------------------------------
 export const getShows = () => {
   return (dispatch, getState) => {
-    console.log('dispatching...')
     dispatch({
       type: 'FETCH_SHOWS',
       payload: fetchJSON(`/shows`)

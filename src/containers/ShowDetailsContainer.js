@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getShowDetails } from '../actions/show'
+import { getShowDetails } from '../redux/shows'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {

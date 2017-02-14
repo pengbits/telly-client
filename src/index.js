@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware';
-import rootReducer from './reducers/index'
+import rootReducer from './redux/index'
 import AppContainer from './containers/AppContainer'
 import { loadState, saveState } from './localStorage'
 import ShowsListContainer from './containers/ShowsListContainer'

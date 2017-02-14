@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import shows  from './shows'
-import show   from './show'
+import { shows,show }  from './shows'
 
 const rootReducer = combineReducers({
   shows,

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { createShow, getShowDetails, getShowForm, updateShow, deleteShow } from '../actions/show'
+import { createShow, getShowDetails, getShowForm, updateShow, deleteShow } from '../redux/shows'
 import ShowForm from '../components/ShowForm'
 
 

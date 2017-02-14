@@ -17,28 +17,14 @@ export const getShows = () => {
 
 export const fetchShows = () => {
   return (dispatch, getState) => {
-    // 
     dispatch({
-      type: 'FOO',
-      payload: new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-          console.log('resolving...')
-          reject({
-            wibble: true,
-            loading:false
-          })
-        },2000)
-      })
+      type: 'FETCH_SHOWS',
+      payload: fetchJSON(`/shows`)
+        .then((xhr) => {
+          return {shows:xhr.shows}
+        })
+        .catch((e) => {})
     })
-    // 
-    // fetchJSON(`/shows`, {
-    //   'success': (xhr => {
-    //     dispatch(onFetchShows(xhr.shows))
-    //   }),
-    //   'error' :  (e => {
-    //     dispatch(onFetchShowsError(e.message))
-    //   })
-    // })
   }
 }
 

@@ -1,9 +1,16 @@
 const shows = (state = {list: [], loading:false}, action) => {
   console.log(action)
+
   switch (action.type){
+    case 'FETCH_SHOWS_PENDING':
+      return {
+        list: [],
+        loading: true
+      }
+    case 'FETCH_SHOWS_FULFILLED':
     case 'FETCH_SHOWS_SUCCESS':
       return {
-        list: action.shows,
+        list: action.payload.shows,
         loading: false
       }
     case 'DELETE_SHOW_SUCCESS':

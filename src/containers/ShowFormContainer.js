@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { createShow, getShowDetails, updateShow, deleteShow } from '../actions/show'
+import { createShow, getShowDetails, getShowForm, updateShow, deleteShow } from '../actions/show'
 import ShowForm from '../components/ShowForm'
 
 
@@ -30,7 +30,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   
   return {
     getShowDetails: () => {
-      isNew(ownProps) || dispatch(getShowDetails(id))
+      dispatch(isNew(ownProps) ?
+        getShowForm() :
+        getShowDetails(id)
+      )
     },
     
     deleteShow: (id, router) => {

@@ -32,22 +32,6 @@ export const fetchShows = () => {
   }
 }
 
-export const onFetchShows = (shows) => {
-  return {
-    type: 'FETCH_SHOWS_SUCCESS',
-    loading: false,
-    shows
-  }
-}
-
-export const onFetchShowsError = (error) => {
-  return {
-    type: 'FETCH_SHOWS_ERROR',
-    loading: false,
-    error
-  }
-}
-
 const sortByName = (shows) => {
   return shows.sort(function(a,b){
     let nameA = stripLeadingThe(a.seriesName.toUpperCase())

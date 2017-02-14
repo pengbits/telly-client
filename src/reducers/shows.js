@@ -1,6 +1,6 @@
 const shows = (state = {list: [], loading:false}, action) => {
+  console.log(action)
   switch (action.type){
-    
     case 'FETCH_SHOWS_SUCCESS':
       return {
         list: action.shows,

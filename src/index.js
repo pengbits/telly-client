@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
-
+import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from './reducers/index'
 import AppContainer from './containers/AppContainer'
 import { loadState, saveState } from './localStorage'
@@ -16,7 +16,7 @@ import ShowFormContainer from './containers/ShowFormContainer'
 
 const composeEnhancers = composeWithDevTools({}); 
 const store = createStore(rootReducer, loadState(), composeEnhancers(
-  applyMiddleware(thunk)// (thunk,logger)
+  applyMiddleware(thunk,promiseMiddleware())// (thunk,logger)
 ))
 
 store.subscribe(() => {

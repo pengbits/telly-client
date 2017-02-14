@@ -17,20 +17,28 @@ export const getShows = () => {
 
 export const fetchShows = () => {
   return (dispatch, getState) => {
-    
+    // 
     dispatch({
-      type: 'FETCH_SHOWS',
-      loading: true
-    })
-    
-    fetchJSON(`/shows`, {
-      'success': (xhr => {
-        dispatch(onFetchShows(xhr.shows))
-      }),
-      'error' :  (e => {
-        dispatch(onFetchShowsError(e.message))
+      type: 'FOO',
+      payload: new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          console.log('resolving...')
+          reject({
+            wibble: true,
+            loading:false
+          })
+        },2000)
       })
     })
+    // 
+    // fetchJSON(`/shows`, {
+    //   'success': (xhr => {
+    //     dispatch(onFetchShows(xhr.shows))
+    //   }),
+    //   'error' :  (e => {
+    //     dispatch(onFetchShowsError(e.message))
+    //   })
+    // })
   }
 }
 

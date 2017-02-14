@@ -11,7 +11,10 @@ const show = (state={showDetails:{}, loading:false}, action={}) => {
         loading: false,
         showDetails: action.showDetails
       }
-      
+    case 'CREATE_SHOW':
+      return {
+        loading: false
+      }
     case 'CREATE_SHOW_SUCCESS':
       return {
         loading: false,

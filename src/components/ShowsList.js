@@ -24,7 +24,7 @@ class ShowsList extends Component {
       
     return (  
       <div>
-        {message ? <h3 className="message">{message}</h3> : null}
+        {message ? <h4 className="message" style={{color:'green'}}>{message}</h4> : null}
         <h3>My Shows</h3>
         <table>
           <tbody>

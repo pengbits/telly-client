@@ -26,7 +26,7 @@ class ShowForm extends Component {
 
     return (
       <div>
-        {message ? <h3 className="message">{message}</h3> : null}
+        {pristine && message ? <h4 className="message" style={{color:'green'}}>{message}</h4> : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <p>
             <b><label htmlFor="name">Name</label></b><br />
@@ -40,6 +40,7 @@ class ShowForm extends Component {
             <button type="submit" disabled={pristine || submitting}>Submit</button>
           </p>
           <p>
+            <Link to='/shows'>Back</Link><br />
             {isNew ? null : (<Link to={`/shows/${id}/delete`} 
               data-id={`${id}`} onClick={this.deleteShow.bind(this)}>Delete</Link>)}
           </p>

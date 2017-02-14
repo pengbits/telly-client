@@ -16,7 +16,12 @@ import ShowFormContainer from './containers/ShowFormContainer'
 
 const composeEnhancers = composeWithDevTools({}); 
 const store = createStore(rootReducer, loadState(), composeEnhancers(
-  applyMiddleware(thunk,promiseMiddleware())// (thunk,logger)
+  applyMiddleware(
+    thunk,
+    promiseMiddleware({
+      'promiseTypeSuffixes':['LOADING','SUCCESS','ERROR']
+    })
+  )// (thunk,logger)
 ))
 
 store.subscribe(() => {

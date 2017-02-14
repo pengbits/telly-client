@@ -32,12 +32,11 @@ const fetchJSON = (path, opts={}) => {
         }
       })
       .then(xhr => {
-        // if(isFunction(opts.success)){
-          // opts.success(xhr)
-        // } else {
-          // resolve(xhr)
-        // }
-        throw new Error('dummy error')
+        if(isFunction(opts.success)){
+          opts.success(xhr)
+        } else {
+          resolve(xhr)
+        }
       })
       .catch((error) => {
         if(isFunction(opts.error)){

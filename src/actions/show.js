@@ -40,7 +40,6 @@ export const createShow = (show) => {
   }
 }
 
-
 export const updateShow = (show) => {
   return (dispatch, getState) => {
     return dispatch({

@@ -14,7 +14,6 @@ export const getShows = () => {
   }
 }
 
-
 export const fetchShows = () => {
   return (dispatch, getState) => {
     dispatch({

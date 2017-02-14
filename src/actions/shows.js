@@ -21,9 +21,13 @@ export const fetchShows = () => {
       type: 'FETCH_SHOWS',
       payload: fetchJSON(`/shows`)
         .then((xhr) => {
-          return {shows:xhr.shows}
+          return xhr
+        }, (error) => {
+          throw error
         })
-        .catch((e) => {})
+    })
+    .catch(e => {
+      console.log(e)
     })
   }
 }

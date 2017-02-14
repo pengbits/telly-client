@@ -14,39 +14,20 @@ export const getShows = () => {
   }
 }
 
-
 export const fetchShows = () => {
   return (dispatch, getState) => {
-    
     dispatch({
       type: 'FETCH_SHOWS',
-      loading: true
+      payload: fetchJSON(`/shows`)
+        .then((xhr) => {
+          return xhr
+        }, (error) => {
+          throw error
+        })
     })
-    
-    fetchJSON(`/shows`, {
-      'success': (xhr => {
-        dispatch(onFetchShows(xhr.shows))
-      }),
-      'error' :  (e => {
-        dispatch(onFetchShowsError(e.message))
-      })
+    .catch(e => {
+      console.log(e)
     })
-  }
-}
-
-export const onFetchShows = (shows) => {
-  return {
-    type: 'FETCH_SHOWS_SUCCESS',
-    loading: false,
-    shows
-  }
-}
-
-export const onFetchShowsError = (error) => {
-  return {
-    type: 'FETCH_SHOWS_ERROR',
-    loading: false,
-    error
   }
 }
 

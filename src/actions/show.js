@@ -9,155 +9,58 @@ export const getShowDetails = (id) => {
 
 export const fetchShowDetails = (id) => {
   return (dispatch, getState) => {
-    
     dispatch({
       type: 'FETCH_SHOW_DETAILS',
-      loading: true
-    })
-    
-    fetchJSON(`/shows/${id}`, {
-      'success': (xhr => {
-        dispatch(onFetchShowDetails(xhr.show))
-      }),
-      'error' :  (e => {
-        dispatch(onFetchShowDetailsError(e.message))
-      })
+      payload: fetchJSON(`/shows/${id}`)
+        .then((xhr) => {
+          return xhr
+        }, (error) => {
+          throw error
+        })
     })
   }
 }
 
-export const onFetchShowDetails = (data) => {
+export const getShowForm = () => {
   return {
-    type: 'FETCH_SHOW_DETAILS_SUCCESS',
-    loading: false,
-    showDetails: data
-  }
-}
-
-export const onFetchShowDetailsError = (error) => {
-  return {
-    type: 'FETCH_SHOW_DETAILS_ERROR',
-    loading: false,
-    error
+    type: 'CREATE_SHOW'
   }
 }
 
 export const createShow = (show) => {
   return (dispatch, getState) => {
-    dispatch({
+    return dispatch({
       type: 'CREATE_SHOW',
-      loading: true
-    })
-    
-    return fetchJSON(`/shows/`, {
-      'method' : 'POST',
-      'body' : show,
-      'success': (xhr => {
-        dispatch(onCreateShow(xhr.show))
-      }),
-      'error':   (e => {
-        dispatch(onCreateShowError(e))
+      payload: fetchJSON(`/shows/`, {
+        'method' : 'POST',
+        'body' : show
       })
+      .then(xhr => xhr)
     })
   }
 }
-
-export const onCreateShow = (data) => {
-  return {
-    type: 'CREATE_SHOW_SUCCESS',
-    loading: false,
-    showDetails: data
-  }
-}
-
-export const onCreateShowError = (error) => {
-  return {
-    type: 'CREATE_SHOW_ERROR',
-    loading: false,
-    error
-  }
-}
-
 
 export const updateShow = (show) => {
   return (dispatch, getState) => {
-    
-    if(show._id == undefined){
-      return dispatch(onUpdateShowError('must provide id for updates'))
-    }
-    
-    dispatch({
+    return dispatch({
       type: 'UPDATE_SHOW',
-      loading: true
-    })
-    
-    return fetchJSON(`/shows/${show._id}`, {
-      'method' : 'PUT',
-      'body' : show,
-      'success': (xhr => {
-        console.log(xhr)
-        dispatch(onUpdateShow(xhr.show))
-      }),
-      'error':   (e => {
-        dispatch(onUpdateShowError(e))
+      payload: fetchJSON(`/shows/${show._id}`, {
+        'method' : 'PUT',
+        'body' : show
       })
+      .then(xhr => xhr)
     })
   }
 }
-
-export const onUpdateShow = (data) => {
-  return {
-    type: 'UPDATE_SHOW_SUCCESS',
-    loading: false,
-    showDetails: data
-  }
-}
-
-export const onUpdateShowError = (error) => {
-  return {
-    type: 'UPDATE_SHOW_ERROR',
-    loading: false,
-    error
-  }
-}
-
 
 export const deleteShow = (show) => {
   return (dispatch, getState) => {
-    
-    if(show._id == undefined){
-      return dispatch(onUpdateShowError('must provide id for DELETE'))
-    }
-      
-    dispatch({
+    return dispatch({
       type: 'DELETE_SHOW',
-      loading: true
-    })
-    
-    return fetchJSON(`/shows/${show._id}`, {
-      'method' : 'DELETE',
-      'success': (xhr => {
-        dispatch(onDeleteShow(xhr.show))
-      }),
-      'error':   (e => {
-        dispatch(onDeleteShowError(e))
+      payload: fetchJSON(`/shows/${show._id}`, {
+        'method' : 'DELETE',
       })
+      .then(xhr => xhr)
     })
-  }
-}
-
-export const onDeleteShow = (data) => {
-  return {
-    type: 'DELETE_SHOW_SUCCESS',
-    loading: false,
-    show: data
-  }
-}
-
-export const onDeleteShowError = (error) => {
-  return {
-    type: 'DELETE_SHOW_ERROR',
-    loading: false,
-    error
   }
 }

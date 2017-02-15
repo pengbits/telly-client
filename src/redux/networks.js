@@ -111,18 +111,19 @@ export const network = (state={networkDetails:{}, loading:false}, action={}) => 
       return state
   }
 }
+
+
 //
 // action creators
 // ----------------------------------------------------------------------------
 export const getNetworks = () => {
   return (dispatch, getState) => {
-    console.log('getNetworks')
-    // dispatch(
-    //   createAction(FETCH_NETWORKS)(
-    //     fetchJSON(`/networks`)
-    //       .then((xhr => xhr), (e => {throw e}))
-    //     )   
-    // )
+    dispatch(
+      createAction(FETCH_NETWORKS)(
+        fetchJSON(`/networks`)
+          .then((xhr => xhr), (e => {throw e}))
+        )   
+    )
   }
 }
 

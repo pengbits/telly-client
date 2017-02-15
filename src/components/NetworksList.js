@@ -8,8 +8,7 @@ class NetworksList extends Component {
   }
   
   componentWillMount() {
-    console.log('hello from NetworksList')
-    // this.props.getNetworks();
+    this.props.getNetworks();
   }
   
   deleteNetwork(e){
@@ -19,11 +18,8 @@ class NetworksList extends Component {
     const proceed = confirm('Are you sure?');
     proceed && this.props.deleteNetwork(id);
   }
-  render (){
-    return (<p>x</p>)
-  }
   
-  renderFoo(){
+  render(){
     const {networks,message,deleteNetwork} = this.props;
       
     return (  
@@ -43,7 +39,7 @@ class NetworksList extends Component {
           {networks.length ? networks.map((s,idx) =>
             <tr key={idx}>
               <td>
-                {s.name}
+                <Link to={`/networks/${s._id}`}>{s.name}</Link>
               </td>
               <td>
                 <Link 

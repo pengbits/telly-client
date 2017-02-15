@@ -15,10 +15,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('hello from NetworksListContainer ')
   return {
     getNetworks: () => {
-      // dispatch(getNetworks())
+      dispatch(getNetworks())
     },
     deleteNetwork: (id) => {
     //   dispatch(deleteNetwork({

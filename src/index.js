@@ -12,6 +12,7 @@ import { loadState, saveState } from './localStorage'
 import ShowsListContainer from './containers/ShowsListContainer'
 import ShowDetailsContainer from './containers/ShowDetailsContainer'
 import ShowFormContainer from './containers/ShowFormContainer'
+import NetworksListContainer from './containers/NetworksListContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
@@ -33,10 +34,12 @@ render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={AppContainer}> 
-        <Route path="/shows" component={ShowsListContainer} /> 
-        <Route path="/shows/new" component={ShowFormContainer} /> 
-        <Route path="/shows/:id" component={ShowDetailsContainer} /> 
+        <Route path="/shows"          component={ShowsListContainer} /> 
+        <Route path="/shows/new"      component={ShowFormContainer} /> 
+        <Route path="/shows/:id"      component={ShowDetailsContainer} /> 
         <Route path="/shows/:id/edit" component={ShowFormContainer} /> 
+        <Route path="/networks"       component={NetworksListContainer} /> 
+
       </Route>
     </Router>
   </Provider>,

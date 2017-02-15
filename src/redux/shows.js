@@ -126,15 +126,16 @@ export const getShows = () => {
 
 export const getShowDetails = (id) => {
   return (dispatch, getState) => {
-    dispatch({
-      type: 'FETCH_SHOW_DETAILS',
-      payload: fetchJSON(`/shows/${id}`)
-        .then((xhr) => {
-          return xhr
-        }, (error) => {
-          throw error
-        })
-    })
+    dispatch(
+      createAction('FETCH_SHOW_DETAILS')(
+        fetchJSON(`/shows/${id}`)
+          .then((xhr) => {
+            return xhr
+          }, (error) => {
+            throw error
+          })
+      )
+    )
   }
 }
 

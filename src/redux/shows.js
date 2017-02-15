@@ -16,15 +16,19 @@ const FETCH_SHOW_DETAILS_LOADING = 'FETCH_SHOW_DETAILS_LOADING';
 const FETCH_SHOW_DETAILS_SUCCESS = 'FETCH_SHOW_DETAILS_SUCCESS'; 
 const FETCH_SHOW_DETAILS_ERROR   = 'FETCH_SHOW_DETAILS_ERROR';
 
-const CREATE_SHOW                = 'CREATE_SHOW';  // this is more of a getForm kind of state
+// this is more of a getForm() kind of state
+const CREATE_SHOW                = 'CREATE_SHOW';  
+// this is the sumbit
 const CREATE_SHOW_LOADING        = 'CREATE_SHOW_LOADING';
 const CREATE_SHOW_SUCCESS        = 'CREATE_SHOW_SUCCESS';
 const CREATE_SHOW_ERROR          = 'CREATE_SHOW_ERROR';
 
+const UPDATE_SHOW                = 'UPDATE_SHOW';
 const UPDATE_SHOW_LOADING        = 'UPDATE_SHOW_LOADING';
 const UPDATE_SHOW_SUCCESS        = 'UPDATE_SHOW_SUCCESS';
 const UPDATE_SHOW_ERROR          = 'UPDATE_SHOW_ERROR';
 
+const DELETE_SHOW                = 'DELETE_SHOW';
 const DELETE_SHOW_LOADING        = 'DELETE_SHOW_LOADING';
 const DELETE_SHOW_SUCCESS        = 'DELETE_SHOW_SUCCESS';
 const DELETE_SHOW_ERROR          = 'DELETE_SHOW_ERROR';
@@ -113,7 +117,7 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 export const getShows = () => {
   return (dispatch, getState) => {
     dispatch(
-      createAction('FETCH_SHOWS')(
+      createAction(FETCH_SHOWS)(
         fetchJSON(`/shows`)
           .then((xhr => xhr), (e => {throw e}))
         )   
@@ -126,8 +130,8 @@ export const getShows = () => {
 
 export const getShowDetails = (id) => {
   return (dispatch, getState) => {
-    dispatch(
-      createAction('FETCH_SHOW_DETAILS')(
+    return dispatch(
+      createAction(FETCH_SHOW_DETAILS)(
         fetchJSON(`/shows/${id}`)
           .then((xhr) => {
             return xhr
@@ -139,12 +143,12 @@ export const getShowDetails = (id) => {
   }
 }
 
-export const getShowForm = createAction('CREATE_SHOW')
+export const getShowForm = createAction(CREATE_SHOW)
 
 export const createShow = (show) => {
   return (dispatch, getState) => {
     return dispatch(
-      createAction('CREATE_SHOW')(
+      createAction(CREATE_SHOW)(
         fetchJSON(`/shows/`, {
           'method' : 'POST',
           'body' : show
@@ -158,7 +162,7 @@ export const createShow = (show) => {
 export const updateShow = (show) => {
   return (dispatch, getState) => {
     return dispatch(
-      createAction('UPDATE_SHOW')(
+      createAction(UPDATE_SHOW)(
         fetchJSON(`/shows/${show._id}`, {
           'method' : 'PUT',
           'body' : show
@@ -172,7 +176,7 @@ export const updateShow = (show) => {
 export const deleteShow = (show) => {
   return (dispatch, getState) => {
     return dispatch(
-      createAction('DELETE_SHOW')(
+      createAction(DELETE_SHOW)(
         fetchJSON(`/shows/${show._id}`, {
           'method' : 'DELETE',
         })

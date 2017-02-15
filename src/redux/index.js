@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import { shows,show }  from './shows'
-import { networks } from './networks'
+import { shows, show }  from './shows'
+import { networks, network} from './networks'
 const rootReducer = combineReducers({
 
-  show,
   shows,
-  
-  networks,
+  show,
 
+  networks,
+  network,
+  
   form: formReducer
 })
 

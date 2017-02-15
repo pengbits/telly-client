@@ -1,4 +1,4 @@
-import {createAction} from 'redux-actions'
+import {createAction,createActions} from 'redux-actions'
 import fetchJSON from '../utils/fetchJSON'
 
 //
@@ -114,6 +114,8 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 //
 // action creators
 // ----------------------------------------------------------------------------
+
+
 export const getShows = () => {
   return (dispatch, getState) => {
     dispatch(

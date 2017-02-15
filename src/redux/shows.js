@@ -116,7 +116,7 @@ export const getShows = () => {
       createAction('FETCH_SHOWS')(
         fetchJSON(`/shows`)
           .then((xhr => xhr), (e => {throw e}))
-      )
+        )   
     )
     .catch(e => {
       console.log(e)
@@ -143,38 +143,41 @@ export const getShowForm = createAction('CREATE_SHOW')
 
 export const createShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'CREATE_SHOW',
-      payload: fetchJSON(`/shows/`, {
-        'method' : 'POST',
-        'body' : show
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction('CREATE_SHOW')(
+        fetchJSON(`/shows/`, {
+          'method' : 'POST',
+          'body' : show
+        })
+        .then(xhr => xhr)
+      )
+    )
   }
 }
 
 export const updateShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'UPDATE_SHOW',
-      payload: fetchJSON(`/shows/${show._id}`, {
-        'method' : 'PUT',
-        'body' : show
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction('UPDATE_SHOW')(
+        fetchJSON(`/shows/${show._id}`, {
+          'method' : 'PUT',
+          'body' : show
+        })
+        .then(xhr => xhr)
+      )
+    ) 
   }
 }
 
 export const deleteShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'DELETE_SHOW',
-      payload: fetchJSON(`/shows/${show._id}`, {
-        'method' : 'DELETE',
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction('DELETE_SHOW')(
+        fetchJSON(`/shows/${show._id}`, {
+          'method' : 'DELETE',
+        })
+        .then(xhr => xhr)
+      )
+    )
   }
 }

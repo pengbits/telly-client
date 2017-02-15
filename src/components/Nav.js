@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 const Nav = (props) => {
+  const {items,leftItems,rightItems} = props;
+  console.log(leftItems)
+  
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="container">
@@ -13,15 +16,25 @@ const Nav = (props) => {
         <a className="navbar-brand" href="#/shows">Telly</a>
       </div>
        <div id="navbar" className="navbar-collapse collapse">
-         <ul className="nav navbar-nav">
-           <li className="active"><a href="#/shows">Shows</a></li>
-           <li><a href="#/networks">Networks</a></li>
+         {items ?
+          <ul className="nav navbar-nav">
+            {items.map((item,idx) => {
+              return (<li key={idx}>
+                <a href={`${item.path}`}>{item.label}</a>
+              </li>)
+            })}
          </ul>
+         : null
+         }
+         {rightItems ?
          <ul className="nav navbar-nav navbar-right">
-           <li><a href="../navbar/">Default</a></li>
-           <li><a href="../navbar-static-top/">Static top</a></li>
-           <li className="active"><a href="./">Fixed top <span className="sr-only">(current)</span></a></li>
-         </ul>
+           {rightItems.map((item,idx) => {
+             return (<li key={idx}>
+               <a href={`${item}`}>{item}</a>
+             </li>)
+           })}
+          </ul>
+        : null}
        </div>
      </div>
    </nav>

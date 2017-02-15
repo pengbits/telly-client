@@ -10,7 +10,15 @@ class App extends Component {
   render(){
     return (
     <div className="container">
-      <Nav />
+      <Nav 
+        items={[{
+          label:'shows',
+          path:'#/shows'
+        },{
+          label:'networks',
+          path: '#/networks'
+        }]}
+      />
       {this.props.children}
     </div>
     )

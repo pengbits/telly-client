@@ -11,12 +11,17 @@ class App extends Component {
     return (
     <div className="container">
       <Nav 
-        items={[{
+        leftItems={[{
           label:'shows',
           path:'#/shows'
         },{
           label:'networks',
           path: '#/networks'
+        }]}
+        
+        rightItems={[{
+          label: 'about',
+          path: '#'
         }]}
       />
       {this.props.children}

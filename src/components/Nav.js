@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
+import Menu from './Menu'
+
 const Nav = (props) => {
-  const {items,leftItems,rightItems} = props;
-  console.log(leftItems)
+  const {leftItems,rightItems} = props;
   
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
@@ -16,25 +17,9 @@ const Nav = (props) => {
         <a className="navbar-brand" href="#/shows">Telly</a>
       </div>
        <div id="navbar" className="navbar-collapse collapse">
-         {items ?
-          <ul className="nav navbar-nav">
-            {items.map((item,idx) => {
-              return (<li key={idx}>
-                <a href={`${item.path}`}>{item.label}</a>
-              </li>)
-            })}
-         </ul>
-         : null
-         }
-         {rightItems ?
-         <ul className="nav navbar-nav navbar-right">
-           {rightItems.map((item,idx) => {
-             return (<li key={idx}>
-               <a href={`${item}`}>{item}</a>
-             </li>)
-           })}
-          </ul>
-        : null}
+         {leftItems ?   <Menu items={leftItems} /> : null}
+         {' '}
+         {rightItems ?  <Menu items={rightItems} className='navbar-right' /> : null}
        </div>
      </div>
    </nav>

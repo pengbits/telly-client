@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
 import Menu from './Menu'
 
 const Nav = (props) => {
@@ -14,7 +15,7 @@ const Nav = (props) => {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="#/shows">Telly</a>
+        <Link to='/shows' className='navbar-brand'>Telly</Link>
       </div>
        <div id="navbar" className="navbar-collapse collapse">
          {leftItems ?   <Menu items={leftItems} /> : null}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Link from 'react-router'
+import {Link} from 'react-router'
 
 const Menu = (props) => {
   const {items,className} = props;
@@ -8,7 +8,7 @@ const Menu = (props) => {
     <ul className={`nav navbar-nav ${className || ''}`}>
       {items.map((item,idx) => {
         return (<li key={idx}>
-          <a href={`${item.path}`}>{item.label}</a>
+          <Link to={`${item.path}`}>{item.label}</Link>
         </li>)
       })}
     </ul>

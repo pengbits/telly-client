@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Link from 'react-router'
+import {Link} from 'react-router'
 import Nav from './Nav'
 
 class App extends Component {
@@ -13,15 +13,15 @@ class App extends Component {
       <Nav 
         leftItems={[{
           label:'shows',
-          path:'#/shows'
+          path:'/shows'
         },{
           label:'networks',
-          path: '#/networks'
+          path: '/networks'
         }]}
         
         rightItems={[{
           label: 'about',
-          path: '#'
+          path: '/about'
         }]}
       />
       {this.props.children}

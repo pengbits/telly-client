@@ -1,19 +1,13 @@
 import { connect } from 'react-redux'
-import { fetchAPIToken } from '../actions/api'
 import App from '../components/App'
 
 const mapStateToProps = (state) => {
   return {
-    ready: state.app && state.app.ready
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAPIToken: () => {
-      return dispatch(fetchAPIToken())
-    }
-  }
+  return {}
 }
 
 const AppContainer = connect(

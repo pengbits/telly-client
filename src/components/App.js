@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
-import ShowsListContainer from '../containers/ShowsListContainer'
-import SearchFormContainer from '../containers/SearchFormContainer'
-
-import Nav from './Nav.js'
+import {Link} from 'react-router'
+import Nav from './Nav'
 
 class App extends Component {
   constructor(props){
     super(props)
   }
   
-  componentDidMount() {
-    // console.log('App#componentDidMount');
-    const {fetchAPIToken} = this.props;
-    
-    fetchAPIToken();
-  }
-  
   render(){
-    return !this.props.ready ? (<p>loading...</p>) : this.renderApp()
-  }
-  
-  renderApp(){
     return (
-    <div>
-      <Nav />
-      {this.props.children}  
+    <div className="container">
+      <Nav 
+        leftItems={[{
+          label:'shows',
+          path:'/shows'
+        },{
+          label:'networks',
+          path: '/networks'
+        }]}
+        
+        rightItems={[{
+          label: 'about',
+          path: '/about'
+        }]}
+      />
+      {this.props.children}
     </div>
     )
   }

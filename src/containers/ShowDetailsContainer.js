@@ -1,29 +1,24 @@
 import { connect } from 'react-redux'
-import { getShowDetails } from '../actions/show'
-import { addShowToQueue, removeShowFromQueue } from '../actions/queue'
+import { getShowDetails } from '../redux/shows'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
-  const {show} = state
-  return {show}
+  const {showDetails,loading,error} = state.show;
+
+  return {
+    show: showDetails,
+    error,
+    loading
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const {id } = ownProps.routeParams;
-  return {
+  const {id} = ownProps.routeParams;
 
+  return {
     getShowDetails: () => {
       dispatch(getShowDetails(id))
-    },
-    
-    addShowToQueue: () => {
-      dispatch(addShowToQueue())
-    },
-    
-    removeShowFromQueue: () => {
-      dispatch(removeShowFromQueue())
     }
-
   }
 }
 

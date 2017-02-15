@@ -14,7 +14,6 @@ const AddAsyncRendering = (WrappedComponent) => {
         return (
           <div className="error">
             <p>{error ? error : 'An Error has Occurred'}</p>
-            <p><Link to={'/shows'}>Back</Link></p>
           </div>
         )
       } else {

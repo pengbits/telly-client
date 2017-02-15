@@ -138,4 +138,45 @@ export const getNetworkDetails = (id) => {
   }
 }
 
+export const getNetworkForm = createAction(CREATE_NETWORK)
 
+export const createNetwork = (network) => {
+  return (dispatch, getState) => {
+    return dispatch(
+      createAction(CREATE_NETWORK)(
+        fetchJSON(`/networks/`, {
+          'method' : 'POST',
+          'body' : network
+        })
+        .then(xhr => xhr)
+      )
+    )
+  }
+}
+
+export const updateNetwork = (network) => {
+  return (dispatch, getState) => {
+    return dispatch(
+      createAction(UPDATE_NETWORK)(
+        fetchJSON(`/networks/${network._id}`, {
+          'method' : 'PUT',
+          'body' : network
+        })
+        .then(xhr => xhr)
+      )
+    ) 
+  }
+}
+
+export const deleteNetwork = (network) => {
+  return (dispatch, getState) => {
+    return dispatch(
+      createAction(DELETE_NETWORK)(
+        fetchJSON(`/networks/${network._id}`, {
+          'method' : 'DELETE',
+        })
+        .then(xhr => xhr)
+      )
+    )
+  }
+}

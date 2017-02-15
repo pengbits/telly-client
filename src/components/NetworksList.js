@@ -36,26 +36,26 @@ class NetworksList extends Component {
                 options
               </th>
             </tr>
-          {networks.length ? networks.map((s,idx) =>
+          {networks.length ? networks.map((n,idx) =>
             <tr key={idx}>
               <td>
-                <Link to={`/networks/${s._id}`}>{s.name}</Link>
+                <Link to={`/networks/${n._id}`}>{n.name}</Link>
               </td>
               <td>
                 <Link 
                   className="btn btn-primary btn-xs" 
-                  to={`/networks/${s._id}`}>View
+                  to={`/networks/${n._id}`}>View
                 </Link>
                 {' '}
                 <Link 
                   className="btn btn-default btn-xs" 
-                  to={`/networks/${s._id}/edit`}>Edit
+                  to={`/networks/${n._id}/edit`}>Edit
                 </Link>
                 {' '}
                 <Link 
                   className="btn btn-default btn-xs" 
-                  to={`/networks/${s._id}/delete`} 
-                  data-id={`${s._id}`} onClick={this.deleteNetwork.bind(this)}>Delete
+                  to={`/networks/${n._id}/delete`} 
+                  data-id={`${n._id}`} onClick={this.deleteNetwork.bind(this)}>Delete
                 </Link>
               </td>
             </tr>) : <tr></tr>}

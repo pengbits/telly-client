@@ -1,3 +1,4 @@
+import {createAction,createActions} from 'redux-actions'
 import fetchJSON from '../utils/fetchJSON'
 
 //
@@ -15,15 +16,19 @@ const FETCH_SHOW_DETAILS_LOADING = 'FETCH_SHOW_DETAILS_LOADING';
 const FETCH_SHOW_DETAILS_SUCCESS = 'FETCH_SHOW_DETAILS_SUCCESS'; 
 const FETCH_SHOW_DETAILS_ERROR   = 'FETCH_SHOW_DETAILS_ERROR';
 
-const CREATE_SHOW                = 'CREATE_SHOW';  // this is more of a getForm kind of state
+// this is more of a getForm() kind of state
+const CREATE_SHOW                = 'CREATE_SHOW';  
+// this is the sumbit
 const CREATE_SHOW_LOADING        = 'CREATE_SHOW_LOADING';
 const CREATE_SHOW_SUCCESS        = 'CREATE_SHOW_SUCCESS';
 const CREATE_SHOW_ERROR          = 'CREATE_SHOW_ERROR';
 
+const UPDATE_SHOW                = 'UPDATE_SHOW';
 const UPDATE_SHOW_LOADING        = 'UPDATE_SHOW_LOADING';
 const UPDATE_SHOW_SUCCESS        = 'UPDATE_SHOW_SUCCESS';
 const UPDATE_SHOW_ERROR          = 'UPDATE_SHOW_ERROR';
 
+const DELETE_SHOW                = 'DELETE_SHOW';
 const DELETE_SHOW_LOADING        = 'DELETE_SHOW_LOADING';
 const DELETE_SHOW_SUCCESS        = 'DELETE_SHOW_SUCCESS';
 const DELETE_SHOW_ERROR          = 'DELETE_SHOW_ERROR';
@@ -109,17 +114,16 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 //
 // action creators
 // ----------------------------------------------------------------------------
+
+
 export const getShows = () => {
   return (dispatch, getState) => {
-    dispatch({
-      type: 'FETCH_SHOWS',
-      payload: fetchJSON(`/shows`)
-        .then((xhr) => {
-          return xhr
-        }, (error) => {
-          throw error
-        })
-    })
+    dispatch(
+      createAction(FETCH_SHOWS)(
+        fetchJSON(`/shows`)
+          .then((xhr => xhr), (e => {throw e}))
+        )   
+    )
     .catch(e => {
       console.log(e)
     })
@@ -128,58 +132,58 @@ export const getShows = () => {
 
 export const getShowDetails = (id) => {
   return (dispatch, getState) => {
-    dispatch({
-      type: 'FETCH_SHOW_DETAILS',
-      payload: fetchJSON(`/shows/${id}`)
-        .then((xhr) => {
-          return xhr
-        }, (error) => {
-          throw error
-        })
-    })
+    return dispatch(
+      createAction(FETCH_SHOW_DETAILS)(
+        fetchJSON(`/shows/${id}`)
+          .then((xhr) => {
+            return xhr
+          }, (error) => {
+            throw error
+          })
+      )
+    )
   }
 }
 
-export const getShowForm = () => {
-  return {
-    type: 'CREATE_SHOW'
-  }
-}
+export const getShowForm = createAction(CREATE_SHOW)
 
 export const createShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'CREATE_SHOW',
-      payload: fetchJSON(`/shows/`, {
-        'method' : 'POST',
-        'body' : show
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction(CREATE_SHOW)(
+        fetchJSON(`/shows/`, {
+          'method' : 'POST',
+          'body' : show
+        })
+        .then(xhr => xhr)
+      )
+    )
   }
 }
 
 export const updateShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'UPDATE_SHOW',
-      payload: fetchJSON(`/shows/${show._id}`, {
-        'method' : 'PUT',
-        'body' : show
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction(UPDATE_SHOW)(
+        fetchJSON(`/shows/${show._id}`, {
+          'method' : 'PUT',
+          'body' : show
+        })
+        .then(xhr => xhr)
+      )
+    ) 
   }
 }
 
 export const deleteShow = (show) => {
   return (dispatch, getState) => {
-    return dispatch({
-      type: 'DELETE_SHOW',
-      payload: fetchJSON(`/shows/${show._id}`, {
-        'method' : 'DELETE',
-      })
-      .then(xhr => xhr)
-    })
+    return dispatch(
+      createAction(DELETE_SHOW)(
+        fetchJSON(`/shows/${show._id}`, {
+          'method' : 'DELETE',
+        })
+        .then(xhr => xhr)
+      )
+    )
   }
 }

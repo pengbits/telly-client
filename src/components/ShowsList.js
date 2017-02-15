@@ -26,7 +26,7 @@ class ShowsList extends Component {
       <div>
         {message ? <h4 className="message" style={{color:'green'}}>{message}</h4> : null}
         <h3>My Shows</h3>
-        <table>
+        <table className="table table-striped">
           <tbody>
             <tr>
               <th>
@@ -48,17 +48,27 @@ class ShowsList extends Component {
                 {s.network}
               </td>
               <td>
-                <Link to={`/shows/${s._id}`}>View</Link>
-                {' | '}
-                <Link to={`/shows/${s._id}/edit`}>Edit</Link>
-                {' | '}
-                <Link to={`/shows/${s._id}/delete`} data-id={`${s._id}`} onClick={this.deleteShow.bind(this)}>Delete</Link>
+                <Link 
+                  className="btn btn-primary btn-xs" 
+                  to={`/shows/${s._id}`}>View
+                </Link>
+                {' '}
+                <Link 
+                  className="btn btn-default btn-xs" 
+                  to={`/shows/${s._id}/edit`}>Edit
+                </Link>
+                {' '}
+                <Link 
+                  className="btn btn-default btn-xs" 
+                  to={`/shows/${s._id}/delete`} 
+                  data-id={`${s._id}`} onClick={this.deleteShow.bind(this)}>Delete
+                </Link>
               </td>
             </tr>) : <tr></tr>}
         </tbody>
       </table>
       <p>
-        <Link to='/shows/new'>Add a Show</Link>
+        <Link to='/shows/new' className='btn btn-primary'>Add a Show</Link>
       </p>
       </div>
     )

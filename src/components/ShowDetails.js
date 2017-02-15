@@ -27,8 +27,7 @@ class ShowDetails extends Component {
           {network}
         </p>
         <p>
-          <Link to={`/shows/${_id}/edit`}>Edit</Link><br />
-          <Link to='/shows'>Back</Link>
+          <Link className='btn btn-primary'  to={`/shows/${_id}/edit`}>Edit</Link>  
         </p>
           
       </div>

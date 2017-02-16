@@ -12,6 +12,9 @@ import { loadState, saveState } from './localStorage'
 import ShowsListContainer from './containers/ShowsListContainer'
 import ShowDetailsContainer from './containers/ShowDetailsContainer'
 import ShowFormContainer from './containers/ShowFormContainer'
+import NetworksListContainer from './containers/NetworksListContainer'
+import NetworkDetailsContainer from './containers/NetworkDetailsContainer'
+import NetworkFormContainer from './containers/NetworkFormContainer'
 
 
 const composeEnhancers = composeWithDevTools({}); 
@@ -33,10 +36,15 @@ render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={AppContainer}> 
-        <Route path="/shows" component={ShowsListContainer} /> 
-        <Route path="/shows/new" component={ShowFormContainer} /> 
-        <Route path="/shows/:id" component={ShowDetailsContainer} /> 
-        <Route path="/shows/:id/edit" component={ShowFormContainer} /> 
+        <Route path="/shows"              component={ShowsListContainer} /> 
+        <Route path="/shows/:id"          component={ShowDetailsContainer} /> 
+        <Route path="/shows/new"          component={ShowFormContainer} /> 
+        <Route path="/shows/:id/edit"     component={ShowFormContainer} /> 
+        
+        <Route path="/networks"           component={NetworksListContainer} />
+        <Route path="/networks/:id"       component={NetworkDetailsContainer} />
+        <Route path="/networks/new"       component={NetworkFormContainer} /> 
+        <Route path="/networks/:id/edit"  component={NetworkFormContainer} /> 
       </Route>
     </Router>
   </Provider>,

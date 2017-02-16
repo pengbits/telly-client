@@ -115,7 +115,6 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 // action creators
 // ----------------------------------------------------------------------------
 
-
 export const getShows = () => {
   return (dispatch, getState) => {
     dispatch(

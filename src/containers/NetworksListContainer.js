@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getNetworks())
     },
     deleteNetwork: (id) => {
-    //   dispatch(deleteNetwork({
-    //     '_id': id
-    //   }))
+      dispatch(deleteNetwork({
+        '_id': id
+      }))
     }
   }
 }

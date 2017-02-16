@@ -37,13 +37,13 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={AppContainer}> 
         <Route path="/shows"              component={ShowsListContainer} /> 
-        <Route path="/shows/:id"          component={ShowDetailsContainer} /> 
         <Route path="/shows/new"          component={ShowFormContainer} /> 
+        <Route path="/shows/:id"          component={ShowDetailsContainer} /> 
         <Route path="/shows/:id/edit"     component={ShowFormContainer} /> 
         
         <Route path="/networks"           component={NetworksListContainer} />
+        <Route path="/networks/new"       component={NetworkFormContainer} />
         <Route path="/networks/:id"       component={NetworkDetailsContainer} />
-        <Route path="/networks/new"       component={NetworkFormContainer} /> 
         <Route path="/networks/:id/edit"  component={NetworkFormContainer} /> 
       </Route>
     </Router>

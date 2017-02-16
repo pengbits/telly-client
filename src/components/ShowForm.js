@@ -33,7 +33,7 @@ class ShowForm extends Component {
             <Field name="name" component="input" className="form-control" type="text"/>
           </p>
           <p className="form-group">
-            <label htmlFor="network">Network</label>
+            <label htmlFor="network">Network id</label>
             <Field name="network" component="input" className="form-control" type="text"/>
           </p>
           <p className="form-group">

@@ -7,10 +7,8 @@ import ShowForm from '../components/ShowForm'
 const mapStateToProps = (state, ownProps) => {
   const {showDetails,error,loading,message} = state.show
   return {
-    initialValues: showDetails ? {
-      "name":    showDetails.name,
-      "network": showDetails.network
-    }: {},
+    initialValues: Object.assign({}, 
+      showDetails || {}),
     
     id: showDetails ? 
       showDetails._id : null,

@@ -33,6 +33,9 @@ class NetworksList extends Component {
                 name
               </th>
               <th>
+                country
+              </th>
+              <th>
                 options
               </th>
             </tr>
@@ -40,6 +43,9 @@ class NetworksList extends Component {
             <tr key={idx}>
               <td>
                 <Link to={`/networks/${n._id}`}>{n.name}</Link>
+              </td>
+              <td>
+                {n.country}
               </td>
               <td>
                 <Link 

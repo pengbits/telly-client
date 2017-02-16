@@ -45,7 +45,10 @@ class ShowsList extends Component {
                 <Link to={`/shows/${s._id}`}>{s.name}</Link>
               </td>
               <td>
-                {s.network}
+                {!s.network ? null
+                  :
+                  <Link to={`/networks/${s.network._id}`}>{s.network.name}</Link>
+                }
               </td>
               <td>
                 <Link 

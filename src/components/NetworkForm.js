@@ -26,7 +26,7 @@ class NetworkForm extends Component {
 
     return (
       <div>
-        {pristine && message ? <h4 className="message" style={{color:'green'}}>{message}</h4> : null}
+        {message ? <h4 className="message" style={{color:'green'}}>{message}</h4> : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <p className="form-group">
             <label htmlFor="name">Name</label>

@@ -16,6 +16,7 @@ const FETCH_NETWORK_DETAILS_LOADING = 'FETCH_NETWORK_DETAILS_LOADING';
 const FETCH_NETWORK_DETAILS_SUCCESS = 'FETCH_NETWORK_DETAILS_SUCCESS';
 const FETCH_NETWORK_DETAILS_ERROR   = 'FETCH_NETWORK_DETAILS_ERROR';
 
+const NEW_NETWORK                   = 'NEW_NETWORK';
 const CREATE_NETWORK                = 'CREATE_NETWORK';
 const CREATE_NETWORK_LOADING        = 'CREATE_NETWORK_LOADING';
 const CREATE_NETWORK_SUCCESS        = 'CREATE_NETWORK_SUCCESS';
@@ -138,7 +139,8 @@ export const getNetworkDetails = (id) => {
   }
 }
 
-export const getNetworkForm = createAction(CREATE_NETWORK)
+// export const getNetworkForm = createAction(CREATE_NETWORK)
+export const newNetwork = createAction(NEW_NETWORK)
 
 export const createNetwork = (network) => {
   return (dispatch, getState) => {

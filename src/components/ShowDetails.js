@@ -22,10 +22,11 @@ class ShowDetails extends Component {
           <b>name</b><br />
           {name}
         </p>
+        {!network ? null :
         <p>
           <b>network</b><br />
-          {network}
-        </p>
+          {network.name}
+        </p>}
         <p>
           <Link className='btn btn-primary'  to={`/shows/${_id}/edit`}>Edit</Link>  
         </p>

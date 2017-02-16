@@ -13,7 +13,7 @@ class NetworkDetails extends Component {
   }
 
   render(){
-    const { _id, name, network } = this.props.network
+    const { _id, name, country } = this.props.network
     
     return (
       <div>
@@ -24,7 +24,7 @@ class NetworkDetails extends Component {
         </p>
         <p>
           <b>country</b><br />
-          ...
+          {country}
         </p>
         <p>
           <Link className='btn btn-primary'  to={`/networks/${_id}/edit`}>Edit</Link>  

@@ -1,16 +1,14 @@
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { createNetwork, getNetworkDetails, getNetworkForm, updateNetwork, deleteNetwork } from '../redux/networks'
+import { newNetwork, createNetwork, getNetworkDetails, updateNetwork, deleteNetwork } from '../redux/networks'
 import NetworkForm from '../components/NetworkForm'
 
 
 const mapStateToProps = (state, ownProps) => {
   const {networkDetails,error,loading,message} = state.network
   return {
-    initialValues: networkDetails ? {
-      "name":    networkDetails.name,
-      "network": networkDetails.network
-    }: {},
+    initialValues: Object.assign({},
+      networkDetails || {}),
     
     id: networkDetails ? 
       networkDetails._id : null,
@@ -31,7 +29,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getNetworkDetails: () => {
       dispatch(isNew(ownProps) ?
-        getNetworkForm() :
+        newNetwork() :
         getNetworkDetails(id)
       )
     },

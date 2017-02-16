@@ -17,6 +17,7 @@ const FETCH_SHOW_DETAILS_SUCCESS = 'FETCH_SHOW_DETAILS_SUCCESS';
 const FETCH_SHOW_DETAILS_ERROR   = 'FETCH_SHOW_DETAILS_ERROR';
 
 // this is more of a getForm() kind of state
+const NEW_SHOW                   = 'NEW_SHOW';  
 const CREATE_SHOW                = 'CREATE_SHOW';  
 // this is the sumbit
 const CREATE_SHOW_LOADING        = 'CREATE_SHOW_LOADING';

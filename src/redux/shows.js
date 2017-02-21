@@ -57,6 +57,7 @@ export const shows = (state = {list: [], loading:false}, action) => {
         error: action.error
       }
     case DELETE_SHOW_SUCCESS:
+      console.log(action)
       return {
         list: state.list.filter(show => {
           return show._id !== action.payload.show._id

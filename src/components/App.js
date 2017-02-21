@@ -12,8 +12,17 @@ class App extends Component {
     <div className="container">
       <Nav 
         leftItems={[{
-          label:'shows',
+          label:'All shows',
           path:'/shows'
+        },{
+          label: 'Active',
+          path:'/shows/filter/active'
+        },{
+          label: 'Ended',
+          path:'/shows/filter/ended'
+        },{
+          label: 'Off Season',
+          path:'/shows/filter/off-season'
         }]}
         
         rightItems={[{

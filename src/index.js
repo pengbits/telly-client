@@ -33,7 +33,7 @@ render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={AppContainer}> 
-        <Route path="/shows"              component={ShowsListContainer} /> 
+        <Route path="/shows(/filter/:filter)"     component={ShowsListContainer} /> 
         <Route path="/shows/new"          component={ShowFormContainer} /> 
         <Route path="/shows/:id"          component={ShowDetailsContainer} /> 
         <Route path="/shows/:id/edit"     component={ShowFormContainer} /> 

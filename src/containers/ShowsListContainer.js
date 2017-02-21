@@ -2,10 +2,11 @@ import { connect } from 'react-redux'
 import { getShows, deleteShow } from '../redux/shows'
 import ShowsList from '../components/ShowsList'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const {list,loading,error} = state.shows;
   const {message} = state.show;
-  
+  const {filter} =  ownProps.params;
+  console.log(filter)
   return {
     shows: list,
     error,

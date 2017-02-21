@@ -14,9 +14,6 @@ class App extends Component {
         leftItems={[{
           label:'shows',
           path:'/shows'
-        },{
-          label:'networks',
-          path: '/networks'
         }]}
         
         rightItems={[{

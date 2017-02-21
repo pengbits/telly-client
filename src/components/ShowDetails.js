@@ -13,7 +13,7 @@ class ShowDetails extends Component {
   }
   
   render(){
-    const { _id, name, network } = this.props.show
+    const { _id, name, network } = this.props.show || {}
     
     return (
       <div>
@@ -22,15 +22,14 @@ class ShowDetails extends Component {
           <b>name</b><br />
           {name}
         </p>
-        {!network ? null :
         <p>
           <b>network</b><br />
-          {network.name}
-        </p>}
+          {network}
+        </p>
         <p>
           <Link className='btn btn-primary'  to={`/shows/${_id}/edit`}>Edit</Link>  
         </p>
-          
+        <Link to='/shows'>Back</Link>
       </div>
     )
   }

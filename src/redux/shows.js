@@ -43,7 +43,7 @@ export const shows = (state = {list: [], loading:false}, action) => {
     case FETCH_SHOWS_LOADING:
       return {
         list: [],
-        loading: true
+        loading: true,
       }
     case FETCH_SHOWS_SUCCESS:
       return {
@@ -70,7 +70,13 @@ export const shows = (state = {list: [], loading:false}, action) => {
 }
 
 export const show = (state={showDetails:{}, loading:false}, action={}) => {
+  // if((action.type || '').match(/SHOW/)) console.log(action);
+  
   switch (action.type){
+    case FETCH_SHOWS_LOADING:
+      return {
+        loading: false
+      }
     case FETCH_SHOW_DETAILS_LOADING:
       return {
         loading: true

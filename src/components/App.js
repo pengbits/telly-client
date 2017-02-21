@@ -13,16 +13,16 @@ class App extends Component {
       <Nav 
         leftItems={[{
           label:'All shows',
-          path:'/shows'
+          filter:'SHOW_ALL'
         },{
           label: 'Active',
-          path:'/shows/filter/active'
+          filter:'SHOW_ACTIVE'
         },{
           label: 'Ended',
-          path:'/shows/filter/ended'
+          filter:'SHOW_ENDED'
         },{
           label: 'Off Season',
-          path:'/shows/filter/off-season'
+          filter:'SHOW_OFF-SEASON'
         }]}
         
         rightItems={[{

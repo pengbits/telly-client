@@ -22,7 +22,7 @@ class ShowForm extends Component {
   }
   
   render(){
-    const {handleSubmit, onSubmit, pristine, reset, submitting, id, isNew, message} = this.props;
+    const {handleSubmit, onSubmit, pristine, reset, submitting, id, isNew, message, show_statuses} = this.props;
 
     return (
       <div>
@@ -35,6 +35,16 @@ class ShowForm extends Component {
           <p className="form-group">
             <label htmlFor="network">Network</label>
             <Field name="network" component="input" className="form-control" type="text"/>
+          </p>
+          <p className="form-group">
+            <label htmlFor="status">Status</label>
+            <Field name="status" component="select" className="form-control">
+              <option value="">Select a Status...</option>
+              {show_statuses.map((opt) => 
+                <option value={opt} key={opt}>{opt.toLowerCase()}</option>
+              )}
+            </Field>
+            
           </p>
           <p className="form-group">
             <button type="submit" className="btn btn-primary" disabled={pristine || submitting}>Submit</button>

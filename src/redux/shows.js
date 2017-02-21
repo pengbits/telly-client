@@ -1,6 +1,9 @@
 import {createAction,createActions} from 'redux-actions'
 import fetchJSON from '../utils/fetchJSON'
 
+// misc
+export const show_statuses = 'active ended off-season'.split(' ')
+
 //
 // action constants 
 // these can't be namespaced behind telly/shows/FETCH_SHOWS, because some are 

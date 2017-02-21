@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { createShow, getShowDetails, getShowForm, updateShow, deleteShow } from '../redux/shows'
+import { createShow, getShowDetails, getShowForm, updateShow, deleteShow, show_statuses} from '../redux/shows'
 import ShowForm from '../components/ShowForm'
 
 
@@ -18,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
     hasError: !!error, 
     loading,
     isNew: isNew(ownProps),
-    message
+    message, 
+    show_statuses
   }
 }
 

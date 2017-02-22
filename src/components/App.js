@@ -12,11 +12,17 @@ class App extends Component {
     <div className="container">
       <Nav 
         leftItems={[{
-          label:'shows',
-          path:'/shows'
+          label:'All shows',
+          filter:'all'
         },{
-          label:'networks',
-          path: '/networks'
+          label: 'Active',
+          filter:'active'
+        },{
+          label: 'Ended',
+          filter:'ended'
+        },{
+          label: 'Off Season',
+          filter:'off-season'
         }]}
         
         rightItems={[{

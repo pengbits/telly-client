@@ -1,16 +1,14 @@
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { createShow, getShowDetails, getShowForm, updateShow, deleteShow } from '../redux/shows'
+import { createShow, getShowDetails, getShowForm, updateShow, deleteShow, show_statuses} from '../redux/shows'
 import ShowForm from '../components/ShowForm'
 
 
 const mapStateToProps = (state, ownProps) => {
   const {showDetails,error,loading,message} = state.show
   return {
-    initialValues: showDetails ? {
-      "name":    showDetails.name,
-      "network": showDetails.network
-    }: {},
+    initialValues: Object.assign({}, 
+      showDetails || {}),
     
     id: showDetails ? 
       showDetails._id : null,
@@ -20,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
     hasError: !!error, 
     loading,
     isNew: isNew(ownProps),
-    message
+    message, 
+    show_statuses
   }
 }
 

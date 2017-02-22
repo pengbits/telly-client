@@ -1,5 +1,8 @@
-import {createAction,createActions} from 'redux-actions'
+import {createAction} from 'redux-actions'
 import fetchJSON from '../utils/fetchJSON'
+
+// misc
+export const show_statuses = 'active ended off-season'.split(' ')
 
 //
 // action constants 
@@ -17,6 +20,7 @@ const FETCH_SHOW_DETAILS_SUCCESS = 'FETCH_SHOW_DETAILS_SUCCESS';
 const FETCH_SHOW_DETAILS_ERROR   = 'FETCH_SHOW_DETAILS_ERROR';
 
 // this is more of a getForm() kind of state
+const NEW_SHOW                   = 'NEW_SHOW';  
 const CREATE_SHOW                = 'CREATE_SHOW';  
 // this is the sumbit
 const CREATE_SHOW_LOADING        = 'CREATE_SHOW_LOADING';
@@ -42,7 +46,7 @@ export const shows = (state = {list: [], loading:false}, action) => {
     case FETCH_SHOWS_LOADING:
       return {
         list: [],
-        loading: true
+        loading: true,
       }
     case FETCH_SHOWS_SUCCESS:
       return {
@@ -56,6 +60,7 @@ export const shows = (state = {list: [], loading:false}, action) => {
         error: action.error
       }
     case DELETE_SHOW_SUCCESS:
+      console.log(action)
       return {
         list: state.list.filter(show => {
           return show._id !== action.payload.show._id
@@ -68,7 +73,13 @@ export const shows = (state = {list: [], loading:false}, action) => {
 }
 
 export const show = (state={showDetails:{}, loading:false}, action={}) => {
+  // if((action.type || '').match(/SHOW/)) console.log(action);
+  
   switch (action.type){
+    case FETCH_SHOWS_LOADING:
+      return {
+        loading: false
+      }
     case FETCH_SHOW_DETAILS_LOADING:
       return {
         loading: true
@@ -114,7 +125,6 @@ export const show = (state={showDetails:{}, loading:false}, action={}) => {
 //
 // action creators
 // ----------------------------------------------------------------------------
-
 
 export const getShows = () => {
   return (dispatch, getState) => {

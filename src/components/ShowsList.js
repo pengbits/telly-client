@@ -36,6 +36,9 @@ class ShowsList extends Component {
                 network
               </th>
               <th>
+                status
+              </th>
+              <th>
                 options
               </th>
             </tr>
@@ -46,6 +49,9 @@ class ShowsList extends Component {
               </td>
               <td>
                 {s.network}
+              </td>
+              <td>
+                {s.status}
               </td>
               <td>
                 <Link 

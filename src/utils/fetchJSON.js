@@ -32,6 +32,9 @@ const fetchJSON = (path, opts={}) => {
         }
       })
       .then(xhr => {
+        if(xhr.error){
+          throw new Error(xhr.message || 'An Error occurred')
+        }
         if(isFunction(opts.success)){
           opts.success(xhr)
         } else {

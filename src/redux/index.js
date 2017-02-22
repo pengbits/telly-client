@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import { shows,show }  from './shows'
+import { shows, show }  from './shows'
+import {visibilityFilter} from './visibilityFilter'
 
 const rootReducer = combineReducers({
-  shows,
+  form: formReducer,
   show,
-  form: formReducer
+  shows,
+  visibilityFilter
 })
 
 export default rootReducer

@@ -3,12 +3,13 @@ import { getShowDetails } from '../redux/shows'
 import ShowDetails from '../components/ShowDetails'
 
 const mapStateToProps = (state) => {
-  const {showDetails,loading,error} = state.show;
+  const {showDetails,loading,error,message} = state.show;
 
   return {
     show: showDetails,
     error,
-    loading
+    loading,
+    message
   }
 }
 
